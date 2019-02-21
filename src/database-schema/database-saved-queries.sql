@@ -13,3 +13,5 @@ select * from survey_says.question;
 select * from survey_says.answer_choice;
 
 select * from survey_says.response;
+
+select * from survey_says.role_junction;
