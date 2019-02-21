@@ -9,23 +9,20 @@ export class NavBar extends Component {
   render() {
     return (
         <Navbar bg="light" expand="lg">
-            <LinkContainer to="/home">
-                <Navbar.Brand>Survey-Says</Navbar.Brand>
+          <LinkContainer to="/home">
+            <Navbar.Brand>Survey-Says</Navbar.Brand>
+          </LinkContainer>
+          <LinkContainer to="/open-surveys">
+            <Nav.Link>Open</Nav.Link>
+          </LinkContainer>
+          <Nav className="ml-auto">
+            <LinkContainer to="/user-login">
+              <Nav.Link>Login</Nav.Link>
             </LinkContainer>
-            <Nav className="mr-auto">
-              <LinkContainer to="/open-surveys">
-                  <Nav.Link>Open</Nav.Link>
-              </LinkContainer>
-            </Nav>
-
-            <Nav className="ml-auto">
-              <LinkContainer to="/user-login">
-                  <Nav.Link>Login</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/user-register">
-                  <Nav.Link>Register</Nav.Link>
-              </LinkContainer>
-            </Nav>      
+            <LinkContainer to="/user-register">
+              <Nav.Link>Register</Nav.Link>
+            </LinkContainer>
+          </Nav>      
         </Navbar>
     )
   }
