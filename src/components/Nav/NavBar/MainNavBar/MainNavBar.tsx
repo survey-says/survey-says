@@ -3,21 +3,20 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { IState, IUserState } from '../../../../reducers';
-import { connect } from 'react-redux';
+import { INavState } from '../../../../reducers';
 import { NavDropdown } from 'react-bootstrap';
-import { login } from '../../../../actions/Login.actions';
+
 
 interface INavBarProps {
-  user: IUserState,
+  nav: INavState,
   login: () => void
 }
 
-export class NavBar extends Component<INavBarProps, any> {
+export class MainNavBar extends Component<INavBarProps, any> {
   
   render() {
     let defaultNavItems: any = null;
-    if (this.props.user.isLoggedIn) {
+    if (this.props.nav.isLoggedIn) {
       defaultNavItems = (
         <>
           <LinkContainer to="closed-surveys">
@@ -27,7 +26,7 @@ export class NavBar extends Component<INavBarProps, any> {
             <Nav.Link>Create</Nav.Link>
           </LinkContainer>
           <Nav className="ml-auto">
-            <NavDropdown id="user-dropdown" title={this.props.user.username}>
+            <NavDropdown id="user-dropdown" title={this.props.nav.username}>
               <NavDropdown.Item onClick={this.props.login}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -60,13 +59,6 @@ export class NavBar extends Component<INavBarProps, any> {
   }
 }
 
-const mapStateToProps = (state: IState) => ({
-    user: state.user
-})
 
-const mapDispatchToProps = {
-    login
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default MainNavBar;
 

@@ -1,23 +1,23 @@
 import { combineReducers } from "redux";
 import { loginReducer } from "./Login.reducer";
-import { userReducer } from "./User.reducer";
+import { navReducer } from "./Nav.reducer";
 
 export interface ILoginState {
   username: string,
   password: string
 }
 
-export interface IUserState {
+export interface INavState {
   isLoggedIn: boolean,
   username: string
 }
 
 export interface IState {
   login: ILoginState
-  user: IUserState
+  nav: INavState
 }
 
 export const state = combineReducers<IState>({
   login: loginReducer,
-  user: userReducer
+  nav: navReducer
 })

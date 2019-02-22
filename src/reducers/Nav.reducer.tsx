@@ -1,12 +1,12 @@
-import { IUserState } from '.';
+import { INavState } from '.';
 import { loginTypes } from '../actions/Login.actions';
 
-const initialState: IUserState = {
+const initialState: INavState = {
     isLoggedIn: false,
     username: 'Aaron'
 }
 
-export const userReducer = (state = initialState, action: any) => {
+export const navReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case (loginTypes.LOGIN): 
             return {
