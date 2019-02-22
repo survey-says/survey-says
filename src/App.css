@@ -31,3 +31,9 @@
     transform: rotate(360deg);
   }
 }
+/* 
+ * Login 
+ */
+.login-container {
+  max-width: 540px;
+}
