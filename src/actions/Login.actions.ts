@@ -7,7 +7,8 @@ export const loginTypes = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAIL: 'LOGIN_FAIL',
   USERNAME_UPDATE: 'USERNAME_UPDATE',
-  PASSWORD_UPDATE: 'PASSWORD_UPDATE'
+  PASSWORD_UPDATE: 'PASSWORD_UPDATE',
+  LOGOUT: 'LOGOUT'
 }
 
 
@@ -86,4 +87,11 @@ export const login = (username: String, password: String) => async (dispatch) =>
   }
 
   // I know there is more to do in the action but not sure how to proceed
+}
+
+export const logout = () => {
+    return {
+      payload: {},
+      type: loginTypes.LOGOUT
+    }
 }
