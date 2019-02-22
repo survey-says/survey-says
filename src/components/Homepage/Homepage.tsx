@@ -4,7 +4,7 @@ import { IState } from '../../reducers';
 import Container from 'react-bootstrap/Container';
 import { Row, Col, Jumbotron } from 'react-bootstrap';
 
-export class Homepage extends Component {
+export class Homepage extends Component<any, any> {
 
   render() {
     return (

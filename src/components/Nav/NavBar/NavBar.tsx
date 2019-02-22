@@ -3,10 +3,32 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { IState, IUserState } from '../../../reducers';
+import { connect } from 'react-redux';
 
-export class NavBar extends Component {
+interface INavBarProps {
+  user: IUserState
+}
+
+export class NavBar extends Component<INavBarProps, any> {
   
   render() {
+    let defaultNavBar: any = null;
+    if (this.props.user.isLoggedIn) {
+      defaultNavBar = (<h2>User is logged in.</h2>);
+    } else {
+      defaultNavBar = (
+          <Nav className="ml-auto">
+            <LinkContainer to="/user-login">
+              <Nav.Link>Login</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/user-register">
+              <Nav.Link>Register</Nav.Link>
+            </LinkContainer>
+          </Nav> 
+      );
+    }
+
     return (
         <Navbar bg="light" expand="lg">
           <LinkContainer to="/home">
@@ -15,17 +37,19 @@ export class NavBar extends Component {
           <LinkContainer to="/open-surveys">
             <Nav.Link>Open</Nav.Link>
           </LinkContainer>
-          <Nav className="ml-auto">
-            <LinkContainer to="/user-login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/user-register">
-              <Nav.Link>Register</Nav.Link>
-            </LinkContainer>
-          </Nav>      
+          {defaultNavBar}
         </Navbar>
     )
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state: IState) => ({
+    user: state.user
+})
+
+const mapDispatchToProps = {
+  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+
