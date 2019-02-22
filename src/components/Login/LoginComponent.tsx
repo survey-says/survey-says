@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { loginReducer } from '../reducers/Login.reducer';
-import { updateUsername, updatePassword } from '../actions/Login.actions'
 
 // Interface of the props (fields and methods coming from login actions)
 export interface ILoginProps {
@@ -39,24 +37,26 @@ export class LoginComponent extends Component<ILoginProps, any>{
     return (
       <>
         <form className="form-signin" onSubmit={this.login}>
-          <img className="mb-4" alt="" width="500" height="300" />
           <h1 className="h3 mb-3 font-weight-normal">Please Login</h1>
-          <label htmlFor="inputUsername" className="sr-only">Username</label>
-          <input type="text"
-            id="inputUsername"
-            className="form-control"
-            placeholder="Username"
-            onChange={this.updateUsername}
-            required />
-          <label htmlFor="inputPassword" className="sr-only">Password</label>
-          <input type="password"
-            id="inputPassword"
-            className="form-control"
-            placeholder="Password"
-            onChange={this.updatePassword}
-            required />
-          <p>{this.props.errorMessage}</p>
-          <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <div className="row col-10 centered">
+            <label htmlFor="inputUsername" className="label-r">Username</label>
+            <input type="text"
+              id="inputUsername"
+              className="label form-control"
+              placeholder="Username"
+              onChange={this.updateUsername}
+              required />
+            <label htmlFor="inputPassword" className="label-r label-l">Password</label>
+            <input type="password"
+              id="inputPassword"
+              className="label-l form-control"
+              placeholder="Password"
+              onChange={this.updatePassword}
+              required />
+            <button className="btn btn-lg btn-primary btn-block login-btn" type="submit">Log In</button>
+            <p>{this.props.errorMessage}</p>
+          </div>
+
         </form>
       </>
     )

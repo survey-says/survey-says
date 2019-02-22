@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { LoginComponent } from '../components/LoginComponent';
-import { IState } from "../reducers";
-import { updatePassword, updateUsername, login } from '../actions/Login.actions';
+import { LoginComponent } from './LoginComponent';
+import { IState } from "../../reducers";
+import { updatePassword, updateUsername, login } from '../../actions/Login.actions';
 import { userInfo } from 'os';
 
 const mapStateToProps = (state: IState) => {

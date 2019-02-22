@@ -31,3 +31,15 @@
     transform: rotate(360deg);
   }
 }
+/* 
+ * Login 
+ */
+.label-r {
+  padding-right: 1em;
+}
+.label-l {
+  padding-left: 1em;
+}
+.login-btn {
+  margin-left: 1em;
+}
