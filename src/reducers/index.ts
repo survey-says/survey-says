@@ -8,7 +8,8 @@ export interface ILoginState {
 }
 
 export interface IUserState {
-  isLoggedIn: boolean
+  isLoggedIn: boolean,
+  username: string
 }
 
 export interface IState {

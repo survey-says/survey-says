@@ -1,7 +1,8 @@
 import { IUserState } from '.';
 
 const initialState: IUserState = {
-    isLoggedIn: false
+    isLoggedIn: false,
+    username: 'Aaron'
 }
 
 export const userReducer = (state = initialState, action: any) => {

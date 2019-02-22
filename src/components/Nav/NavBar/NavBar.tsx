@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { IState, IUserState } from '../../../reducers';
 import { connect } from 'react-redux';
+import { NavDropdown } from 'react-bootstrap';
 
 interface INavBarProps {
   user: IUserState
@@ -13,11 +14,24 @@ interface INavBarProps {
 export class NavBar extends Component<INavBarProps, any> {
   
   render() {
-    let defaultNavBar: any = null;
+    let defaultNavItems: any = null;
     if (this.props.user.isLoggedIn) {
-      defaultNavBar = (<h2>User is logged in.</h2>);
+      defaultNavItems = (
+        <>
+          <LinkContainer to="closed-surveys">
+            <Nav.Link>Closed</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="create-survey">
+            <Nav.Link>Create</Nav.Link>
+          </LinkContainer>
+          <Nav className="ml-auto">
+            <NavDropdown id="user-dropdown" title={this.props.user.username}>
+            </NavDropdown>
+          </Nav>
+        </>
+      );
     } else {
-      defaultNavBar = (
+      defaultNavItems = (
           <Nav className="ml-auto">
             <LinkContainer to="/user-login">
               <Nav.Link>Login</Nav.Link>
@@ -37,7 +51,7 @@ export class NavBar extends Component<INavBarProps, any> {
           <LinkContainer to="/open-surveys">
             <Nav.Link>Open</Nav.Link>
           </LinkContainer>
-          {defaultNavBar}
+          {defaultNavItems}
         </Navbar>
     )
   }
