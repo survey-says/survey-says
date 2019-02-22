@@ -1,5 +1,6 @@
 import { INavState } from '.';
 import { loginTypes } from '../actions/Login.actions';
+import { navTypes } from '../actions/Nav.actions';
 
 const initialState: INavState = {
     surveyTabOpened: false,
@@ -14,6 +15,10 @@ export const navReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 isLoggedIn: !state.isLoggedIn
+            }
+        case (navTypes.CHANGE_CURRENT_PATH):
+            return {
+                ...state,
             }
     }
     return state;
