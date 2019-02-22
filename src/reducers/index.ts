@@ -9,7 +9,9 @@ export interface ILoginState {
 
 export interface INavState {
   isLoggedIn: boolean,
-  username: string
+  surveyTabOpened: boolean
+  username: string,
+  currentPath: string
 }
 
 export interface IState {

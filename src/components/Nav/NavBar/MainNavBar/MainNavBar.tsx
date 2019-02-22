@@ -3,9 +3,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import SurveyTabs from '../SurveyTabs/SurveyTabs';
 import { INavState } from '../../../../reducers';
 import { NavDropdown } from 'react-bootstrap';
-
 
 interface INavBarProps {
   nav: INavState,
@@ -46,6 +46,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
     }
 
     return (
+      <>
         <Navbar bg="light" expand="lg">
           <LinkContainer to="/home">
             <Navbar.Brand>Survey-Says</Navbar.Brand>
@@ -55,6 +56,8 @@ export class MainNavBar extends Component<INavBarProps, any> {
           </LinkContainer>
           {defaultNavItems}
         </Navbar>
+        {this.props.nav.surveyTabOpened ? <SurveyTabs nav={this.props.nav} /> : null}
+        </>
     )
   }
 }

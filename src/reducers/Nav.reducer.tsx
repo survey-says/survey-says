@@ -2,8 +2,10 @@ import { INavState } from '.';
 import { loginTypes } from '../actions/Login.actions';
 
 const initialState: INavState = {
+    surveyTabOpened: false,
     isLoggedIn: false,
-    username: 'Aaron'
+    username: 'Aaron',
+    currentPath: '/'
 }
 
 export const navReducer = (state = initialState, action: any) => {
