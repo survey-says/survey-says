@@ -17,34 +17,40 @@ export default class SurveyView extends Component<any, any>{
                     {
                         id: 2,
                         title: 'What is the best form of potato?',
-                        choices: ['Boiled','French Fries','Mashed','Hash Browns','Curly Fries']
+                        choices: ['Boiled', 'French Fries', 'Mashed', 'Hash Browns', 'Curly Fries']
                     }
                 ]
             }
         }
     }
 
+    // Needs Method for pulling in data from the survey and response data tables
+    // Needs method  for submitting data
+
     render() {
         return (
             <div className="container">
                 <div className="jumbotron">
                     <h2 className="mb-3">{this.state.survey.title}</h2>
-                    {this.state.survey.questions.map(question => (
-                        <div key={question.id} className="card">
-                            <h5 className="card-header">{question.title}</h5>
-                            <div className="card-body">
-                            {question.choices.map(choice => (                                
-                                <div className="form-check">
-                                    <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                    <label className="form-check-label" htmlFor="exampleRadios1">
-                                        {choice} </label>
+                    <form>
+                        {this.state.survey.questions.map(question => (
+                            <div key={question.id} className="card mb-3">
+                                <h5 className="card-header">{question.title}</h5>
+                                <div className="card-body">
+                                    {question.choices.map(choice => (
+                                        <div className="form-check">
+                                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                                            <label className="form-check-label" htmlFor="exampleRadios1">
+                                                {choice} </label>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                        <button type="submit" className="btn btn-primary">Submit</button>
+                    </form>
                 </div>
-            </div>
+            </div >
         )
     }
 }
