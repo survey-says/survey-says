@@ -6,7 +6,6 @@ import SurveyView from './components/SurveyView/SurveyView';
 import LoginContainer from './components/Login/LoginContainer';
 import Homepage from './components/Homepage/Homepage';
 
-
 class App extends Component {
   render() {
     return (
