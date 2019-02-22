@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import NavBar from '../../components/Nav/NavBar/MainNavBar/NavBar'
+import MainNavBar from '../../components/Nav/NavBar/MainNavBar/NavBar'
+import { SurveyNavBar } from '../../components/Nav/NavBar/SurveyNavBar/SurveyNavBar';
 
 class Layout extends Component {
     render() {
         return (
             <>
-                <NavBar />
+                <MainNavBar />
+                <SurveyNavBar />
                 <main>
                     {this.props.children}
                 </main>

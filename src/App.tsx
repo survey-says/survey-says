@@ -8,6 +8,9 @@ class App extends Component {
     return (
       <div>
         <Layout>
+          <Route path="/create-survey" />
+          <Route path="/closed-surveys" />
+          <Route path="/open-surveys" />
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />
         </Layout>
