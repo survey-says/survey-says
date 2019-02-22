@@ -34,13 +34,13 @@ export default class SurveyView extends Component<any, any>{
                     <h2 className="mb-3">{this.state.survey.title}</h2>
                     <form>
                         {this.state.survey.questions.map(question => (
-                            <div key={question.id} className="card mb-3">
+                            <div key={question.id} className="card form-group mb-3">
                                 <h5 className="card-header">{question.title}</h5>
                                 <div className="card-body">
-                                    {question.choices.map(choice => (
+                                    {question.choices.map((choice, index) => (
                                         <div className="form-check">
-                                            <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                                            <label className="form-check-label" htmlFor="exampleRadios1">
+                                            <input className="form-check-input" type="radio" name={`question-${question.id}-choice`} value={`option-${index}`} />
+                                            <label className="form-check-label">
                                                 {choice} </label>
                                         </div>
                                     ))}
