@@ -35,30 +35,33 @@ export class LoginComponent extends Component<ILoginProps, any>{
   // The LoginComponent will have access to the username and password via props because of the redux store
   render() {
     return (
-      <>
-        <form className="form-signin" onSubmit={this.login}>
+      <div className="container login-container">
+        <div className="jumbotron">
           <h1 className="h3 mb-3 font-weight-normal">Please Login</h1>
-          <div className="row col-10 centered">
-            <label htmlFor="inputUsername" className="label-r">Username</label>
-            <input type="text"
-              id="inputUsername"
-              className="label form-control"
-              placeholder="Username"
-              onChange={this.updateUsername}
-              required />
-            <label htmlFor="inputPassword" className="label-r label-l">Password</label>
-            <input type="password"
-              id="inputPassword"
-              className="label-l form-control"
-              placeholder="Password"
-              onChange={this.updatePassword}
-              required />
+          <form className="form-signin" onSubmit={this.login}>
+            <div className="form-group">
+              <label htmlFor="inputUsername">Username</label>
+              <input type="text"
+                id="inputUsername"
+                className="form-control"
+                placeholder="Username"
+                onChange={this.updateUsername}
+                required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="inputPassword">Password</label>
+              <input type="password"
+                id="inputPassword"
+                className="form-control"
+                placeholder="Password"
+                onChange={this.updatePassword}
+                required />
+            </div>
             <button className="btn btn-lg btn-primary btn-block login-btn" type="submit">Log In</button>
             <p>{this.props.errorMessage}</p>
-          </div>
-
-        </form>
-      </>
+          </form>
+        </div>
+      </div>
     )
   }
 }
