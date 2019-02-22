@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { loginReducer } from "./Login.reducer";
 import { navReducer } from "./Nav.reducer";
+import { userReducer } from "./User.reducer";
 import { userInfo } from 'os';
 
 export interface ILoginState {
@@ -10,19 +11,24 @@ export interface ILoginState {
   errorMessage: string
 }
 
-export interface INavState {
+export interface IUserState {
   isLoggedIn: boolean,
+  username: string
+}
+
+export interface INavState {
   surveyTabOpened: boolean
-  username: string,
   currentPath: string
 }
 
 export interface IState {
   login: ILoginState
+  user: IUserState
   nav: INavState
 }
 
 export const state = combineReducers<IState>({
   login: loginReducer,
+  user: userReducer,
   nav: navReducer
 })

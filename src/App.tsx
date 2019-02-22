@@ -13,7 +13,7 @@ class App extends Component {
         <Layout>
           <Route path="/closed-surveys" />
           <Route path="/open-surveys" />
-          <Route path="/login" component={LoginContainer}/>
+          <Route path="/user-login" component={LoginContainer}/>
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />        
         </Layout>

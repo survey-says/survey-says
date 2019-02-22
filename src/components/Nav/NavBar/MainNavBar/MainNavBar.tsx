@@ -4,19 +4,19 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import SurveyTabs from '../SurveyTabs/SurveyTabs';
-import { INavState } from '../../../../reducers';
+import { INavState, IUserState } from '../../../../reducers';
 import { NavDropdown } from 'react-bootstrap';
 
 interface INavBarProps {
-  nav: INavState,
-  login: () => void
+  nav: INavState
+  user: IUserState
 }
 
 export class MainNavBar extends Component<INavBarProps, any> {
   
   render() {
     let defaultNavItems: any = null;
-    if (this.props.nav.isLoggedIn) {
+    if (this.props.user.isLoggedIn) {
       defaultNavItems = (
         <>
           <LinkContainer to="closed-surveys">
@@ -26,8 +26,8 @@ export class MainNavBar extends Component<INavBarProps, any> {
             <Nav.Link>Create</Nav.Link>
           </LinkContainer>
           <Nav className="ml-auto">
-            <NavDropdown id="user-dropdown" title={this.props.nav.username}>
-              <NavDropdown.Item onClick={this.props.login}>Logout</NavDropdown.Item>
+            <NavDropdown id="user-dropdown" title={this.props.user.username}>
+              <NavDropdown.Item>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </>
@@ -36,7 +36,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
       defaultNavItems = (
           <Nav className="ml-auto">
             <LinkContainer to="/user-login">
-              <Nav.Link onClick={this.props.login}>Login</Nav.Link>
+              <Nav.Link>Login</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/user-register">
               <Nav.Link>Register</Nav.Link>

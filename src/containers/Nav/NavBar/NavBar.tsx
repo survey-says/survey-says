@@ -5,7 +5,8 @@ import { login } from '../../../actions/Login.actions'
 
 
 const mapStateToProps = (state: IState) => ({
-  nav: state.nav
+  nav: state.nav,
+  user: state.user
 })
 
 const mapDispatchToProps = {
