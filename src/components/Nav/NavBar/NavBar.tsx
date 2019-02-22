@@ -6,9 +6,11 @@ import Nav from 'react-bootstrap/Nav';
 import { IState, IUserState } from '../../../reducers';
 import { connect } from 'react-redux';
 import { NavDropdown } from 'react-bootstrap';
+import { login } from '../../../actions/Login.actions';
 
 interface INavBarProps {
-  user: IUserState
+  user: IUserState,
+  login: () => void
 }
 
 export class NavBar extends Component<INavBarProps, any> {
@@ -26,7 +28,7 @@ export class NavBar extends Component<INavBarProps, any> {
           </LinkContainer>
           <Nav className="ml-auto">
             <NavDropdown id="user-dropdown" title={this.props.user.username}>
-              <NavDropdown.Item>Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={this.props.login}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </>
@@ -35,7 +37,7 @@ export class NavBar extends Component<INavBarProps, any> {
       defaultNavItems = (
           <Nav className="ml-auto">
             <LinkContainer to="/user-login">
-              <Nav.Link>Login</Nav.Link>
+              <Nav.Link onClick={this.props.login}>Login</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/user-register">
               <Nav.Link>Register</Nav.Link>
@@ -63,7 +65,7 @@ const mapStateToProps = (state: IState) => ({
 })
 
 const mapDispatchToProps = {
-  
+    login
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
