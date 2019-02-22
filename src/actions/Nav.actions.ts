@@ -1,10 +1,12 @@
 export const navTypes = {
-    CHANGE_CURRENT_PATH: 'CHANGE_CURRENT_PATH',
+    ROOT_LINK_CLICKED: 'ROOT_LINK_CLICKED',
 }
 
-export const changeCurrentPath = () => {
+export const changeRootPath = (path: string) => {
     return {
-        payload: {},
-        type: navTypes.CHANGE_CURRENT_PATH
+        payload: {
+            path: path
+        },
+        type: navTypes.ROOT_LINK_CLICKED
     }
 }

@@ -3,7 +3,7 @@ import { loginTypes} from '../actions/Login.actions';
 
 const initialState: INavState = {
     surveyTabOpened: false,
-    currentPath: '/'
+    currentRootPath: '/'
 }
 
 export const navReducer = (state = initialState, action: any) => {

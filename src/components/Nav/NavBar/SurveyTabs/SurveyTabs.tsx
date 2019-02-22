@@ -10,22 +10,22 @@ interface ISurveyProps {
 
 const surveyTabs = (props: ISurveyProps) => (
 <Nav justify variant="tabs">
-    <LinkContainer to={props.nav.currentPath + 'my-surveys'}>
+    <LinkContainer to='my-surveys'>
         <Nav.Item>
             <Nav.Link>My Surveys</Nav.Link>
         </Nav.Item>
     </LinkContainer>
-    <LinkContainer to={props.nav.currentPath + 'collaborations'}>
+    <LinkContainer to='collaborations'>
         <Nav.Item>
             <Nav.Link>Collaborations</Nav.Link>
         </Nav.Item>
     </LinkContainer>
-    <LinkContainer to={props.nav.currentPath + 'expiring'}>
+    <LinkContainer to='expiring'>
         <Nav.Item>
             <Nav.Link>Expiring</Nav.Link>
         </Nav.Item>
     </LinkContainer>
-    <LinkContainer to={props.nav.currentPath + 'analytics'}>
+    <LinkContainer to='analytics'>
         <Nav.Item>
             <Nav.Link>Analytics</Nav.Link>
         </Nav.Item>

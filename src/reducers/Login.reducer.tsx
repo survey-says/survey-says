@@ -34,7 +34,8 @@ export const loginReducer = (state = initialState, action: any) => {
     case loginTypes.LOGOUT:
       return {
         ...state,
-        userInfo: {}
+        userInfo: {},
+        errorMessage: ''
       }
   }
   return state;

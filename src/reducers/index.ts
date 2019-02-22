@@ -18,7 +18,7 @@ export interface IUserState {
 
 export interface INavState {
   surveyTabOpened: boolean
-  currentPath: string
+  currentRootPath: string
 }
 
 export interface IState {

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { MainNavBar } from '../../../components/Nav/NavBar/MainNavBar/MainNavBar';
 import { IState} from '../../../reducers';
-import { login } from '../../../actions/Login.actions'
+import { login, logout } from '../../../actions/Login.actions'
 
 
 const mapStateToProps = (state: IState) => ({
@@ -10,7 +10,8 @@ const mapStateToProps = (state: IState) => ({
 })
 
 const mapDispatchToProps = {
-  login
+  login,
+  logout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainNavBar)

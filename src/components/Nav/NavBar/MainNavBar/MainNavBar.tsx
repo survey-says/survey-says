@@ -10,6 +10,7 @@ import { NavDropdown } from 'react-bootstrap';
 interface INavBarProps {
   nav: INavState
   user: IUserState
+  logout(): void
 }
 
 export class MainNavBar extends Component<INavBarProps, any> {
@@ -27,7 +28,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
           </LinkContainer>
           <Nav className="ml-auto">
             <NavDropdown id="user-dropdown" title={this.props.user.username}>
-              <NavDropdown.Item>Logout</NavDropdown.Item>
+              <NavDropdown.Item onClick={this.props.logout}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </>
