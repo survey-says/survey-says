@@ -13,6 +13,12 @@ export const userReducer = (state = initialState, action: any) => {
                 ...state,
                 isLoggedIn: true,
                 username: action.payload.userInfo.username
+            }
+        case (loginTypes.LOGOUT):
+            return {
+                ...state,
+                isLoggedIn: false,
+                username: ''
             }       
     }
 
