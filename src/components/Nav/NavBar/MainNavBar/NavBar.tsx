@@ -3,10 +3,10 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import { IState, IUserState } from '../../../reducers';
+import { IState, IUserState } from '../../../../reducers';
 import { connect } from 'react-redux';
 import { NavDropdown } from 'react-bootstrap';
-import { login } from '../../../actions/Login.actions';
+import { login } from '../../../../actions/Login.actions';
 
 interface INavBarProps {
   user: IUserState,
