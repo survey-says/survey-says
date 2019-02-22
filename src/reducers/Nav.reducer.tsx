@@ -17,8 +17,12 @@ export const navReducer = (state = initialState, action: any) => {
                 isLoggedIn: !state.isLoggedIn
             }
         case (navTypes.CHANGE_CURRENT_PATH):
+            if(state.surveyTabOpened) {
+
+            }
             return {
                 ...state,
+                currentPath: state.currentPath
             }
     }
     return state;
