@@ -26,6 +26,7 @@ export class NavBar extends Component<INavBarProps, any> {
           </LinkContainer>
           <Nav className="ml-auto">
             <NavDropdown id="user-dropdown" title={this.props.user.username}>
+              <NavDropdown.Item>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </>
