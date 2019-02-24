@@ -15,6 +15,7 @@ const Survey= require( 'survey-react');
 }
 */
 
+
 export class QuestionComponent extends React.Component <any,any>{
   componentWillMount() {    
     Survey.Survey.cssType = "bootstrap";
@@ -26,9 +27,8 @@ export class QuestionComponent extends React.Component <any,any>{
   
   render=()=> {    
   
-    let survey = { title: "Survey Says..", showProgressBar: "top", pages: [
+  let survey = { title: "Survey Says..", showProgressBar: "top", pages: [
         {questions: [
-        
        
         ]},
         {questions: [
@@ -39,7 +39,7 @@ export class QuestionComponent extends React.Component <any,any>{
           
         ]}
     ]};
-  
+   
 
 //{satisfaction} > 3
     let model= new Survey.Model(survey);    
