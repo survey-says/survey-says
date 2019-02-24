@@ -5,32 +5,34 @@ import Nav from 'react-bootstrap/Nav';
 import { INavState } from '../../../../reducers';
 
 interface ISurveyProps {
-    nav: INavState
+    nav: INavState,
+
 }
 
 const surveyTabs = (props: ISurveyProps) => (
-<Nav justify variant="tabs">
-    <LinkContainer to='my-surveys'>
+    <Nav justify variant="tabs">
         <Nav.Item>
-            <Nav.Link>My Surveys</Nav.Link>
+            <LinkContainer to='my-surveys'>
+                <Nav.Link>My Surveys</Nav.Link>
+            </LinkContainer>
         </Nav.Item>
-    </LinkContainer>
-    <LinkContainer to='collaborations'>
         <Nav.Item>
-            <Nav.Link>Collaborations</Nav.Link>
+            <LinkContainer to='collaborations'>
+                <Nav.Link>Collaborations</Nav.Link>
+            </LinkContainer>
         </Nav.Item>
-    </LinkContainer>
-    <LinkContainer to='expiring'>
         <Nav.Item>
-            <Nav.Link>Expiring</Nav.Link>
+            <LinkContainer to='expiring'>
+                <Nav.Link>Expiring</Nav.Link>
+            </LinkContainer>
         </Nav.Item>
-    </LinkContainer>
-    <LinkContainer to='analytics'>
         <Nav.Item>
-            <Nav.Link>Analytics</Nav.Link>
+            <LinkContainer to='analytics'>
+                <Nav.Link>Analytics</Nav.Link>
+            </LinkContainer>
         </Nav.Item>
-    </LinkContainer>
-</Nav>
+        
+    </Nav>
 )
 
 export default surveyTabs;
