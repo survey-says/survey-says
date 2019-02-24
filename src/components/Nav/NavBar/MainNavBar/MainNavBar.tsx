@@ -58,7 +58,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
           </LinkContainer>
           {defaultNavItems}
         </Navbar>
-        {this.props.nav.surveyTabOpened ? <SurveyTabs nav={this.props.nav} /> : null}
+        {this.props.nav.surveyTabOpened ? <SurveyTabs nav={this.props.nav} currentPath={location.pathname} /> : null}
         </>
     )
   }
