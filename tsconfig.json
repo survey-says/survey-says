@@ -22,7 +22,7 @@
     "noImplicitAny": false,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "isolatedModules": true
+    "isolatedModules": false
   },
   "include": [
     "src"
