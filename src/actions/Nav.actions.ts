@@ -1,12 +1,10 @@
 export const navTypes = {
-    ROOT_LINK_CLICKED: 'ROOT_LINK_CLICKED',
+    SURVEY_TOGGLE: 'SURVEY_TOGGLE'
 }
 
-export const changeRootPath = (path: string) => {
+export const surveyToggle = () => {
     return {
-        payload: {
-            path: path
-        },
-        type: navTypes.ROOT_LINK_CLICKED
+        payload: {},
+        type: navTypes.SURVEY_TOGGLE
     }
 }
