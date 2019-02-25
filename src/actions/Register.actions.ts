@@ -16,28 +16,37 @@ export const handleChange = (fieldName: String, value: String) => {
     case "firstName":
       return {
         payload: {
-          firstName: value
+          userInfo: {
+            firstName: value
+          }
         },
         type: registerTypes.UPDATE_FIELD
       }
     case "lastName":
       return {
         payload: {
-          lastName: value
+          userInfo: {
+            lastName: value
+          }
+
         },
         type: registerTypes.UPDATE_FIELD
       }
     case "username":
       return {
         payload: {
-          username: value
+          userInfo: {
+            username: value
+          }
         },
         type: registerTypes.UPDATE_FIELD
       }
     case "password":
       return {
         payload: {
-          password: value
+          userInfo: {
+            password: value
+          }
         },
         type: registerTypes.UPDATE_FIELD
       }
@@ -45,7 +54,9 @@ export const handleChange = (fieldName: String, value: String) => {
     case "email":
       return {
         payload: {
-          email: value
+          userInfo: {
+            email: value
+          }
         },
         type: registerTypes.UPDATE_FIELD
       }
@@ -56,6 +67,42 @@ export const handleChange = (fieldName: String, value: String) => {
         },
         type: registerTypes.UPDATE_FIELD_FAIL
       }
+  }
+}
+
+export const handleSubmit = (userData: {}) => async (dispatch) => {
+
+  // Here will go the fetch call to out api
+  // Sample of what this will look like
+  try {
+    const res = await ssClient.addNewUser(userData);
+    console.log(res);
+    if (res.data) {
+      dispatch({
+        payload: {
+          userInfo: res,
+          errorMessage: "Register Successful",
+          submitted: true
+        },
+        type: registerTypes.REGISTER_SUCCESS
+      })
+    } else {
+      dispatch({
+        payload: {
+          errorMessage: "Register Failed",
+          submitted: false
+        },
+        type: registerTypes.REGISTER_FAIL
+      })
+    }
+  } catch (error) {
+    dispatch({
+      payload: {
+        errorMessage: "Register Failed",
+        submitted: false
+      },
+      type: registerTypes.REGISTER_FAIL
+    })
   }
 
 }

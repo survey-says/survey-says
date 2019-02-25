@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 export interface IRegisterProps {
     userInfo: {},
-    submitted: boolean
+    submitted: boolean,
+    errorMessage: string,
     handleChange(fieldName: string, value: String),
     handleSubmit(userInfo: {})
 }
