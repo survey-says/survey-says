@@ -3,6 +3,7 @@ import { loginReducer } from "./Login.reducer";
 import { navReducer } from "./Nav.reducer";
 import { userReducer } from "./User.reducer";
 import { userInfo } from 'os';
+import { surveyListReducer } from "./SurveyList.reducer";
 
 export interface ILoginState {
   username: string,
@@ -18,17 +19,23 @@ export interface IUserState {
 
 export interface INavState {
   surveyTabOpened: boolean
-  currentRootPath: string
+  inSurveyPage: boolean
+}
+
+export interface ISurveyListState {
+  currentList: {}
 }
 
 export interface IState {
   login: ILoginState
   user: IUserState
   nav: INavState
+  surveyList: ISurveyListState
 }
 
 export const state = combineReducers<IState>({
   login: loginReducer,
   user: userReducer,
-  nav: navReducer
+  nav: navReducer,
+  surveyList: surveyListReducer
 })

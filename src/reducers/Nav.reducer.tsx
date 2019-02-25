@@ -3,7 +3,7 @@ import { navTypes } from '../actions/Nav.actions';
 
 const initialState: INavState = {
     surveyTabOpened: false,
-    currentRootPath: '/'
+    inSurveyPage: false // Needed to fix routing
 }
 
 export const navReducer = (state = initialState, action: any) => {
