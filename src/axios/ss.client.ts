@@ -1,6 +1,6 @@
 import { ssContext } from "./ss.context";
 
-const ssBaseContext = 'survey_says';
+const ssBaseContext = 'survey-says';
 
 export const ssClient = {
   findAll() {
