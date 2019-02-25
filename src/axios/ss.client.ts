@@ -1,6 +1,6 @@
 import { ssContext } from "./ss.context";
 
-const ssBaseContext = 'survey-says';
+const ssBaseContext = 'survey_says';
 
 export const ssClient = {
   findAll() {
@@ -9,7 +9,7 @@ export const ssClient = {
   findById(id: number) {
     return ssContext.get(ssBaseContext + `/${id}`);
   },
-  findByUsernameAndPassword(username: String, password: String) {
-    return ssContext.post(ssBaseContext + '/login');
+  findByUsernameAndPassword(credentials: {}) {
+    return ssContext.post(ssBaseContext + '/login', credentials);
   }
 }

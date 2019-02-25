@@ -33,14 +33,14 @@ export const updatePassword = (password: String) => {
 
 // Need async here because we will do a fetch request
 // The username and password will come from the LoginComponent
-export const login = (username: String, password: String) => async (dispatch) => {
+export const login = (credentials: {}) => async (dispatch) => {
   // Here we will do our fetch call to our api
 
 
   // Sample of what this will look like when the time comes
 
   try {
-    const res = await ssClient.findByUsernameAndPassword(username, password);
+    const res = await ssClient.findByUsernameAndPassword(credentials);
     console.log(res);
     if (res.data) {
       dispatch({
