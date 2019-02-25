@@ -3,7 +3,7 @@
 ## Deployed At
 
 * Client-side User Interface: http://survey-says-front-end.s3-website-us-east-1.amazonaws.com/
-* Server-side API:
+* Server-side API: http://ec2-18-220-155-55.us-east-2.compute.amazonaws.com:5500/api/swagger-ui.html
 
 ## Group Members
 
