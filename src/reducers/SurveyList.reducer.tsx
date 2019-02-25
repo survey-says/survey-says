@@ -1,7 +1,7 @@
 import { ISurveyListState } from './index';
 
 const initialState: ISurveyListState = {
-    currentList: {}
+    currentList: []
 }
 
 export const surveyListReducer = (state = initialState, action: any) => {

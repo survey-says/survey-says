@@ -4,6 +4,7 @@ import { navReducer } from "./Nav.reducer";
 import { userReducer } from "./User.reducer";
 import { userInfo } from 'os';
 import { surveyListReducer } from "./SurveyList.reducer";
+import { surveyListItemReducer } from './SurveyListItem.reducer';
 
 export interface ILoginState {
   username: string,
@@ -23,7 +24,11 @@ export interface INavState {
 }
 
 export interface ISurveyListState {
-  currentList: {}
+  currentList: Array<ISurveyListItemState>
+}
+
+export interface ISurveyListItemState {
+  surveyItem: {}
 }
 
 export interface IState {
@@ -31,11 +36,13 @@ export interface IState {
   user: IUserState
   nav: INavState
   surveyList: ISurveyListState
+  surveyListItem: ISurveyListItemState
 }
 
 export const state = combineReducers<IState>({
   login: loginReducer,
   user: userReducer,
   nav: navReducer,
-  surveyList: surveyListReducer
+  surveyList: surveyListReducer,
+  surveyListItem: surveyListItemReducer
 })
