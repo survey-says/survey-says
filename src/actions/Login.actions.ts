@@ -39,7 +39,7 @@ export const login = (username: String, password: String) => async (dispatch) =>
 
   // Sample of what this will look like when the time comes
 
-  try {
+  /* try {
     const res = await ssClient.findByUsernameAndPassword(username, password);
     console.log(res);
     if (res.data) {
@@ -65,10 +65,10 @@ export const login = (username: String, password: String) => async (dispatch) =>
       },
       type: loginTypes.LOGIN_FAIL
     })
-  }
+  } */
 
   // Since we don't currently have 
-  /* const users = [{ username: "lolo", password: "lolopass", role: "manager" }, { username: "aaron", password: "pass56", role: "ceo" }, { username: "iman", password: "pass33", role: "associate" }]
+  const users = [{ username: "lolo", password: "lolopass", role: "manager" }, { username: "aaron", password: "pass56", role: "ceo" }, { username: "iman", password: "pass33", role: "associate" }]
   let found = false;
   users.forEach((user) => {
     if ((user.username === username) && (user.password === password)) {
@@ -89,7 +89,7 @@ export const login = (username: String, password: String) => async (dispatch) =>
       },
       type: loginTypes.LOGIN_FAIL
     })
-  } */
+  }
 
   // I know there is more to do in the action but not sure how to proceed
 }
