@@ -4,7 +4,7 @@ import { IState } from '../../reducers';
 import SurveyList from '../../components/SurveyList/SurveyList';
 
 const mapStateToProps = (state: IState) => ({
-
+    surveyList: state.surveyList
 })
   
 const mapDispatchToProps = {

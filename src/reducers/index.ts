@@ -28,7 +28,16 @@ export interface ISurveyListState {
 }
 
 export interface ISurveyListItemState {
-  surveyItem: {}
+  surveyItem: {
+    id: number
+    title: string
+    creator: string
+    description: string
+    dateCreated: Date
+    dateClosed: Date
+    status: number
+    privacy: number
+  }
 }
 
 export interface IState {
