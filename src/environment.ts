@@ -8,6 +8,6 @@ const prod = {
 
 export let environment = dev;
 
-if (process.env.ENVIRONMENT === 'production') {
+if (process.env.NODE_ENV === 'production') {
   environment = prod;
 }
