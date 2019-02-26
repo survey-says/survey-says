@@ -9,7 +9,7 @@ export interface ILoginProps {
   errorMessage: String,
   updateUsername(username: String): void,
   updatePassword(password: String): void,
-  login(username: String, password: String): void
+  login(credentials: {}): void
 }
 
 export class LoginComponent extends Component<ILoginProps, any>{
@@ -30,7 +30,11 @@ export class LoginComponent extends Component<ILoginProps, any>{
   login = (event) => {
     console.log(`The username ${this.props.username} and password ${this.props.password} (at login)`)
     event.preventDefault();
-    this.props.login(this.props.username, this.props.password);
+    const cred = {
+      username: this.props.username,
+      password: this.props.password
+    }
+    this.props.login(cred);
 
   }
   // The LoginComponent will have access to the username and password via props because of the redux store

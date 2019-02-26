@@ -9,7 +9,7 @@ export const ssClient = {
   findById(id: number) {
     return ssContext.get(ssBaseContext + `/${id}`);
   },
-  findByUsernameAndPassword(username: String, password: String) {
-    return ssContext.post(ssBaseContext + '/login');
+  findByUsernameAndPassword(credentials: {}) {
+    return ssContext.post(ssBaseContext + '/login', credentials);
   }
 }
