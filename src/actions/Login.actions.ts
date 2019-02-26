@@ -1,4 +1,5 @@
 import { ssContext } from "../axios/ss.context";
+import { ssClient } from "../axios/ss.client";
 import { bool } from 'prop-types';
 import { state } from '../reducers';
 
@@ -7,7 +8,8 @@ export const loginTypes = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAIL: 'LOGIN_FAIL',
   USERNAME_UPDATE: 'USERNAME_UPDATE',
-  PASSWORD_UPDATE: 'PASSWORD_UPDATE'
+  PASSWORD_UPDATE: 'PASSWORD_UPDATE',
+  LOGOUT: 'LOGOUT'
 }
 
 
@@ -36,26 +38,30 @@ export const login = (username: String, password: String) => async (dispatch) =>
 
 
   // Sample of what this will look like when the time comes
-  /*
-    const credentials = {
-      username: username,
-      password: password
-    } 
-    try {
-    const res = await ssContext.post('/login', credentials);
+
+  /* try {
+    const res = await ssClient.findByUsernameAndPassword(username, password);
     console.log(res);
-    if(res) {
+    if (res.data) {
       dispatch({
         payload: {
-          userInfo: res
+          userInfo: res,
+          errorMessage: "Login Successful"
         },
         type: loginTypes.LOGIN_SUCCESS
+      })
+    } else {
+      dispatch({
+        payload: {
+          errorMessage: "Invalid Credentials"
+        },
+        type: loginTypes.LOGIN_FAIL
       })
     }
   } catch (error) {
     dispatch({
       payload: {
-        userInfo: error
+        errorMessage: "Invalid Credentials"
       },
       type: loginTypes.LOGIN_FAIL
     })
@@ -86,4 +92,11 @@ export const login = (username: String, password: String) => async (dispatch) =>
   }
 
   // I know there is more to do in the action but not sure how to proceed
+}
+
+export const logout = () => {
+  return {
+    payload: {},
+    type: loginTypes.LOGOUT
+  }
 }

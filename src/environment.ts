@@ -1,9 +1,9 @@
 const dev = {
-  ersContext: 'http://localhost:3000'
+  apiContext: 'http://localhost:5500'
 }
 
 const prod = {
-  ersContext: 'some aws url'
+  apiContext: 'some aws url'
 }
 
 export let environment = dev;
