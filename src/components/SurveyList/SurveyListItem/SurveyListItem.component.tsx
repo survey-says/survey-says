@@ -1,6 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { ISurveyListItemState } from '../../../reducers';
 
-class SurveyListItem extends Component {
+interface ISurveyListItemProps {
+  surveyListItem: ISurveyListItemState
+}
+
+class SurveyListItem extends Component<ISurveyListItemProps, any> {
   render() {
     return (
       <div>
