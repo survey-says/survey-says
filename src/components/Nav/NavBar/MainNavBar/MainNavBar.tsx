@@ -14,7 +14,7 @@ interface INavBarProps {
 }
 
 export class MainNavBar extends Component<INavBarProps, any> {
-  
+
   render() {
     let defaultNavItems: any = null;
     if (this.props.user.isLoggedIn) {
@@ -35,14 +35,14 @@ export class MainNavBar extends Component<INavBarProps, any> {
       );
     } else {
       defaultNavItems = (
-          <Nav className="ml-auto">
-            <LinkContainer to="/user-login">
-              <Nav.Link>Login</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/user-register">
-              <Nav.Link>Register</Nav.Link>
-            </LinkContainer>
-          </Nav> 
+        <Nav className="ml-auto">
+          <LinkContainer to="/login">
+            <Nav.Link>Login</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/register">
+            <Nav.Link>Register</Nav.Link>
+          </LinkContainer>
+        </Nav>
       );
     }
 
@@ -58,7 +58,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
           {defaultNavItems}
         </Navbar>
         {this.props.nav.surveyTabOpened ? <SurveyTabs nav={this.props.nav} /> : null}
-        </>
+      </>
     )
   }
 }
