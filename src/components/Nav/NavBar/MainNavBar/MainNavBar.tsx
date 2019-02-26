@@ -37,7 +37,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
     } else {
       defaultNavItems = (
           <Nav className="ml-auto">
-            <LinkContainer to="user-login">
+            <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
             <LinkContainer to="user-register">
