@@ -3,7 +3,7 @@ const dev = {
 }
 
 const prod = {
-  apiContext: 'some aws url'
+  apiContext: 'http://ec2-18-220-155-55.us-east-2.compute.amazonaws.com:5500/'
 }
 
 export let environment = dev;
