@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import './App.scss';
-=======
-import './App.css';
->>>>>>> 04f65f83875583bc474dc21955392cc996e791c6
 import { Route } from 'react-router-dom';
 import Layout from './containers/Layout/Layout';
 import SurveyView from './components/SurveyView/SurveyView';
@@ -21,10 +17,6 @@ class App extends Component {
         <Layout>
           <Route path="/closed-surveys" />
           <Route path="/open-surveys" />
-<<<<<<< HEAD
-          <Route path="/user-login" component={LoginContainer} />
-=======
->>>>>>> 04f65f83875583bc474dc21955392cc996e791c6
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />
           <Route path="/login" component={LoginContainer} />
