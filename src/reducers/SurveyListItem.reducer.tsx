@@ -1,5 +1,4 @@
 import { ISurveyListItemState } from './index';
-import { number } from 'prop-types';
 
 const initialState: ISurveyListItemState = {
     surveyItem: {

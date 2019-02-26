@@ -7,10 +7,13 @@ interface ISurveyListItemProps {
 
 class SurveyListItem extends Component<ISurveyListItemProps, any> {
   render() {
+    const listItem = this.props.surveyListItem.surveyItem;
     return (
-      <div>
-        
-      </div>
+      <tr>
+        <td>{listItem.title}</td>
+        <td>{listItem.description}</td>
+        <td>{listItem.dateClosed}</td>
+      </tr>
     )
   }
 }

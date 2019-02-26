@@ -5,6 +5,7 @@ import Layout from './containers/Layout/Layout';
 import SurveyView from './components/SurveyView/SurveyView';
 import LoginContainer from './components/Login/LoginContainer';
 import Homepage from './components/Homepage/Homepage';
+import SurveyListContainer from './containers/SurveyList/SurveyList.container';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <Layout>
           <Route path="/closed-surveys" />
           <Route path="/open-surveys" />
+          <Route path="/all-surveys" component={SurveyListContainer}/>
           <Route path="/user-login" component={LoginContainer}/>
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />        
