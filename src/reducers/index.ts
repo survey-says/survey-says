@@ -55,12 +55,15 @@ export interface INavState {
 
 export interface IState {
   login: ILoginState,
-
+  nav: INavState,
+  user: IUserState,
   surveyQuestions: SurveyQuestions
   
 }
 
 export const state = combineReducers<IState>({
   login: loginReducer,
+  nav: navReducer,
+  user: userReducer,
   surveyQuestions: questionsReducer
 })
