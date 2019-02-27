@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 // Interface of the props (fields and methods coming from login actions)
 export interface ILoginProps {
   username: String,
@@ -39,16 +40,16 @@ export class LoginComponent extends Component<ILoginProps, any>{
   // The LoginComponent will have access to the username and password via props because of the redux store
   render() {
     return (
-      <div className="container login-container">
+      <div className="container login-container" >
         <div className="jumbotron">
           <h1 className="h3 mb-3 font-weight-normal">Please Login</h1>
           <form className="form-signin" onSubmit={this.login}>
             <div className="form-group">
               <label htmlFor="inputUsername">Username</label>
-              <input type="text"
+              <input type="Username"
                 id="inputUsername"
                 className="form-control"
-                placeholder="Username"
+
                 onChange={this.updateUsername}
                 required />
             </div>
@@ -57,7 +58,6 @@ export class LoginComponent extends Component<ILoginProps, any>{
               <input type="password"
                 id="inputPassword"
                 className="form-control"
-                placeholder="Password"
                 onChange={this.updatePassword}
                 required />
             </div>
@@ -65,7 +65,7 @@ export class LoginComponent extends Component<ILoginProps, any>{
             <p>{this.props.errorMessage}</p>
           </form>
         </div>
-      </div>
+        </div>
     )
   }
 }
