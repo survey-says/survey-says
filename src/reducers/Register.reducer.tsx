@@ -17,27 +17,27 @@ export const registerReducer = (state = initialState, action: any) => {
     case registerTypes.UPDATE_USERNAME:
       return {
         ...state,
-        userInfo: action.payload.username
+        username: action.payload.username
       }
     case registerTypes.UPDATE_FIRSTNAME:
       return {
         ...state,
-        userInfo: action.payload.firstname
+        firstName: action.payload.firstName
       }
     case registerTypes.UPDATE_LASTNAME:
       return {
         ...state,
-        userInfo: action.payload.lastname
+        lastName: action.payload.lastName
       }
     case registerTypes.UPDATE_PASSWORD:
       return {
         ...state,
-        userInfo: action.payload.password
+        password: action.payload.password
       }
     case registerTypes.UPDATE_EMAIL:
       return {
         ...state,
-        userInfo: action.payload.email
+        email: action.payload.email
       }
     case registerTypes.REGISTER_SUCCESS:
       return {
