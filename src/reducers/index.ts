@@ -23,8 +23,20 @@ export interface INavState {
 }
 
 export interface ISurveyListState {
-  currentList: []
+  currentList: ISurveyItem[]
 }
+
+// For declarations
+export interface ISurveyItem {
+    id: number
+    title: string
+    creator: string
+    description: string
+    dateCreated: Date
+    dateClosed: Date
+    status: number
+    privacy: number
+  }
 
 export interface IState {
   login: ILoginState

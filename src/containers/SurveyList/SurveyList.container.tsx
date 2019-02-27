@@ -13,4 +13,4 @@ const mapDispatchToProps = {
     getPublicSurveys
 }
   
-// export default connect(mapStateToProps, mapDispatchToProps)(<SurveyList)
+// export default connect(mapStateToProps, mapDispatchToProps)(SurveyList)

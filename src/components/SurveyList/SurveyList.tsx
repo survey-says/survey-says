@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table'
 import SurveyListItem from './SurveyListItem/SurveyListItem.component';
+import { IState, ISurveyItem } from '../../reducers';
+import { getPublicSurveys } from '../../actions/SurveyList.actions';
+import { connect } from 'react-redux';
 
 interface ISurveyListProps {
     surveyList: []
@@ -38,5 +41,13 @@ class SurveyList extends Component<ISurveyListProps, any> {
   }
 }
 
-export default SurveyList;
+const mapStateToProps = (state: IState) => ({
+  surveyList: state.surveyList
+})
+
+const mapDispatchToProps = {
+  getPublicSurveys
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyList);
 
