@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import axios from 'axios'
 import ReactDOM from 'react-dom';
+import surveyTabs from '../Nav/NavBar/SurveyTabs/SurveyTabs';
 const Survey= require( 'survey-react');
-import {IState, SurveyQuestions} from '../../reducers/index'
-import {connect} from "react-redux"
+const SurveyEditor= require( 'surveyjs-editor');
+
+import'dataTable';
 
 
 
@@ -69,21 +71,6 @@ console.log(ratingArray);
 
 
 
-let thankYou = 
-    [{ questions: [
-        { type: "text", name: "email",
-            title: "Thank you for taking our survey. Your survey is almost complete, please enter your email address in the box below if you wish to participate in our drawing, then press the 'Submit' button."}
-    ]}]
-    let thankYouArray: string[] = [];
-Object.keys(thankYou).forEach(function(key) {
-  let val = thankYou[key]["questions"];
-  thankYouArray.push(val);
-});
-console.log(thankYouArray);
-
-
-
-
 
 let feedback = 
   [{questions: [
@@ -119,8 +106,8 @@ let feedback =
 
 
 export class QuestionComponent extends React.Component <any,any>{
-
-
+  
+  
   
   componentWillMount() {    
     Survey.Survey.cssType = "bootstrap";
@@ -131,17 +118,16 @@ export class QuestionComponent extends React.Component <any,any>{
   render() {    
 
      //here is where you need to get the id number of the question type and it is saved to this array
-let choice=[3, 1,2];
+let choice=[1, 5,2];
 
 
     let agree={questions: agreeArray[0]}
     let multi= {questions: multiArray[0]}
     let yesNo= {questions: ynArray[0]}
     let rating= {questions: ratingArray[0]}
-    let thankYou= {questions: thankYouArray[0]}
     let feedback= {questions: feedbackArray[0]}
 
-//condition that pushes to array of pages on the survey depending on number choice
+//condition that pushes to array of pages on the survey depending on number choice which is the question choice
     let surveyPages:{ questions: string; }[]=[]
      if (choice.includes(1)){
       surveyPages.push(agree);
@@ -156,41 +142,77 @@ let choice=[3, 1,2];
       surveyPages.push(rating);
      }
      if (choice.includes(5)){
-      surveyPages.push(thankYou);
-     }
-     if (choice.includes(6)){
       surveyPages.push(feedback);
      }
-
-
-
-
     
-
 
 //basically creates the survey form 
-    let survey= { title: "Title of survey", showProgressBar: "top", pages: surveyPages
-  }
-    let result = survey;
-    
+    let survey= { title: "Title of survey", showProgressBar: "top", pages: surveyPages}
+ 
+     
+    let model= new Survey.Model(survey); 
+   
+    //Optionally, show saving progress and show an error and "Save Again" button  if the results can't be stored
+    //model.surveyShowDataSaving = true;
+     
 
-
-//{satisfaction} > 3
-    let model= new Survey.Model(result);  
+    //gets result of survey as a string
+    let resultAsString=(result) =>{
+      let resultAsString = JSON.stringify(result.data);
+      result.surveyPostId = "put an id here";
+     let userid=" user id";
+     let customerid="customerid ";
+     let complete= [survey,resultAsString,result.surveyPostId,userid,customerid]
+   console.log(JSON.stringify(complete))
+    let graph= ( data )=> {
+      $(document).ready(function() {
+          $('#surveyContainer').dataTable(data);
+      } );   
+  }}
   
-
+   
+   
+//SEND POST REQUEST WITH SURVEY, RESULTS, SURVEY ID, USERID, AND CUSTOMERID
+  //   let send=(sender, options) =>{
+  //  options.showDataSaving();
+  //     let xhr = new XMLHttpRequest();
+  //     xhr.open("POST", "our url");
+  //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+  //   let resultAsString = JSON.stringify(sender.data);
+  //   sender.surveyPostId = "put an id here";
+  //  let userid=" user id";
+  //  let customerid="customerid ";
+  //  let complete= [survey,resultAsString,sender.surveyPostId,userid,customerid]
+  //    xhr.onload = xhr.onerror = function() {
+  //     if (xhr.status == 200) {
+  //       alert("Data posted Ok")
+  //     }
+  //   };
+  //   xhr.send(dataStringify);
+  // // };
 
 
     return (
-        <div className="container question-container">
-      <Survey.Survey model={model}/>
-        </div>  
-  )
+      <html>
+        <head>
+        <script src="https://surveyjs.azureedge.net/1.0.71/survey.react.js"></script>
+        <script src="https://surveyjs.azureedge.net/1.0.71/survey.ko.min.js"></script>
+        <script src="https://surveyjs.azureedge.net/1.0.71/surveyeditor.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+        <link href="https://surveyjs.azureedge.net/1.0.71/surveyeditor.css" type="text/css" rel="stylesheet" />
+        </head>
+        <body>
+        <div className="container question-container" id="surveyContainer">
+      <Survey.Survey model={model} onComplete={resultAsString}/>
+        </div>
+         </body>  
+      </html>  
+     
+  )   
+
+
 }
 }
 
 
-
-
-//ReactDOM.render( <QuestionComponent/>, document.getElementById('root'));
 export default QuestionComponent;

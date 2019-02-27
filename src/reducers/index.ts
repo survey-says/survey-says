@@ -49,8 +49,8 @@ export interface IUserState {
 }
 
 export interface INavState {
-  surveyTabOpened: boolean
-  currentRootPath: string
+  bOpenLinkClicked: boolean,
+  bClosedLinkClicked: boolean 
 }
 
 export interface IState {
