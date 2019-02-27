@@ -175,39 +175,37 @@ export class QuestionComponent extends React.Component<any, any>{
     }
     if (choice.includes(4)) {
       surveyPages.push(rating);
-     }
-     if (choice.includes(5)){
+    }
+    if (choice.includes(5)) {
       surveyPages.push(feedback);
-     }
-    
+    }
 
-//basically creates the survey form 
-    let survey= { title: "Title of survey", showProgressBar: "top", pages: surveyPages}
- 
-     
-    let model= new Survey.Model(survey); 
-   
+
+    //basically creates the survey form 
+    let survey = { title: "Title of survey", showProgressBar: "top", pages: surveyPages }
+
+
+    let model = new Survey.Model(survey);
+
     //Optionally, show saving progress and show an error and "Save Again" button  if the results can't be stored
     //model.surveyShowDataSaving = true;
-     
+
 
     //gets result of survey as a string
-    let resultAsString=(result) =>{
+    let resultAsString = (result) => {
       let resultAsString = JSON.stringify(result.data);
       result.surveyPostId = "put an id here";
-     let userid=" user id";
-     let customerid="customerid ";
-     let complete= [survey,resultAsString,result.surveyPostId,userid,customerid]
-   console.log(JSON.stringify(complete))
-    let graph= ( data )=> {
-      $(document).ready(function() {
-          $('#surveyContainer').dataTable(data);
-      } );   
-  }}
-  
-   
-   
-//SEND POST REQUEST WITH SURVEY, RESULTS, SURVEY ID, USERID, AND CUSTOMERID
+      let userid = " user id";
+      let customerid = "customerid ";
+      let complete = [survey, resultAsString, result.surveyPostId, userid, customerid]
+      console.log(JSON.stringify(complete))
+
+    }
+  }
+
+
+
+  //SEND POST REQUEST WITH SURVEY, RESULTS, SURVEY ID, USERID, AND CUSTOMERID
   //   let send=(sender, options) =>{
   //  options.showDataSaving();
   //     let xhr = new XMLHttpRequest();
@@ -227,21 +225,21 @@ export class QuestionComponent extends React.Component<any, any>{
   // // };
 
 
-    return (
+  return(
       <html>
-        <head>
-        <script src="https://surveyjs.azureedge.net/1.0.71/survey.react.js"></script>
-        <script src="https://surveyjs.azureedge.net/1.0.71/survey.ko.min.js"></script>
-        <script src="https://surveyjs.azureedge.net/1.0.71/surveyeditor.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-        <link href="https://surveyjs.azureedge.net/1.0.71/surveyeditor.css" type="text/css" rel="stylesheet" />
-        </head>
-        <body>
-        <div className="container question-container" id="surveyContainer">
-      <Survey.Survey model={model} onComplete={resultAsString}/>
-        </div>
-         </body>  
-      </html>  
+  <head>
+    <script src="https://surveyjs.azureedge.net/1.0.71/survey.react.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.71/survey.ko.min.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.0.71/surveyeditor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+    <link href="https://surveyjs.azureedge.net/1.0.71/surveyeditor.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <div className="container question-container" id="surveyContainer">
+      <Survey.Survey model={model} onComplete={resultAsString} />
+    </div>
+  </body>  
+      </html >  
      
   )   
 
