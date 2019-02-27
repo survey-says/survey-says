@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table'
-import { ISurveyListState } from '../../reducers';
 import SurveyListItem from './SurveyListItem/SurveyListItem.component';
 
 interface ISurveyListProps {
-    surveyList: ISurveyListState
+    surveyList: []
+    getPublicSurveys(): void
  }
 
 class SurveyList extends Component<ISurveyListProps, any> {
 
+  componentDidMount() {
+    this.props.getPublicSurveys();
+  }
+
   render() {
-    let surveys = this.props.surveyList.currentList
+    let surveys = this.props.surveyList
                     .map(survey => {
                       return (
                         <SurveyListItem surveyListItem={survey} />
