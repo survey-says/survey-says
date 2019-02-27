@@ -5,31 +5,35 @@ import Nav from 'react-bootstrap/Nav';
 import { INavState } from '../../../../reducers';
 
 interface ISurveyProps {
-    nav: INavState,
-    currentPath: string
+    nav: INavState
 }
 
 const surveyTabs = (props: ISurveyProps) => { 
-
+    let currentPath: string = '';
+    if (props.nav.bOpenLinkClicked) {
+        currentPath = '/open-surveys'
+    } else if (props.nav.bClosedLinkClicked) {
+        currentPath = '/closed-surveys'
+    } 
     return (
         <Nav justify variant="tabs">
             <Nav.Item>
-                <LinkContainer to={props.currentPath + '/my-surveys'}>
+                <LinkContainer to={currentPath + '/my-surveys'}>
                     <Nav.Link>My Surveys</Nav.Link>
                 </LinkContainer>
             </Nav.Item>
             <Nav.Item>
-                <LinkContainer to={props.currentPath + '/collaborations'}>
+                <LinkContainer to={currentPath + '/collaborations'}>
                     <Nav.Link>Collaborations</Nav.Link>
                 </LinkContainer>
             </Nav.Item>
             <Nav.Item>
-                <LinkContainer to={props.currentPath + '/expiring'}>
+                <LinkContainer to={currentPath + '/expiring'}>
                     <Nav.Link>Expiring</Nav.Link>
                 </LinkContainer>
             </Nav.Item>
             <Nav.Item>
-                <LinkContainer to={props.currentPath + '/analytics'}>
+                <LinkContainer to={currentPath + '/analytics'}>
                     <Nav.Link>Analytics</Nav.Link>
                 </LinkContainer>
             </Nav.Item>

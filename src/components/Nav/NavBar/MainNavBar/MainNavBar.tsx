@@ -11,7 +11,8 @@ interface INavBarProps {
   nav: INavState
   user: IUserState
   logout(): void
-  surveyToggle(): void
+  openSurveysToggle(): void
+  closedSurveysToggle(): void
 }
 
 export class MainNavBar extends Component<INavBarProps, any> {
@@ -22,7 +23,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
       defaultNavItems = (
         <>
           <LinkContainer to="closed-surveys">
-            <Nav.Link onClick={this.props.surveyToggle}>Closed</Nav.Link>
+            <Nav.Link onClick={this.props.closedSurveysToggle}>Closed</Nav.Link>
           </LinkContainer>
           <LinkContainer to="create-survey">
             <Nav.Link>Create</Nav.Link>
@@ -54,11 +55,11 @@ export class MainNavBar extends Component<INavBarProps, any> {
             <Navbar.Brand>Survey-Says</Navbar.Brand>
           </LinkContainer>
           <LinkContainer to="/open-surveys">
-            <Nav.Link onClick={this.props.surveyToggle}>Open</Nav.Link>
+            <Nav.Link onClick={this.props.openSurveysToggle}>Open</Nav.Link>
           </LinkContainer>
           {defaultNavItems}
         </Navbar>
-        {this.props.nav.surveyTabOpened ? <SurveyTabs nav={this.props.nav} currentPath={location.pathname} /> : null}
+        {(this.props.nav.bOpenLinkClicked || this.props.nav.bClosedLinkClicked)? <SurveyTabs nav={this.props.nav} /> : null}
         </>
     )
   }
