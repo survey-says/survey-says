@@ -201,50 +201,39 @@ export class QuestionComponent extends React.Component<any, any>{
       console.log(JSON.stringify(complete))
 
     }
+
+
+    //SEND POST REQUEST WITH SURVEY, RESULTS, SURVEY ID, USERID, AND CUSTOMERID
+    //   let send=(sender, options) =>{
+    //  options.showDataSaving();
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open("POST", "our url");
+    //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    //   let resultAsString = JSON.stringify(sender.data);
+    //   sender.surveyPostId = "put an id here";
+    //  let userid=" user id";
+    //  let customerid="customerid ";
+    //  let complete= [survey,resultAsString,sender.surveyPostId,userid,customerid]
+    //    xhr.onload = xhr.onerror = function() {
+    //     if (xhr.status == 200) {
+    //       alert("Data posted Ok")
+    //     }
+    //   };
+    //   xhr.send(dataStringify);
+    // // };
+
+
+    return (
+      <>
+        <div className="container question-container" id="surveyContainer">
+          <Survey.Survey model={model} onComplete={resultAsString} />
+        </div>
+      </>
+
+    )
+
+
   }
-
-
-
-  //SEND POST REQUEST WITH SURVEY, RESULTS, SURVEY ID, USERID, AND CUSTOMERID
-  //   let send=(sender, options) =>{
-  //  options.showDataSaving();
-  //     let xhr = new XMLHttpRequest();
-  //     xhr.open("POST", "our url");
-  //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-  //   let resultAsString = JSON.stringify(sender.data);
-  //   sender.surveyPostId = "put an id here";
-  //  let userid=" user id";
-  //  let customerid="customerid ";
-  //  let complete= [survey,resultAsString,sender.surveyPostId,userid,customerid]
-  //    xhr.onload = xhr.onerror = function() {
-  //     if (xhr.status == 200) {
-  //       alert("Data posted Ok")
-  //     }
-  //   };
-  //   xhr.send(dataStringify);
-  // // };
-
-
-  return(
-      <html>
-  <head>
-    <script src="https://surveyjs.azureedge.net/1.0.71/survey.react.js"></script>
-    <script src="https://surveyjs.azureedge.net/1.0.71/survey.ko.min.js"></script>
-    <script src="https://surveyjs.azureedge.net/1.0.71/surveyeditor.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-    <link href="https://surveyjs.azureedge.net/1.0.71/surveyeditor.css" type="text/css" rel="stylesheet" />
-  </head>
-  <body>
-    <div className="container question-container" id="surveyContainer">
-      <Survey.Survey model={model} onComplete={resultAsString} />
-    </div>
-  </body>  
-      </html >  
-     
-  )   
-
-
-}
 }
 
 
