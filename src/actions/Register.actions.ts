@@ -1,81 +1,70 @@
 import { ssContext } from "../axios/ss.context";
-import { ssClient } from "../axios/ss.client";
-import { bool } from 'prop-types';
-import { state } from '../reducers';
+
 
 export const registerTypes = {
-  UPDATE_FIELD: 'UPDATE_FIELD',
-  UPDATE_FIELD_FAIL: 'UPDATE_FIELD_FAIL',
+  UPDATE_USERNAME: 'UPDATE_USERNAME',
+  UPDATE_FIRSTNAME: 'UPDATE_FIRSTNAME',
+  UPDATE_LASTNAME: 'UPDATE_LASTNAME',
+  UPDATE_PASSWORD: 'UPDATE_PASSWORD',
+  UPDATE_EMAIL: 'UPDATE_EMAIL',
   SUBMIT_FORM: 'SUBMIT_FORM',
   REGISTER_SUCCESS: 'REGISTER_SUCCESS',
   REGISTER_FAIL: 'REGISTER_FAIL'
 }
 
-export const handleChange = (fieldName: String, value: String) => {
-  switch (fieldName) {
-    case "firstName":
-      return {
-        payload: {
-          userInfo: {
-            firstName: value
-          }
-        },
-        type: registerTypes.UPDATE_FIELD
-      }
-    case "lastName":
-      return {
-        payload: {
-          userInfo: {
-            lastName: value
-          }
-
-        },
-        type: registerTypes.UPDATE_FIELD
-      }
-    case "username":
-      return {
-        payload: {
-          userInfo: {
-            username: value
-          }
-        },
-        type: registerTypes.UPDATE_FIELD
-      }
-    case "password":
-      return {
-        payload: {
-          userInfo: {
-            password: value
-          }
-        },
-        type: registerTypes.UPDATE_FIELD
-      }
-
-    case "email":
-      return {
-        payload: {
-          userInfo: {
-            email: value
-          }
-        },
-        type: registerTypes.UPDATE_FIELD
-      }
-    default:
-      return {
-        payload: {
-          errorMessage: "Unable to Update"
-        },
-        type: registerTypes.UPDATE_FIELD_FAIL
-      }
+export const updateUsername = (username: string) => {
+  console.log('The username to enter is (actions): ', username)
+  return {
+    payload: {
+      username: username
+    },
+    type: registerTypes.UPDATE_USERNAME
   }
 }
+
+export const updateFirstName = (firstName: string) => {
+  return {
+    payload: {
+      firstName: firstName
+    },
+    type: registerTypes.UPDATE_FIRSTNAME
+  }
+}
+
+export const updateLastName = (lastName: string) => {
+  return {
+    payload: {
+      lastName: lastName
+    },
+    type: registerTypes.UPDATE_LASTNAME
+  }
+}
+
+export const updatePassword = (password: string) => {
+  return {
+    payload: {
+      password: password
+    },
+    type: registerTypes.UPDATE_PASSWORD
+  }
+}
+
+export const updateEmail = (email: string) => {
+  return {
+    payload: {
+      email: email
+    },
+    type: registerTypes.UPDATE_EMAIL
+  }
+}
+
 
 export const handleSubmit = (userData: {}) => async (dispatch) => {
 
   // Here will go the fetch call to out api
   // Sample of what this will look like
   try {
-    const res = await ssClient.addNewUser(userData);
+    const res = await ssContext.post('/register', userData);
     console.log(res);
     if (res.data) {
       dispatch({

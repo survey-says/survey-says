@@ -2,6 +2,11 @@ import { IRegisterState } from '.';
 import { registerTypes } from '../actions/Register.actions';
 
 const initialState: IRegisterState = {
+  username: '',
+  password: '',
+  email: '',
+  firstName: '',
+  lastName: '',
   userInfo: {},
   errorMessage: '',
   submitted: false
@@ -9,10 +14,30 @@ const initialState: IRegisterState = {
 
 export const registerReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case registerTypes.UPDATE_FIELD:
+    case registerTypes.UPDATE_USERNAME:
       return {
         ...state,
-        userInfo: action.payload.userInfo
+        userInfo: action.payload.username
+      }
+    case registerTypes.UPDATE_FIRSTNAME:
+      return {
+        ...state,
+        userInfo: action.payload.firstname
+      }
+    case registerTypes.UPDATE_LASTNAME:
+      return {
+        ...state,
+        userInfo: action.payload.lastname
+      }
+    case registerTypes.UPDATE_PASSWORD:
+      return {
+        ...state,
+        userInfo: action.payload.password
+      }
+    case registerTypes.UPDATE_EMAIL:
+      return {
+        ...state,
+        userInfo: action.payload.email
       }
     case registerTypes.REGISTER_SUCCESS:
       return {
@@ -24,7 +49,6 @@ export const registerReducer = (state = initialState, action: any) => {
         ...state,
         errorMessage: action.payload.errorMessage
       }
-    default:
-      break;
   }
+  return state;
 }

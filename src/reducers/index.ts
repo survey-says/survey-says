@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
 import { loginReducer } from "./Login.reducer";
+
+import { questionsReducer } from "./questionsReducer";
+import { registerReducer } from "./Register.reducer";
 import { navReducer } from "./Nav.reducer";
 import { userReducer } from "./User.reducer";
-import { userInfo } from 'os';
-import { register } from '../serviceWorker';
+
+
 
 export interface ILoginState {
   username: string,
@@ -11,6 +14,30 @@ export interface ILoginState {
   userInfo: {},
   errorMessage: string
 }
+export interface SurveyQuestions {
+  questions: [{
+    type: string,
+    name: string,
+    title: string,
+    columns: [
+      { value: number, text: string },
+      { value: number, text: string },
+      { value: number, text: string },
+      { value: number, text: string },
+      { value: number, text: string }],
+    rows: [{ value: string, text: string },
+      { value: string, text: string },
+      { value: string, text: string },
+      { value: string, text: string }]
+  }
+  ]
+}
+export interface SurveyTable {
+
+  surveyTable: Array<SurveyQuestions>
+
+}
+
 
 export interface IUserState {
   isLoggedIn: boolean,
@@ -23,9 +50,14 @@ export interface INavState {
 }
 
 export interface IRegisterState {
-  userInfo: {},
+  username: string,
+  password: string,
+  email: string,
+  firstName: string,
+  lastName: string,
   submitted: boolean,
-  errorMessage: string
+  errorMessage: string,
+  userInfo: {}
 }
 
 export interface IState {
@@ -33,13 +65,15 @@ export interface IState {
   user: IUserState,
   nav: INavState,
   register: IRegisterState
+  surveyQuestions: SurveyQuestions
 }
 
 
 
 export const state = combineReducers<IState>({
   login: loginReducer,
-  user: userReducer,
   nav: navReducer,
-  register: registerReducer
+  user: userReducer,
+  register: registerReducer,
+  surveyQuestions: questionsReducer
 })
