@@ -21,7 +21,7 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
           <tr>
             <td>{listItem.title}</td>
             <td>{listItem.description}</td>
-            <td>{listItem.dateClosed}</td>
+            <td>{listItem.dateClosed.toDateString()}</td>
           </tr>
         )
       } else {

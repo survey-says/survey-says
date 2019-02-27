@@ -7,7 +7,7 @@ import { getPublicSurveys } from '../../actions/SurveyList.actions';
 import { connect } from 'react-redux';
 
 interface ISurveyListProps {
-    surveyList: []
+    surveyList: any[]
     getPublicSurveys(): void
  }
 
@@ -42,7 +42,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  surveyList: state.surveyList
+  surveyList: state.surveyList.currentList
 })
 
 const mapDispatchToProps = {
