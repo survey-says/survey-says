@@ -2,7 +2,8 @@ import { ISurveyListState } from './index';
 import { surveyListTypes } from '../actions/SurveyList.actions'
 
 const initialState: ISurveyListState = {
-    publicSurveys: []
+    publicSurveys: [],
+    privateSurveys: []
 }
 
 export const surveyListReducer = (state = initialState, action: any) => {

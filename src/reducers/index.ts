@@ -23,7 +23,9 @@ export interface INavState {
 }
 
 export interface ISurveyListState {
-  publicSurveys: ISurveyItem[]
+  publicSurveys: ISurveyItem[],
+  privateSurveys: ISurveyItem[]
+
 }
 
 // For declarations
@@ -34,20 +36,26 @@ export interface ISurveyItem {
     description: string
     dateCreated: Date
     dateClosed: Date
-    status: number
-    privacy: number
+    status: {
+      statusId: number,
+      status: string
+    },
+    privacy: {
+      privacyId: number,
+      privacy: string
+    } 
   }
 
 export interface IState {
   login: ILoginState
   user: IUserState
   nav: INavState
-  surveyList: ISurveyListState
+  surveyLists: ISurveyListState
 }
 
 export const state = combineReducers<IState>({
   login: loginReducer,
   user: userReducer,
   nav: navReducer,
-  surveyList: surveyListReducer
+  surveyLists: surveyListReducer
 })

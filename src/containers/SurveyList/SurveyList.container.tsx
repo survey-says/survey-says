@@ -6,7 +6,7 @@ import SurveyList from '../../components/SurveyList/SurveyList';
 import SurveyListItemContainer from '../SurveyListItem/SurveyListItem.container';
 
 const mapStateToProps = (state: IState) => ({
-    surveyList: state.surveyList
+    surveyLists: state.surveyLists.publicSurveys
 })
   
 const mapDispatchToProps = {
