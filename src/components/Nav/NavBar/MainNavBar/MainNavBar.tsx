@@ -13,6 +13,7 @@ interface INavBarProps {
   logout(): void
   openSurveysToggle(): void
   closedSurveysToggle(): void
+  closeSurveyTabs(): void
 }
 
 export class MainNavBar extends Component<INavBarProps, any> {
@@ -26,11 +27,12 @@ export class MainNavBar extends Component<INavBarProps, any> {
             <Nav.Link onClick={this.props.closedSurveysToggle}>Closed</Nav.Link>
           </LinkContainer>
           <LinkContainer to="create-survey">
-            <Nav.Link>Create</Nav.Link>
+            <Nav.Link onClick={this.props.closeSurveyTabs}>Create</Nav.Link>
           </LinkContainer>
           <Nav className="ml-auto">
             <NavDropdown id="user-dropdown" title={this.props.user.username}>
-              <NavDropdown.Item onClick={this.props.logout}>Logout</NavDropdown.Item>
+              <NavDropdown.Item 
+                onClick={() => {this.props.logout(); this.props.closeSurveyTabs();}}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </>
@@ -39,10 +41,10 @@ export class MainNavBar extends Component<INavBarProps, any> {
       defaultNavItems = (
         <Nav className="ml-auto">
           <LinkContainer to="/login">
-            <Nav.Link>Login</Nav.Link>
+            <Nav.Link onClick={this.props.closeSurveyTabs}>Login</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/register">
-            <Nav.Link>Register</Nav.Link>
+            <Nav.Link onClick={this.props.closeSurveyTabs}>Register</Nav.Link>
           </LinkContainer>
         </Nav>
       );
@@ -52,7 +54,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
       <>
         <Navbar bg="light" expand="lg">
           <LinkContainer to="/home">
-            <Navbar.Brand>Survey-Says</Navbar.Brand>
+            <Navbar.Brand onClick={this.props.closeSurveyTabs}>Survey-Says</Navbar.Brand>
           </LinkContainer>
           <LinkContainer to="/open-surveys">
             <Nav.Link onClick={this.props.openSurveysToggle}>Open</Nav.Link>

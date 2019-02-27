@@ -18,6 +18,12 @@ export const navReducer = (state = initialState, action: any) => {
                 ...state,
                 bClosedLinkClicked: !state.bClosedLinkClicked
             }
+        case (navTypes.CLOSE_SURVEY_TABS):
+            return {
+                ...state,
+                bClosedLinkClicked: false,
+                bOpenLinkClicked: false
+            }
     }
 
     return state;
