@@ -1,6 +1,4 @@
 import { ssContext } from "../axios/ss.context";
-import { ssClient } from "../axios/ss.client";
-import { bool } from 'prop-types';
 import { state } from '../reducers';
 
 export const loginTypes = {
@@ -11,7 +9,6 @@ export const loginTypes = {
   PASSWORD_UPDATE: 'PASSWORD_UPDATE',
   LOGOUT: 'LOGOUT'
 }
-
 
 export const updateUsername = (username: String) => {
   return {
@@ -34,13 +31,8 @@ export const updatePassword = (password: String) => {
 // Need async here because we will do a fetch request
 // The username and password will come from the LoginComponent
 export const login = (credentials: {}) => async (dispatch) => {
-  // Here we will do our fetch call to our api
-
-
-  // Sample of what this will look like when the time comes
-
   try {
-    const res = await ssClient.findByUsernameAndPassword(credentials);
+    const res = await ssContext.post('/login', credentials);
     console.log(res);
     if (res.data) {
       dispatch({
@@ -66,32 +58,6 @@ export const login = (credentials: {}) => async (dispatch) => {
       type: loginTypes.LOGIN_FAIL
     })
   }
-
-  // Since we don't currently have 
-  /* const users = [{ username: "lolo", password: "lolopass", role: "manager" }, { username: "aaron", password: "pass56", role: "ceo" }, { username: "iman", password: "pass33", role: "associate" }]
-  let found = false;
-  users.forEach((user) => {
-    if ((user.username === username) && (user.password === password)) {
-      found = true;
-      dispatch({
-        payload: {
-          userInfo: user,
-          errorMessage: "Login Successful"
-        },
-        type: loginTypes.LOGIN_SUCCESS
-      })
-    }
-  });
-  if (!found) {
-    dispatch({
-      payload: {
-        errorMessage: "Invalid Credentials"
-      },
-      type: loginTypes.LOGIN_FAIL
-    })
-  } */
-
-  // I know there is more to do in the action but not sure how to proceed
 }
 
 export const logout = () => {
