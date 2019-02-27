@@ -6,7 +6,7 @@ import SurveyView from './components/SurveyView/SurveyView';
 import LoginContainer from './components/Login/LoginContainer';
 import Analytics from './components/Analytics/Analytics.component';
 import Homepage from './components/Homepage/Homepage';
-import RegisterComponent from './components/Register/register';
+import RegisterComponent from './components/Register/RegisterContainer';
 import QuestionComponent from './components/Questions/questionComponent'
 
 class App extends Component {

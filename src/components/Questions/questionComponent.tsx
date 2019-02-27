@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import ReactDOM from 'react-dom';
-import surveyTabs from '../Nav/NavBar/SurveyTabs/SurveyTabs';
-const Survey= require( 'survey-react');
-const SurveyEditor= require( 'surveyjs-editor');
-
-import'dataTable';
+const Survey = require('survey-react');
+import { IState, SurveyQuestions } from '../../reducers/index'
+import { connect } from "react-redux"
 
 
 
 
 //create question object
-let agree =        
-[{questions: [  { type: "matrix", name: "Opinion", title: "Give me your opinion",       
-columns: [{ value: 1, text: "Strongly Disagree" },
-{ value: 2, text: "Disagree" },
-{ value: 3, text: "Neutral" },
-{ value: 4, text: "Agree" },
-{ value: 5, text: "Strongly Agree" }],
-rows: [{ value: "ok", text: "Text Here" },
-{ value: "good", text: "Text Here" },
-{ value: "average", text: "Text Here" },
-{ value: "bad", text: "Text Here" }]}
-]
-}]
+let agree =
+  [{
+    questions: [{
+      type: "matrix", name: "Opinion", title: "Give me your opinion",
+      columns: [{ value: 1, text: "Strongly Disagree" },
+      { value: 2, text: "Disagree" },
+      { value: 3, text: "Neutral" },
+      { value: 4, text: "Agree" },
+      { value: 5, text: "Strongly Agree" }],
+      rows: [{ value: "ok", text: "Text Here" },
+      { value: "good", text: "Text Here" },
+      { value: "average", text: "Text Here" },
+      { value: "bad", text: "Text Here" }]
+    }
+    ]
+  }]
 
 //gets the key value for questions for the survey form. this is purely for format
 let agreeArray: string[] = [];
-Object.keys(agree).forEach(function(key) {
+Object.keys(agree).forEach(function (key) {
   //get the value of name
   let val = agree[key]["questions"];
   //push the questions string in the array
@@ -38,15 +39,19 @@ console.log(agreeArray);
 
 
 
-let YN = 
-[{questions: [
-    { type: "radiogroup", name: "YesNo",
+let YN =
+  [{
+    questions: [
+      {
+        type: "radiogroup", name: "YesNo",
         title: "Give me a yes or no",
-        choices: ["Yes", "No", "Maybe", "Not Applicable"]},
-    
-]}]
+        choices: ["Yes", "No", "Maybe", "Not Applicable"]
+      },
+
+    ]
+  }]
 let ynArray: string[] = [];
-Object.keys(YN).forEach(function(key) {
+Object.keys(YN).forEach(function (key) {
   let val = YN[key]["questions"];
   ynArray.push(val);
 });
@@ -56,14 +61,18 @@ console.log(ynArray);
 
 
 
-let rating = 
-        [{questions: [
-           
-            { type: "rating", name: "customerRating", title: "Rating",
-                mininumRateDescription: "Low", maximumRateDescription: "High" }
-    ]}]
-    let ratingArray: string[] = [];
-Object.keys(rating).forEach(function(key) {
+let rating =
+  [{
+    questions: [
+
+      {
+        type: "rating", name: "customerRating", title: "Rating",
+        mininumRateDescription: "Low", maximumRateDescription: "High"
+      }
+    ]
+  }]
+let ratingArray: string[] = [];
+Object.keys(rating).forEach(function (key) {
   let val = rating[key]["questions"];
   ratingArray.push(val);
 });
@@ -71,74 +80,100 @@ console.log(ratingArray);
 
 
 
-
-let feedback = 
-  [{questions: [
-     { type: "comment", name: "suggestions", title:"Give me some feedback", }
-    ]}]
-    let feedbackArray: string[] = [];
-    Object.keys(feedback).forEach(function(key) {
-      let val = feedback[key]["questions"];
-      feedbackArray.push(val);
-    });
-    console.log(feedbackArray);
-    
-
-
-
- let multi = 
-    [{questions: [
-        { type: "radiogroup", name: "MultipleChoice",
-            title: "Give me a multiple choice",
-            choices: ["A", "B", "C", "D"]},
-        
-    ]}]
-    let multiArray: string[] = [];
-    Object.keys(multi).forEach(function(key) {
-      let val = multi[key]["questions"];
-      multiArray.push(val);
-    });
-    console.log(multiArray);
-    
+let thankYou =
+  [{
+    questions: [
+      {
+        type: "text", name: "email",
+        title: "Thank you for taking our survey. Your survey is almost complete, please enter your email address in the box below if you wish to participate in our drawing, then press the 'Submit' button."
+      }
+    ]
+  }]
+let thankYouArray: string[] = [];
+Object.keys(thankYou).forEach(function (key) {
+  let val = thankYou[key]["questions"];
+  thankYouArray.push(val);
+});
+console.log(thankYouArray);
 
 
 
 
 
-export class QuestionComponent extends React.Component <any,any>{
-  
-  
-  
-  componentWillMount() {    
+let feedback =
+  [{
+    questions: [
+      { type: "comment", name: "suggestions", title: "Give me some feedback", }
+    ]
+  }]
+let feedbackArray: string[] = [];
+Object.keys(feedback).forEach(function (key) {
+  let val = feedback[key]["questions"];
+  feedbackArray.push(val);
+});
+console.log(feedbackArray);
+
+
+
+
+let multi =
+  [{
+    questions: [
+      {
+        type: "radiogroup", name: "MultipleChoice",
+        title: "Give me a multiple choice",
+        choices: ["A", "B", "C", "D"]
+      },
+
+    ]
+  }]
+let multiArray: string[] = [];
+Object.keys(multi).forEach(function (key) {
+  let val = multi[key]["questions"];
+  multiArray.push(val);
+});
+console.log(multiArray);
+
+
+
+
+
+
+export class QuestionComponent extends React.Component<any, any>{
+
+
+
+  componentWillMount() {
     Survey.Survey.cssType = "bootstrap";
     Survey.defaultBootstrapCss.navigationButton = "btn btn-green";
-    
+
   }
 
-  render() {    
+  render() {
 
-     //here is where you need to get the id number of the question type and it is saved to this array
-let choice=[1, 5,2];
+    //here is where you need to get the id number of the question type and it is saved to this array
+    let choice = [3, 1, 2];
 
 
-    let agree={questions: agreeArray[0]}
-    let multi= {questions: multiArray[0]}
-    let yesNo= {questions: ynArray[0]}
-    let rating= {questions: ratingArray[0]}
-    let feedback= {questions: feedbackArray[0]}
+    let agree = { questions: agreeArray[0] }
+    let multi = { questions: multiArray[0] }
+    let yesNo = { questions: ynArray[0] }
+    let rating = { questions: ratingArray[0] }
+    let thankYou = { questions: thankYouArray[0] }
+    let feedback = { questions: feedbackArray[0] }
 
-//condition that pushes to array of pages on the survey depending on number choice which is the question choice
-    let surveyPages:{ questions: string; }[]=[]
-     if (choice.includes(1)){
+    //condition that pushes to array of pages on the survey depending on number choice
+    let surveyPages: { questions: string; }[] = []
+    if (choice.includes(1)) {
       surveyPages.push(agree);
-     }
-     if (choice.includes(2)){
+    }
+    if (choice.includes(2)) {
       surveyPages.push(multi);
-     }
-     if (choice.includes(3)){
+    }
+    if (choice.includes(3)) {
       surveyPages.push(yesNo);
-     }
-     if (choice.includes(4)){
+    }
+    if (choice.includes(4)) {
       surveyPages.push(rating);
      }
      if (choice.includes(5)){
