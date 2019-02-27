@@ -42,7 +42,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  surveyList: state.surveyList.currentList
+  surveyList: state.surveyList.publicSurveys
 })
 
 const mapDispatchToProps = {

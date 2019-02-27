@@ -23,7 +23,7 @@ export interface INavState {
 }
 
 export interface ISurveyListState {
-  currentList: ISurveyItem[]
+  publicSurveys: ISurveyItem[]
 }
 
 // For declarations

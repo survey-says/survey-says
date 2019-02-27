@@ -2,7 +2,7 @@ import { ISurveyListState } from './index';
 import { surveyListTypes } from '../actions/SurveyList.actions'
 
 const initialState: ISurveyListState = {
-    currentList: []
+    publicSurveys: []
 }
 
 export const surveyListReducer = (state = initialState, action: any) => {
@@ -10,7 +10,7 @@ export const surveyListReducer = (state = initialState, action: any) => {
        case (surveyListTypes.GET_PUBLIC_SURVEYS):
             return {
                 ...state,
-                currentList: action.payload.publicSurveys
+                publicSurveys: action.payload.publicSurveys
             }          
     }
 
