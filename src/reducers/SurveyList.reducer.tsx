@@ -12,7 +12,12 @@ export const surveyListReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 publicSurveys: action.payload.publicSurveys
-            }          
+            }   
+        case (surveyListTypes.GET_PUBLIC_SURVEYS):
+            return {
+                ...state,
+                publicSurveys: action.payload.publicSurveys
+            }           
     }
 
     return state;

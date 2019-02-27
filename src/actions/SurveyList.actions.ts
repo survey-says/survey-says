@@ -1,7 +1,8 @@
 import { ssContext } from "../axios/ss.context";
 
 export const surveyListTypes = {
-    GET_PUBLIC_SURVEYS: 'GET_PUBLIC_SURVEYS'
+    GET_PUBLIC_SURVEYS: 'GET_PUBLIC_SURVEYS',
+    GET_PRIVATE_SURVEYS: 'GET_PRIVATE_SURVEYS'
 }
 
 export const getPublicSurveys = () => async (dispatch) => {

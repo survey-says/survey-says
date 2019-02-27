@@ -21,7 +21,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
     let surveys = this.props.surveyList
                     .map(survey => {
                       return (
-                        <SurveyListItem surveyListItem={survey} />
+                        <SurveyListItem key={survey.id} surveyListItem={survey} />
                       )
                     });
     return (
@@ -34,7 +34,9 @@ class SurveyList extends Component<ISurveyListProps, any> {
                   <th>Closing Date</th>
                 </tr>
               </thead>
-              {surveys}
+              <tbody>
+                {surveys}
+              </tbody>
             </Table>
         </Container>
     )
