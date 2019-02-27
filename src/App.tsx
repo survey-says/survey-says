@@ -7,14 +7,19 @@ import LoginContainer from './components/Login/LoginContainer';
 import Analytics from './components/Analytics/Analytics.component';
 import Homepage from './components/Homepage/Homepage';
 
-
 class App extends Component {
   render() {
     return (
       <div>
         <Layout>
-          <Route path="/closed-surveys" />
-          <Route path="/open-surveys" />
+          <Route path="/closed-surveys/my-surveys" />
+          <Route path="/closed-surveys/my-collaborations" />
+          <Route path="/closed-surveys/expiring" />
+          <Route path="/closed-surveys/analytics" />
+          <Route path="/open-surveys/my-surveys" />
+          <Route path="/open-surveys/my-collaborations" />
+          <Route path="/open-surveys/expiring" />
+          <Route path="/open-surveys/analytics" />
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />
           <Route path="/login" component={LoginContainer} />
