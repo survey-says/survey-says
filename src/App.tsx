@@ -13,10 +13,15 @@ class App extends Component {
     return (
       <div>
         <Layout>
-          <Route path="/closed-surveys" />
-          <Route path="/open-surveys" />
-          <Route path="/surveys" component={SurveyList}/>
-          <Route path="/home" component={Homepage} />
+          <Route path="/closed-surveys/my-surveys" />
+          <Route path="/closed-surveys/my-collaborations" />
+          <Route path="/closed-surveys/expiring" />
+          <Route path="/closed-surveys/analytics" />
+          <Route path="/open-surveys/my-surveys" />
+          <Route path="/open-surveys/my-collaborations" />
+          <Route path="/open-surveys/expiring" />
+          <Route path="/open-surveys/analytics" />
+          <Route path="/home" component={SurveyList} />
           <Route path="/" exact component={Homepage} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/analytics" component={Analytics} />

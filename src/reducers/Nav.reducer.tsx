@@ -2,16 +2,27 @@ import { INavState } from '.';
 import { navTypes } from '../actions/Nav.actions';
 
 const initialState: INavState = {
-    surveyTabOpened: false,
-    inSurveyPage: false // Needed to fix routing
+    bClosedLinkClicked: false,
+    bOpenLinkClicked: false
 }
 
 export const navReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case (navTypes.SURVEY_TOGGLE):
+        case (navTypes.OPEN_SURVEYS_TOGGLE):
             return {
                 ...state,
-                surveyTabOpened: !state.surveyTabOpened
+                bOpenLinkClicked: !state.bOpenLinkClicked
+            }
+        case (navTypes.CLOSED_SURVEYS_TOGGLE):
+            return {
+                ...state,
+                bClosedLinkClicked: !state.bClosedLinkClicked
+            }
+        case (navTypes.CLOSE_SURVEY_TABS):
+            return {
+                ...state,
+                bClosedLinkClicked: false,
+                bOpenLinkClicked: false
             }
     }
 

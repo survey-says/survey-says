@@ -1,4 +1,4 @@
-import { ssClient } from "../axios/ss.client";
+import { ssContext } from "../axios/ss.context";
 
 export const surveyListTypes = {
     GET_PUBLIC_SURVEYS: 'GET_PUBLIC_SURVEYS'
@@ -6,7 +6,7 @@ export const surveyListTypes = {
 
 export const getPublicSurveys = () => async (dispatch) => {
     try {
-        const res = await ssClient.findAll();
+        const res = await ssContext.get('/surveys');
         console.log(res);
         if(res.data) {
             dispatch({

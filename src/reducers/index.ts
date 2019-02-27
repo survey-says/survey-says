@@ -18,8 +18,8 @@ export interface IUserState {
 }
 
 export interface INavState {
-  surveyTabOpened: boolean
-  inSurveyPage: boolean
+  bOpenLinkClicked: boolean,
+  bClosedLinkClicked: boolean 
 }
 
 export interface ISurveyListState {
