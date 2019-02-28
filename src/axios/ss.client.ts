@@ -79,7 +79,7 @@ const ssClient = {
                 });
 
             // Append Status to the Surveys
-            await ssContext.get(`status/${survey.status}`)
+            await ssContext.get(`statuses/${survey.status}`)
                 .then(response => {
                     survey.status = response.data;
                 })
@@ -88,7 +88,7 @@ const ssClient = {
                 });
 
             // Append Privacy to the Surveys
-            await ssContext.get(`privacy/${survey.privacy}`)
+            await ssContext.get(`privacies/${survey.privacy}`)
                 .then(response => {
                     survey.privacy = response.data;
                 })
@@ -120,7 +120,7 @@ const ssClient = {
                 });
 
             // Append Status to the Surveys
-            await ssContext.get(`status/${survey.status}`)
+            await ssContext.get(`statuses/${survey.status}`)
                 .then(response => {
                     survey.status = response.data;
                 })
@@ -129,7 +129,7 @@ const ssClient = {
                 });
 
             // Append Privacy to the Surveys
-            await ssContext.get(`privacy/${survey.privacy}`)
+            await ssContext.get(`privacies/${survey.privacy}`)
                 .then(response => {
                     survey.privacy = response.data;
                 })
@@ -161,7 +161,7 @@ const ssClient = {
                 });
 
             // Append Status to the Surveys
-            await ssContext.get(`status/${survey.status}`)
+            await ssContext.get(`statuses/${survey.status}`)
                 .then(response => {
                     survey.status = response.data;
                 })
@@ -170,7 +170,7 @@ const ssClient = {
                 });
 
             // Append Privacy to the Surveys
-            await ssContext.get(`privacy/${survey.privacy}`)
+            await ssContext.get(`privacies/${survey.privacy}`)
                 .then(response => {
                     survey.privacy = response.data;
                 })
@@ -194,11 +194,11 @@ const ssClient = {
             });
 
         // Append Questions to the Survey
-        await ssContext.get(`question/survey/${id}`)
+        await ssContext.get(`questions/survey/${id}`)
             .then(response => {
                 survey.questions = response.data;
                 survey.questions.forEach( async (question) => {
-                    ssContext.get(`answer-choice/question/${id}`)
+                    ssContext.get(`answer-choices/question/${id}`)
                         .then(response => {
                             question.answerChoices = response.data;
                         })
@@ -221,7 +221,7 @@ const ssClient = {
             });
 
         // Append Status to the Survey
-        await ssContext.get(`status/${survey.status}`)
+        await ssContext.get(`statuses/${survey.status}`)
             .then(response => {
                 survey.status = response.data;
             })
@@ -230,7 +230,7 @@ const ssClient = {
             });
 
         // Append Privacy to the Survey
-        await ssContext.get(`privacy/${survey.privacy}`)
+        await ssContext.get(`privacies/${survey.privacy}`)
             .then(response => {
                 survey.privacy = response.data;
             })
@@ -259,7 +259,7 @@ const ssClient = {
 
     addQuestion: async (newQuestion: {}) => {
         let results;
-        await ssContext.post('question', newQuestion)
+        await ssContext.post('questions', newQuestion)
             .then(response => {
                 results = response.data;
             })
@@ -275,7 +275,7 @@ const ssClient = {
 
     addAnswerChoice: async (newAnswerChoice: {}) => {
         let results;
-        await ssContext.post('answer-choice', newAnswerChoice)
+        await ssContext.post('answer-choices', newAnswerChoice)
             .then(response => {
                 results = response.data;
             })
@@ -291,7 +291,7 @@ const ssClient = {
 
     addResponse: async (newResponse: {}) => {
         let results;
-        await ssContext.post('response', newResponse)
+        await ssContext.post('responses', newResponse)
             .then(response => {
                 results = response.data;
             })
