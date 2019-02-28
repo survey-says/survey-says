@@ -29,7 +29,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
           <LinkContainer to="closed-surveys">
             <Nav.Link onClick={this.props.closedSurveysToggle}>Closed</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="create-survey">
+          <LinkContainer to="create">
             <Nav.Link onClick={this.props.closeSurveyTabs}>Create</Nav.Link>
           </LinkContainer>
           <Nav className="ml-auto">

@@ -25,7 +25,7 @@ class App extends Component {
           <Route path="/open-surveys/collaborations" component={SurveyList} />
           <Route path="/open-surveys/expiring" component={SurveyList} />
           <Route path="/open-surveys/analytics" component={Analytics}/>
-          <Route path="/home" component={SurveyList} />
+          <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />
           <Route path="/login" component={LoginContainer} />
           <Route path="/analytics" component={Analytics} />

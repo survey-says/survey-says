@@ -1,4 +1,5 @@
 import ssContext from "../axios/ss.context";
+import ssClient from "../axios/ss.client";
 
 export const surveyListTypes = {
     GET_PUBLIC_SURVEYS: 'GET_PUBLIC_SURVEYS',
@@ -7,12 +8,11 @@ export const surveyListTypes = {
 
 export const getPublicSurveys = () => async (dispatch) => {
     try {
-        const res = await ssContext.get('/surveys');
-        console.log(res);
-        if(res.data) {
+        const surveys = await ssClient.findSurveysByPrivacy(1);
+        if(surveys) {
             dispatch({
                 payload: {
-                    publicSurveys: res.data.map(survey => {
+                    publicSurveys: surveys.map(survey => {
                         return {
                             id: survey.surveyId,
                             title: survey.title,
