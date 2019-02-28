@@ -1,5 +1,4 @@
-import ssContext from "../axios/ss.context";
-
+import ssClient from "../axios/ss.client";
 
 export const registerTypes = {
   UPDATE_USERNAME: 'UPDATE_USERNAME',
@@ -64,7 +63,7 @@ export const handleSubmit = (userData: {}) => async (dispatch) => {
   // Here will go the fetch call to out api
   // Sample of what this will look like
   try {
-    const res = await ssContext.post('/register', userData);
+    const res = await ssClient.addUser(userData);
     console.log(res);
     if (res.data) {
       dispatch({
