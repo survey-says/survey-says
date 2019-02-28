@@ -24,22 +24,30 @@ class SurveyList extends Component<ISurveyListProps, any> {
   }
 
   render() {
-    const currentURL = this.props
+    // Need to decide which list to render with url
+    const urlSections: string[] = location.pathname.split('/');
+    const statusURL: string = urlSections[urlSections.length-2];
+    const whichSurveys: string = urlSections[urlSections.length-1];
+    let surveysToUse: any = null;
+    
     let publicSurveys = this.props.publicSurveys
                     .map(survey => {
                       return (
                         <SurveyListItem key={survey.id} surveyListItem={survey} />
                       )
                     });
-
+    
     let usersSurveys = this.props.usersSurveys
                       .map(survey => {
                         return (
                           <SurveyListItem key={survey.id} surveyListItem={survey} />
                         )
                       });
+
+    if (whichSurveys === 'home') {
+      surveysToUse = publicSurveys;
+    }
       
-    
     return (
         <Container>
             <Table striped bordered hover >
@@ -53,7 +61,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
                 </tr>
               </thead>
               <tbody>
-                {publicSurveys}
+                {surveysToUse}
               </tbody>
             </Table>
         </Container>
