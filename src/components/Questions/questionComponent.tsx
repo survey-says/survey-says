@@ -183,24 +183,24 @@ export class QuestionComponent extends React.Component<any, any>{
     }
     if (choice.includes(4)) {
       surveyPages.push(rating);
-     }
-     if (choice.includes(5)){
+    }
+    if (choice.includes(5)) {
       surveyPages.push(feedback);
-     }
-    
+    }
 
-//basically creates the survey form 
-    let survey= { title: "Title of survey", showProgressBar: "top", pages: surveyPages}
- 
-     
-    let model= new Survey.Model(survey); 
-   
+
+    //basically creates the survey form 
+    let survey = { title: "Title of survey", showProgressBar: "top", pages: surveyPages }
+
+
+    let model = new Survey.Model(survey);
+
     //Optionally, show saving progress and show an error and "Save Again" button  if the results can't be stored
     //model.surveyShowDataSaving = true;
-     
+
 
     //gets result of survey as a string
-    let resultAsString=(result) =>{
+    let resultAsString = (result) => {
       let resultAsString = JSON.stringify(result.data);
      let id = "put an id here";
      let userid=" user id";
@@ -234,17 +234,15 @@ export class QuestionComponent extends React.Component<any, any>{
 
     return (
       <>
-      
         <div className="container question-container" id="surveyContainer">
-      <Survey.Survey model={model} onComplete={resultAsString}/>
+          <Survey.Survey model={model} onComplete={resultAsString} />
         </div>
-      
       </>
-     
-  )   
+
+    )
 
 
-}
+  }
 }
 
 
