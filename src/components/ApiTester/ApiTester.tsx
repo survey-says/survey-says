@@ -67,8 +67,8 @@ class ApiTester extends Component<any, any> {
     handleAddTestQuestion = async () => {
         const newQuestion = {
             "questionText": "Test Question",
-            "questionType": 2,
-            "surveyId": 2
+            "survey": 2,
+            "type": 2
         }
         const results = await ssClient.addQuestion(newQuestion);
         console.log("Question Added Response:", results)
@@ -76,7 +76,7 @@ class ApiTester extends Component<any, any> {
     handleAddTestAnswerChoice = async () => {
         const newAnswerChoice = {
             "answerText": "Test Answer Test",
-            "questionId": 2
+            "question": 2
         }
         const results = await ssClient.addAnswerChoice(newAnswerChoice);
         console.log("AnswerChoice Added Response:", results);
@@ -106,7 +106,7 @@ class ApiTester extends Component<any, any> {
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindAllSurveys}>Find All Surveys</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindPublicSurveys}>Find Public Surveys</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindPrivateSurveys}>Find Private Surveys</button>
-                    <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindByModerator2}>Find Surveys Where User 2 is Collab</button>
+                    <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindByModerator2}>Find Surveys Where User 2 is Moderator</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindSurvey2}>Find Survey 2</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleAddTestSurvey}>Add A Test Survey</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleAddTestQuestion}>Add A Test Question</button>
