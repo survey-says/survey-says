@@ -1,4 +1,4 @@
-import { ssContext } from "../axios/ss.context";
+import ssClient from "../axios/ss.client";
 import { state } from '../reducers';
 
 export const loginTypes = {
@@ -32,9 +32,9 @@ export const updatePassword = (password: String) => {
 // The username and password will come from the LoginComponent
 export const login = (credentials: {}) => async (dispatch) => {
   try {
-    const res = await ssContext.post('/login', credentials);
+    const res = await ssClient.login(credentials);
     console.log(res);
-    if (res.data) {
+    if (res) {
       dispatch({
         payload: {
           userInfo: res,
