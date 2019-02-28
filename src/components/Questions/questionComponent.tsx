@@ -18,6 +18,7 @@ let agree =
       { value: 3, text: "Neutral" },
       { value: 4, text: "Agree" },
       { value: 5, text: "Strongly Agree" }],
+      
       rows: [{ value: "ok", text: "Text Here" },
       { value: "good", text: "Text Here" },
       { value: "average", text: "Text Here" },
@@ -136,10 +137,17 @@ console.log(multiArray);
 
 
 
-
+export interface IQuestionProps {
+  graph: []
+}
 
 
 export class QuestionComponent extends React.Component<any, any>{
+
+   constructor(props){
+     super(props)
+
+   }
 
 
 
@@ -194,16 +202,13 @@ export class QuestionComponent extends React.Component<any, any>{
     //gets result of survey as a string
     let resultAsString=(result) =>{
       let resultAsString = JSON.stringify(result.data);
-      result.surveyPostId = "put an id here";
+     let id = "put an id here";
      let userid=" user id";
      let customerid="customerid ";
-     let complete= [survey,resultAsString,result.surveyPostId,userid,customerid]
+     let complete= [survey,resultAsString,id,userid,customerid]
+      QuestionComponent.toString=complete.toString;
    console.log(JSON.stringify(complete))
-    let graph= ( data )=> {
-      $(document).ready(function() {
-          $('#surveyContainer').dataTable(data);
-      } );   
-  }}
+   }
   
    
    
@@ -228,20 +233,13 @@ export class QuestionComponent extends React.Component<any, any>{
 
 
     return (
-      <html>
-        <head>
-        <script src="https://surveyjs.azureedge.net/1.0.71/survey.react.js"></script>
-        <script src="https://surveyjs.azureedge.net/1.0.71/survey.ko.min.js"></script>
-        <script src="https://surveyjs.azureedge.net/1.0.71/surveyeditor.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
-        <link href="https://surveyjs.azureedge.net/1.0.71/surveyeditor.css" type="text/css" rel="stylesheet" />
-        </head>
-        <body>
+      <>
+      
         <div className="container question-container" id="surveyContainer">
       <Survey.Survey model={model} onComplete={resultAsString}/>
         </div>
-         </body>  
-      </html>  
+      
+      </>
      
   )   
 
