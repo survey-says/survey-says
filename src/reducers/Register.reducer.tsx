@@ -42,12 +42,15 @@ export const registerReducer = (state = initialState, action: any) => {
     case registerTypes.REGISTER_SUCCESS:
       return {
         ...state,
-        userInfo: action.payload.userInfo
+        errorMessage: action.payload.errorMessage,
+        userInfo: action.payload.userInfo,
+        submitted: action.payload.submitted
       }
     case registerTypes.REGISTER_FAIL:
       return {
         ...state,
-        errorMessage: action.payload.errorMessage
+        errorMessage: action.payload.errorMessage,
+        submitted: action.payload.submitted
       }
   }
   return state;

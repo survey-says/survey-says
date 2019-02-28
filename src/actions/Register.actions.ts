@@ -64,12 +64,12 @@ export const handleSubmit = (userData: {}) => async (dispatch) => {
   // Here will go the fetch call to out api
   // Sample of what this will look like
   try {
-    const res = await ssContext.post('/register', userData);
+    const res = await ssContext.post('/user', userData);
     console.log(res);
     if (res.data) {
       dispatch({
         payload: {
-          userInfo: res,
+          userInfo: res.data,
           errorMessage: "Register Successful",
           submitted: true
         },

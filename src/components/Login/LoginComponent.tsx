@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Redirect } from 'react-router-dom';
 
 // Interface of the props (fields and methods coming from login actions)
 export interface ILoginProps {
@@ -27,18 +27,20 @@ export class LoginComponent extends Component<ILoginProps, any>{
     console.log("The username is ", this.props.username);
     this.props.updatePassword(event.target.value);
   }
-  login = (event) => {
+  login = async (event) => {
     console.log(`The username ${this.props.username} and password ${this.props.password} (at login)`)
     event.preventDefault();
     const cred = {
       username: this.props.username,
       password: this.props.password
     }
-    this.props.login(cred);
-
+    await this.props.login(cred);
   }
   // The LoginComponent will have access to the username and password via props because of the redux store
   render() {
+    if (this.props.errorMessage === "Login Successful") {
+      return <Redirect push to="/home" />
+    }
     return (
       <div className="container login-container" >
         <div className="jumbotron">
@@ -65,7 +67,7 @@ export class LoginComponent extends Component<ILoginProps, any>{
             <p>{this.props.errorMessage}</p>
           </form>
         </div>
-        </div>
+      </div>
     )
   }
 }
