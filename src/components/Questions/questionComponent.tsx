@@ -18,6 +18,7 @@ let agree =
       { value: 3, text: "Neutral" },
       { value: 4, text: "Agree" },
       { value: 5, text: "Strongly Agree" }],
+      
       rows: [{ value: "ok", text: "Text Here" },
       { value: "good", text: "Text Here" },
       { value: "average", text: "Text Here" },
@@ -136,10 +137,17 @@ console.log(multiArray);
 
 
 
-
+export interface IQuestionProps {
+  graph: []
+}
 
 
 export class QuestionComponent extends React.Component<any, any>{
+
+   constructor(props){
+     super(props)
+
+   }
 
 
 
@@ -194,33 +202,34 @@ export class QuestionComponent extends React.Component<any, any>{
     //gets result of survey as a string
     let resultAsString = (result) => {
       let resultAsString = JSON.stringify(result.data);
-      result.surveyPostId = "put an id here";
-      let userid = " user id";
-      let customerid = "customerid ";
-      let complete = [survey, resultAsString, result.surveyPostId, userid, customerid]
-      console.log(JSON.stringify(complete))
-
-    }
-
-
-    //SEND POST REQUEST WITH SURVEY, RESULTS, SURVEY ID, USERID, AND CUSTOMERID
-    //   let send=(sender, options) =>{
-    //  options.showDataSaving();
-    //     let xhr = new XMLHttpRequest();
-    //     xhr.open("POST", "our url");
-    //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-    //   let resultAsString = JSON.stringify(sender.data);
-    //   sender.surveyPostId = "put an id here";
-    //  let userid=" user id";
-    //  let customerid="customerid ";
-    //  let complete= [survey,resultAsString,sender.surveyPostId,userid,customerid]
-    //    xhr.onload = xhr.onerror = function() {
-    //     if (xhr.status == 200) {
-    //       alert("Data posted Ok")
-    //     }
-    //   };
-    //   xhr.send(dataStringify);
-    // // };
+     let id = "put an id here";
+     let userid=" user id";
+     let customerid="customerid ";
+     let complete= [survey,resultAsString,id,userid,customerid]
+      QuestionComponent.toString=complete.toString;
+   console.log(JSON.stringify(complete))
+   }
+  
+   
+   
+//SEND POST REQUEST WITH SURVEY, RESULTS, SURVEY ID, USERID, AND CUSTOMERID
+  //   let send=(sender, options) =>{
+  //  options.showDataSaving();
+  //     let xhr = new XMLHttpRequest();
+  //     xhr.open("POST", "our url");
+  //     xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+  //   let resultAsString = JSON.stringify(sender.data);
+  //   sender.surveyPostId = "put an id here";
+  //  let userid=" user id";
+  //  let customerid="customerid ";
+  //  let complete= [survey,resultAsString,sender.surveyPostId,userid,customerid]
+  //    xhr.onload = xhr.onerror = function() {
+  //     if (xhr.status == 200) {
+  //       alert("Data posted Ok")
+  //     }
+  //   };
+  //   xhr.send(dataStringify);
+  // // };
 
 
     return (

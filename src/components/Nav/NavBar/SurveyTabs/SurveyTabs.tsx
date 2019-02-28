@@ -32,11 +32,6 @@ const surveyTabs = (props: ISurveyProps) => {
                     <Nav.Link>Expiring</Nav.Link>
                 </LinkContainer>
             </Nav.Item>
-            <Nav.Item>
-                <LinkContainer to={currentPath + '/analytics'}>
-                    <Nav.Link>Analytics</Nav.Link>
-                </LinkContainer>
-            </Nav.Item>
             
         </Nav>
     )

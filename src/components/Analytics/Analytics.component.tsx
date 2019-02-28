@@ -87,6 +87,7 @@ class Analytics extends Component<any, any> {
             },
             maintainAspectRation: false
         };
+
         return (
             <div className="container">
                 <div className="jumbotron">

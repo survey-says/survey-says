@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { environment } from '../environment';
+import environment from '../environment';
 
-export const ssContext = axios.create({
+const ssContext = axios.create({
   baseURL: environment.apiContext,
   withCredentials: true
 });
+
+export default ssContext;

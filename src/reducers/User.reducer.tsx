@@ -4,6 +4,10 @@ import { registerTypes } from '../actions/Register.actions';
 
 const initialState: IUserState = {
     username: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    userId: 0,
     isLoggedIn: false
 }
 
@@ -13,7 +17,11 @@ export const userReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                username: action.payload.userInfo.username
+                username: action.payload.userInfo.username,
+                firstName: action.payload.userInfo.firstName,
+                lastName: action.payload.userInfo.lastName,
+                email: action.payload.userInfo.email,
+                userId: action.payload.userInfo.userId
             }
         case (registerTypes.REGISTER_SUCCESS):
             return {
@@ -25,7 +33,11 @@ export const userReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 isLoggedIn: false,
-                username: ''
+                username: '',
+                firstName: '',
+                lastName: '',
+                email: '',
+                userId: 0
             }
     }
 
