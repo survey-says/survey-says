@@ -14,7 +14,11 @@ export interface ILoginState {
 
 export interface IUserState {
   isLoggedIn: boolean,
-  username: string
+  username: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  userId: number
 }
 
 export interface INavState {
@@ -24,7 +28,7 @@ export interface INavState {
 
 export interface ISurveyListState {
   publicSurveys: ISurveyItem[],
-  privateSurveys: ISurveyItem[]
+  usersSurveys: ISurveyItem[]
 
 }
 

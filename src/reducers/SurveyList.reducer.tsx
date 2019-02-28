@@ -3,7 +3,7 @@ import { surveyListTypes } from '../actions/SurveyList.actions'
 
 const initialState: ISurveyListState = {
     publicSurveys: [],
-    privateSurveys: []
+    usersSurveys: []
 }
 
 export const surveyListReducer = (state = initialState, action: any) => {
@@ -13,10 +13,10 @@ export const surveyListReducer = (state = initialState, action: any) => {
                 ...state,
                 publicSurveys: action.payload.publicSurveys
             }   
-        case (surveyListTypes.GET_PUBLIC_SURVEYS):
+        case (surveyListTypes.GET_USERS_SURVEYS):
             return {
                 ...state,
-                publicSurveys: action.payload.publicSurveys
+                usersSurveys: action.payload.usersSurveys
             }           
     }
 
