@@ -68,7 +68,6 @@ export interface ISurveyItem {
     description: string
     dateCreated: Date
     dateClosed: Date
-    status: number
     // status: {
     //   statusId: number,
     //   status: string
