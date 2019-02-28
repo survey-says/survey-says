@@ -72,7 +72,10 @@ export interface ISurveyItem {
     //   statusId: number,
     //   status: string
     // },
-    privacy: number
+    privacy: {
+      privacyId: number,
+      privacy: string
+    } 
     // privacy: {
     //   privacyId: number,
     //   privacy: string
