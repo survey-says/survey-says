@@ -24,7 +24,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
   }
 
   render() {
-    
+    const currentURL = this.props
     let publicSurveys = this.props.publicSurveys
                     .map(survey => {
                       return (
