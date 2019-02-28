@@ -8,6 +8,7 @@ export const registerTypes = {
   UPDATE_EMAIL: 'UPDATE_EMAIL',
   SUBMIT_FORM: 'SUBMIT_FORM',
   REGISTER_SUCCESS: 'REGISTER_SUCCESS',
+  CLEAR_DATA: 'CLEAR_DATA',
   REGISTER_FAIL: 'REGISTER_FAIL'
 }
 
@@ -57,6 +58,12 @@ export const updateEmail = (email: string) => {
   }
 }
 
+export const clearState = () => {
+  return {
+    payload: {},
+    type: registerTypes.CLEAR_DATA
+  }
+}
 
 export const handleSubmit = (userData: {}) => async (dispatch) => {
 
@@ -65,7 +72,7 @@ export const handleSubmit = (userData: {}) => async (dispatch) => {
   try {
     const res = await ssClient.addUser(userData);
     console.log(res);
-    if (res.data) {
+    if (res) {
       dispatch({
         payload: {
           userInfo: res,
@@ -92,5 +99,7 @@ export const handleSubmit = (userData: {}) => async (dispatch) => {
       type: registerTypes.REGISTER_FAIL
     })
   }
+
+
 
 }

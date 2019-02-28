@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { userInfo } from 'os';
-
+import { Redirect } from 'react-router-dom';
 
 export interface IRegisterProps {
     firstName: string,
@@ -17,26 +16,13 @@ export interface IRegisterProps {
     updateLastName(lastName: string): void,
     updatePassword(password: string): void,
     updateUsername(username: string): void,
-    handleSubmit(userInfo: {}): void
+    handleSubmit(userInfo: {}): void,
+    clearState(): void
 }
 
 export class RegisterComponent extends React.Component<IRegisterProps, any> {
     constructor(props) {
         super(props);
-
-        /*   this.state = {
-              user: {
-                  firstName: '',
-                  lastName: '',
-                  username: '',
-                  password: '',
-                  email: ''
-              },
-              submitted: false
-          }; */
-
-        // this.handleChange = this.handleChange.bind(this);
-        //this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (event) => {
@@ -65,7 +51,7 @@ export class RegisterComponent extends React.Component<IRegisterProps, any> {
         return value;
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault();
         const userData = {
             username: this.props.username,
@@ -75,18 +61,17 @@ export class RegisterComponent extends React.Component<IRegisterProps, any> {
             lastName: this.props.lastName,
         }
         console.log('The user info being registered is ', userData);
-        this.props.handleSubmit(userData);
-        /* this.setState({
-            ...this.state,
-            submitted: true
-        });
-        const { user } = this.state;
-        // If the form was submitted return user object from DB (userID included)
-        console.log("Users at submit are: ", this.state.user); */
-
+        await this.props.handleSubmit(userData);
+        console.log("After register: ", this.props.errorMessage);
     }
 
+    componentWillUnmount() {
+        this.props.clearState();
+    }
     render() {
+        if (this.props.errorMessage === "Register Successful") {
+            return <Redirect push to="/home" />
+        }
         return (
             <div className="container register-container">
                 <div className="jumbotron">
@@ -97,35 +82,24 @@ export class RegisterComponent extends React.Component<IRegisterProps, any> {
                             <input type="firstName" className="form-control" name="firstName" onChange={this.handleChange} required />
                         </div>
                         <div className='form-group'>
-                            <label htmlFor="lastName">Last Name</label>
-                            <input type="lastName" className="form-control" name="lastName" onChange={this.handleChange} required />
-
-
-                        </div>
-                        <div className='form-group'>
+                            <div className='form-group'>
+                                <label htmlFor="lastName">Last Name</label>
+                                <input type="lastName" className="form-control" name="lastName" onChange={this.handleChange} required />
+                            </div>
                             <label htmlFor="username">Username</label>
                             <input type="Username" className="form-control" name="username" onChange={this.handleChange} required />
-
-
-
                         </div>
                         <div className='form-group'>
                             <label htmlFor="password">Password</label>
                             <input type="password" className="form-control" name="password" onChange={this.handleChange} required />
-
-
-
                         </div>
                         <div className={'form-group'}>
                             <label htmlFor="email">Email</label>
                             <input type="email" className="form-control" name="email" onChange={this.handleChange} required />
-
-
-
                         </div>
+                        <p>{this.props.errorMessage}</p>
                         <div className="form-group">
                             <button className="btn btn-primary">Register</button>
-
                             <Link to="/login" className="btn btn-link">Cancel</Link>
                         </div>
 
