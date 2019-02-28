@@ -13,6 +13,7 @@ export class Homepage extends Component<any, any> {
       <Container>
         <Jumbotron>
           <h1 style={{textAlign: 'center'}}>Welcome to Survey-Says!</h1>
+          <h3 style={{textAlign: 'center'}}>Take a public survey below or login</h3>
         </Jumbotron>
         <SurveyList />
       </Container>
