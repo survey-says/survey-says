@@ -1,4 +1,4 @@
-import { ssContext } from "../axios/ss.context";
+import ssContext from "../axios/ss.context";
 import { state } from '../reducers';
 
 export const loginTypes = {

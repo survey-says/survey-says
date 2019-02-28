@@ -1,12 +1,12 @@
-import { ssContext } from "./ss.context";
+import ssContext from "./ss.context";
 
- const ssClient = {
+const ssClient = {
 
-     //----------------//
+    //----------------//
     //--User Methods--//
     //----------------//
 
-     login: async (credentials: {}) => {
+    login: async (credentials: {}) => {
         let results;
         await ssContext.post('login', credentials)
             .then(response => {
@@ -18,7 +18,7 @@ import { ssContext } from "./ss.context";
         return results;
     },
 
-     findAllUsers: async () => {
+    findAllUsers: async () => {
         let results;
         await ssContext.get('users')
             .then(response => {
@@ -30,7 +30,7 @@ import { ssContext } from "./ss.context";
         return results;
     },
 
-     findUserById: async (id) => {
+    findUserById: async (id) => {
         let results;
         await ssContext.get(`users/${id}`)
             .then(response => {
@@ -42,7 +42,7 @@ import { ssContext } from "./ss.context";
         return results;
     },
 
-     addUser: async (newUser: {}) => {
+    addUser: async (newUser: {}) => {
         let results;
         await ssContext.post('users', newUser)
             .then(response => {
@@ -54,11 +54,11 @@ import { ssContext } from "./ss.context";
         return results;
     },
 
-     //------------------//
+    //------------------//
     //--Survey Methods--//
     //------------------//
 
-     findAllSurveys: async () => {
+    findAllSurveys: async () => {
         let surveys;
         await ssContext.get('surveys')
             .then(response => {
@@ -69,7 +69,7 @@ import { ssContext } from "./ss.context";
             });
         surveys.forEach(async (survey) => {
 
-             // Append Creator to the Surveys
+            // Append Creator to the Surveys
             await ssContext.get(`users/${survey.creator}`)
                 .then(response => {
                     survey.creator = response.data;
@@ -78,7 +78,7 @@ import { ssContext } from "./ss.context";
                     console.log(err);
                 });
 
-             // Append Status to the Surveys
+            // Append Status to the Surveys
             await ssContext.get(`status/${survey.status}`)
                 .then(response => {
                     survey.status = response.data;
@@ -87,7 +87,7 @@ import { ssContext } from "./ss.context";
                     console.log(err);
                 });
 
-             // Append Privacy to the Surveys
+            // Append Privacy to the Surveys
             await ssContext.get(`privacy/${survey.privacy}`)
                 .then(response => {
                     survey.privacy = response.data;
@@ -99,7 +99,7 @@ import { ssContext } from "./ss.context";
         return surveys
     },
 
-     findSurveysByStatus: async (statusId) => {
+    findSurveysByStatus: async (statusId) => {
         let surveys;
         await ssContext.get(`surveys/status/${statusId}`)
             .then(response => {
@@ -110,7 +110,7 @@ import { ssContext } from "./ss.context";
             });
         surveys.forEach(async (survey) => {
 
-             // Append Creator to the Surveys
+            // Append Creator to the Surveys
             await ssContext.get(`users/${survey.creator}`)
                 .then(response => {
                     survey.creator = response.data;
@@ -119,7 +119,7 @@ import { ssContext } from "./ss.context";
                     console.log(err);
                 });
 
-             // Append Status to the Surveys
+            // Append Status to the Surveys
             await ssContext.get(`status/${survey.status}`)
                 .then(response => {
                     survey.status = response.data;
@@ -128,7 +128,7 @@ import { ssContext } from "./ss.context";
                     console.log(err);
                 });
 
-             // Append Privacy to the Surveys
+            // Append Privacy to the Surveys
             await ssContext.get(`privacy/${survey.privacy}`)
                 .then(response => {
                     survey.privacy = response.data;
@@ -140,7 +140,7 @@ import { ssContext } from "./ss.context";
         return surveys
     },
 
-     findSurveysByPrivacy: async (privacyId) => {
+    findSurveysByPrivacy: async (privacyId) => {
         let surveys;
         await ssContext.get(`surveys/privacy/${privacyId}`)
             .then(response => {
@@ -151,7 +151,7 @@ import { ssContext } from "./ss.context";
             });
         surveys.forEach(async (survey) => {
 
-             // Append Creator to the Surveys
+            // Append Creator to the Surveys
             await ssContext.get(`users/${survey.creator}`)
                 .then(response => {
                     survey.creator = response.data;
@@ -160,7 +160,7 @@ import { ssContext } from "./ss.context";
                     console.log(err);
                 });
 
-             // Append Status to the Surveys
+            // Append Status to the Surveys
             await ssContext.get(`status/${survey.status}`)
                 .then(response => {
                     survey.status = response.data;
@@ -169,7 +169,7 @@ import { ssContext } from "./ss.context";
                     console.log(err);
                 });
 
-             // Append Privacy to the Surveys
+            // Append Privacy to the Surveys
             await ssContext.get(`privacy/${survey.privacy}`)
                 .then(response => {
                     survey.privacy = response.data;
@@ -181,9 +181,9 @@ import { ssContext } from "./ss.context";
         return surveys
     },
 
-     findSurveyById: async (id: number) => {
+    findSurveyById: async (id: number) => {
 
-         // Get the Survey
+        // Get the Survey
         let survey;
         await ssContext.get(`surveys/${id}`)
             .then(response => {
@@ -193,7 +193,7 @@ import { ssContext } from "./ss.context";
                 console.log(err);
             });
 
-         // Append Questions to the Survey
+        // Append Questions to the Survey
         await ssContext.get(`question/survey/${id}`)
             .then(response => {
                 survey.questions = response.data;
@@ -211,7 +211,7 @@ import { ssContext } from "./ss.context";
                 console.log(err);
             });
 
-         // Append Creator to the Survey
+        // Append Creator to the Survey
         await ssContext.get(`users/${survey.creator}`)
             .then(response => {
                 survey.creator = response.data;
@@ -220,7 +220,7 @@ import { ssContext } from "./ss.context";
                 console.log(err);
             });
 
-         // Append Status to the Survey
+        // Append Status to the Survey
         await ssContext.get(`status/${survey.status}`)
             .then(response => {
                 survey.status = response.data;
@@ -229,7 +229,7 @@ import { ssContext } from "./ss.context";
                 console.log(err);
             });
 
-         // Append Privacy to the Survey
+        // Append Privacy to the Survey
         await ssContext.get(`privacy/${survey.privacy}`)
             .then(response => {
                 survey.privacy = response.data;
@@ -238,10 +238,10 @@ import { ssContext } from "./ss.context";
                 console.log(err);
             });
 
-         return survey;
+        return survey;
     },
 
-     addSurvey: async (newSurvey: {}) => {
+    addSurvey: async (newSurvey: {}) => {
         let results;
         await ssContext.post('surveys', newSurvey)
             .then(response => {
@@ -253,11 +253,11 @@ import { ssContext } from "./ss.context";
         return results;
     },
 
-     //--------------------//
+    //--------------------//
     //--Question Methods--//
     //--------------------//
 
-     addQuestion: async (newQuestion: {}) => {
+    addQuestion: async (newQuestion: {}) => {
         let results;
         await ssContext.post('question', newQuestion)
             .then(response => {
@@ -269,11 +269,11 @@ import { ssContext } from "./ss.context";
         return results;
     },
 
-     //-------------------------//
+    //-------------------------//
     //--Answer Choice Methods--//
     //-------------------------//
 
-     addAnswerChoice: async (newAnswerChoice: {}) => {
+    addAnswerChoice: async (newAnswerChoice: {}) => {
         let results;
         await ssContext.post('answer-choice', newAnswerChoice)
             .then(response => {
@@ -285,11 +285,11 @@ import { ssContext } from "./ss.context";
         return results;
     },
 
-     //--------------------//
+    //--------------------//
     //--Response Methods--//
     //--------------------//
 
-     addResponse: async (newResponse: {}) => {
+    addResponse: async (newResponse: {}) => {
         let results;
         await ssContext.post('response', newResponse)
             .then(response => {
@@ -302,4 +302,4 @@ import { ssContext } from "./ss.context";
     }
 }
 
- export default ssClient;
+export default ssClient;

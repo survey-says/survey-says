@@ -1,4 +1,4 @@
-import { ssContext } from "../axios/ss.context";
+import ssContext from "../axios/ss.context";
 
 export const surveyListTypes = {
     GET_PUBLIC_SURVEYS: 'GET_PUBLIC_SURVEYS',
