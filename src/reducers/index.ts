@@ -40,14 +40,16 @@ export interface ISurveyItem {
     description: string
     dateCreated: Date
     dateClosed: Date
-    status: {
-      statusId: number,
-      status: string
-    },
-    privacy: {
-      privacyId: number,
-      privacy: string
-    } 
+    status: number
+    // status: {
+    //   statusId: number,
+    //   status: string
+    // },
+    privacy: number
+    // privacy: {
+    //   privacyId: number,
+    //   privacy: string
+    // } 
   }
 
 export interface IState {
