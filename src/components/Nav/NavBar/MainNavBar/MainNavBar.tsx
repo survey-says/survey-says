@@ -23,6 +23,9 @@ export class MainNavBar extends Component<INavBarProps, any> {
     if (this.props.user.isLoggedIn) {
       defaultNavItems = (
         <>
+          <LinkContainer to="/open-surveys">
+            <Nav.Link onClick={this.props.openSurveysToggle}>Open</Nav.Link>
+          </LinkContainer>
           <LinkContainer to="closed-surveys">
             <Nav.Link onClick={this.props.closedSurveysToggle}>Closed</Nav.Link>
           </LinkContainer>
@@ -55,9 +58,6 @@ export class MainNavBar extends Component<INavBarProps, any> {
         <Navbar bg="light" expand="lg">
           <LinkContainer to="/home">
             <Navbar.Brand onClick={this.props.closeSurveyTabs}>Survey-Says</Navbar.Brand>
-          </LinkContainer>
-          <LinkContainer to="/open-surveys">
-            <Nav.Link onClick={this.props.openSurveysToggle}>Open</Nav.Link>
           </LinkContainer>
           {defaultNavItems}
         </Navbar>
