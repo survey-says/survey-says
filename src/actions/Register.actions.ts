@@ -72,10 +72,10 @@ export const handleSubmit = (userData: {}) => async (dispatch) => {
   try {
     const res = await ssClient.addUser(userData);
     console.log(res);
-    if (res.data) {
+    if (res) {
       dispatch({
         payload: {
-          userInfo: res.data,
+          userInfo: res,
           errorMessage: "Register Successful",
           submitted: true
         },

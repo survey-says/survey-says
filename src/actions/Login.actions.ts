@@ -38,7 +38,7 @@ export const login = (credentials: {}) => async (dispatch) => {
     if (res) {
       dispatch({
         payload: {
-          userInfo: res.data,
+          userInfo: res,
           errorMessage: "Login Successful"
         },
         type: loginTypes.LOGIN_SUCCESS
