@@ -30,7 +30,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
     const whichSurveys: string = urlSections[urlSections.length-1];
     let surveysToUse: any = null;
   
-    if (whichSurveys === 'home') {
+    if (whichSurveys === 'home' || whichSurveys === '/') {
       let publicSurveys = this.props.publicSurveys
                           .map(survey => {return (<SurveyListItem key={survey.id} surveyListItem={survey} />) });                
       surveysToUse = publicSurveys;
