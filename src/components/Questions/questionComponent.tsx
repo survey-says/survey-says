@@ -34,7 +34,7 @@ Object.keys(agree).forEach(function (key) {
   //push the questions string in the array
   agreeArray.push(val);
 });
-console.log(agreeArray);
+// console.log(agreeArray);
 
 
 
@@ -55,7 +55,7 @@ Object.keys(YN).forEach(function (key) {
   let val = YN[key]["questions"];
   ynArray.push(val);
 });
-console.log(ynArray);
+// console.log(ynArray);
 
 
 
@@ -76,7 +76,7 @@ Object.keys(rating).forEach(function (key) {
   let val = rating[key]["questions"];
   ratingArray.push(val);
 });
-console.log(ratingArray);
+// console.log(ratingArray);
 
 
 
@@ -94,7 +94,7 @@ Object.keys(thankYou).forEach(function (key) {
   let val = thankYou[key]["questions"];
   thankYouArray.push(val);
 });
-console.log(thankYouArray);
+// console.log(thankYouArray);
 
 
 
@@ -111,7 +111,7 @@ Object.keys(feedback).forEach(function (key) {
   let val = feedback[key]["questions"];
   feedbackArray.push(val);
 });
-console.log(feedbackArray);
+// console.log(feedbackArray);
 
 
 
@@ -132,7 +132,7 @@ Object.keys(multi).forEach(function (key) {
   let val = multi[key]["questions"];
   multiArray.push(val);
 });
-console.log(multiArray);
+// console.log(multiArray);
 
 
 
@@ -198,7 +198,7 @@ export class QuestionComponent extends React.Component<any, any>{
       let userid = " user id";
       let customerid = "customerid ";
       let complete = [survey, resultAsString, result.surveyPostId, userid, customerid]
-      console.log(JSON.stringify(complete))
+      // console.log(JSON.stringify(complete))
 
     }
 

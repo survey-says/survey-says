@@ -8,6 +8,7 @@ import Analytics from './components/Analytics/Analytics.component';
 import Homepage from './components/Homepage/Homepage';
 import RegisterComponent from './components/Register/RegisterContainer';
 import QuestionComponent from './components/Questions/questionComponent'
+import ApiTester from './components/ApiTester/ApiTester';
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path='/surveys/view-all' component={SurveyView} />
           <Route path="/register" component={RegisterComponent} />
           <Route path="/questions" component={QuestionComponent} />
+          <Route path="/test" component={ApiTester} />
 
         </Layout>
       </div>
