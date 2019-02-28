@@ -7,6 +7,7 @@ import LoginContainer from './components/Login/LoginContainer';
 import Analytics from './components/Analytics/Analytics.component';
 import Homepage from './components/Homepage/Homepage';
 import RegisterComponent from './components/Register/RegisterContainer';
+import SurveyBuildComponent from './components/Questions/SurveyBuildComponent';
 import QuestionComponent from './components/Questions/questionComponent'
 import ApiTester from './components/ApiTester/ApiTester';
 
@@ -30,6 +31,7 @@ class App extends Component {
           <Route path='/surveys/view-all' component={SurveyView} />
           <Route path="/register" component={RegisterComponent} />
           <Route path="/questions" component={QuestionComponent} />
+          <Route path="/create" component={SurveyBuildComponent} />
           <Route path="/test" component={ApiTester} />
 
         </Layout>
