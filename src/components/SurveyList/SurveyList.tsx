@@ -11,39 +11,33 @@ interface ISurveyListProps {
     usersSurveys: ISurveyItem[]
     user: IUserState
     getPublicSurveys(): void
-    //getUsersSurveys(userId: number): void
+    getUsersSurveys(userId: number): void
  }
 
 class SurveyList extends Component<ISurveyListProps, any> {
 
   componentDidMount() {
     this.props.getPublicSurveys();
-    // if (this.props.user) {
-    //   this.props.getUsersSurveys(this.props.user.userId);
-    // }
-    
+    if (this.props.user) {
+       this.props.getUsersSurveys(this.props.user.userId);
+    }
   }
 
   render() {
-    let publicSurveys: any = null;
-    let usersSurveys: any = null;
-    if (publicSurveys) {
-    publicSurveys = this.props.publicSurveys
+    let publicSurveys = this.props.publicSurveys
                     .map(survey => {
                       return (
                         <SurveyListItem key={survey.id} surveyListItem={survey} />
                       )
                     });
-    }
 
-    // if (usersSurveys) {
-    //   usersSurveys = this.props.usersSurveys
-    //                   .map(survey => {
-    //                     return (
-    //                       <SurveyListItem key={survey.id} surveyListItem={survey} />
-    //                     )
-    //                   });
-    //   }
+    let usersSurveys = this.props.usersSurveys
+                      .map(survey => {
+                        return (
+                          <SurveyListItem key={survey.id} surveyListItem={survey} />
+                        )
+                      });
+      
     
     return (
         <Container>
@@ -52,7 +46,9 @@ class SurveyList extends Component<ISurveyListProps, any> {
                 <tr>
                   <th>Title</th>
                   <th>Description</th>
+                  <th>Creation Date</th>
                   <th>Closing Date</th>
+                  <th>Analytics</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,14 +61,14 @@ class SurveyList extends Component<ISurveyListProps, any> {
 }
 
 const mapStateToProps = (state: IState) => ({
-  surveyList: state.surveyLists.publicSurveys,
+  publicSurveys: state.surveyLists.publicSurveys,
   usersSurveys: state.surveyLists.usersSurveys,
   user: state.user
 })
 
 const mapDispatchToProps = {
   getPublicSurveys,
- //getUsersSurveys
+  getUsersSurveys
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SurveyList);

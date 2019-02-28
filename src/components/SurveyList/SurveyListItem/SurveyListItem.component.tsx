@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ISurveyItem } from '../../../reducers';
+import Button from 'react-bootstrap/Button';
 
 interface ISurveyListItemProps {
   surveyListItem: ISurveyItem
@@ -11,13 +12,13 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
       if (listItem) {
         return ( 
           <tr>
-            <td>{listItem.id}</td>
             <td>{listItem.title}</td>
             <td>{listItem.description}</td>
             <td>{listItem.dateCreated.toDateString()}</td>
             <td>{listItem.dateClosed.toDateString()}</td>
-            <td>{listItem.status.status}</td>
-            <td>{listItem.privacy.privacy}</td>
+            <td>
+              <Button variant="info">Data</Button> 
+            </td>
           </tr>
         )
       } else {
