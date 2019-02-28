@@ -4,16 +4,19 @@ import { userInfo } from 'os';
 import $ from "jquery";
 import { string } from 'prop-types';
 
-export interface IRegisterProps {
+export interface ISurveyProps {
     surveyTitle: string,
     questionTypes: string,
     handleSubmit(userInfo: {}): void
 }
 
-export class SurveyBuildComponent extends React.Component<IRegisterProps, any> {
+export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
     constructor(props) {
         super(props);
     }
+  
+
+  
     
     handleChange = (event) => {
         let yourArray= new Array()
@@ -26,13 +29,13 @@ export class SurveyBuildComponent extends React.Component<IRegisterProps, any> {
         //gets an array of the checkbox choices
        // console.log("my choices"+yourArray.join())
        
-          let joined=yourArray.join() 
+          let finalChoices=yourArray.join() 
          
 
           
         
            let get=["1","2","3","4","5"] //there are 5 questions these will get all possible combiinations of values 1-5
-          let  getCombinations=(chars)=> {
+           let  getCombinations=(chars)=> {
             var result = new Array();
             var f = function(prefix, chars) {
               for (var i = 0; i < chars.length; i++) {
@@ -43,41 +46,27 @@ export class SurveyBuildComponent extends React.Component<IRegisterProps, any> {
             f('', chars);
             return result;
           }
-        
-
           let combo=  getCombinations(get);
 
-        //  switch (joined) {
-              
-             
-        //     case "1,1,4,3,2":   sortedHand.push(1,"Pair"); break;
-        //     case "1,1,5,3,2": sortedHand.push(2,"Pair"); break; 
-        //     case "1,1,5,4,2": sortedHand.push(3,"Pair"); break;
-        //     case "1,1,5,4,3": sortedHand.push(4,"Pair"); break;
-        //     case "1,1,6,3,2": sortedHand.push(5,"Pair"); break;
-        //     case "1,1,6,4,2": sortedHand.push(6,"Pair"); break;
-        //     case "1,1,6,4,3": sortedHand.push(7,"Pair"); break;
-        //     case "1,1,6,5,2": sortedHand.push(8,"Pair"); break;
-        //     case "1,1,6,5,3": sortedHand.push(9,"Pair"); break;
-        //     case "1,1,6,5,4": sortedHand.push(10,"Pair"); break;
-            
-        // }
        
     }
 
 
-     setVisibility=(id, visibility) =>{
+     setVisibility=(id, box) =>{
+        let checkbox = $(id);
+        let hidden = $(box);
         
-        let style=new String($(id).attr('style'))
-        
-        if(style.includes("none")){
-           
-        }
-
-
-        }
-
-
+        if (checkbox.is(':checked')) {
+            // Show the hidden fields.
+            hidden.show();
+            // Populate the input.
+          } else {
+            // Make sure that the hidden fields are indeed
+            // hidden.
+            hidden.hide();
+    
+    }
+}
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -104,21 +93,40 @@ export class SurveyBuildComponent extends React.Component<IRegisterProps, any> {
                             <label htmlFor="questionTypes">Add Question Types</label><br></br>
                             
 
-                            <label><input type="checkbox"  value="1" id="multi" className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#t1', 'inline'))} required />Multiple Chioce</label>
-                            <input id="t1" name="inputt" type="text" style={{display: 'none'}} required></input>
+                            <label className='check'><input type="checkbox"  value="1" id="multi" className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#multi','#t1' ))} required />Multiple Chioce</label>
+                            <div  className='new' id="t1" style={{display:'none'}}>
+                           <input name="inputt" type="text" placeholder="Question Title (i.e. What do you like best? )" style={{width: '700px'}} required></input>
+                           <input name="inputt" type="text"  placeholder="Choices (i.e. apples, pie, chicken, ... )"  style={{width: '700px'}} required></input>
+                           </div>
 
-                            <label><input type="checkbox" value="2" id="yn"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#t2', 'inline'))} required />Yes or No Question</label>                       
-                            <input id="t2" name="inputt" type="text" style={{display: 'none'}} required></input>
+                            <label className='check'><input type="checkbox" value="2" id="yn"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#yn','#t2'))} required />Yes or No Question</label>                       
+                            <div className='new' id="t2" style={{display:'none'}}>
+                           <input name="inputt" type="text" placeholder="Question Title (i.e. Do you like apples?) "   style={{width: '700px'}} required></input>
+                           </div>
 
-                            <label><input type="checkbox"  value="3"id="agree"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#t3', 'inline'))} required />Strongly Agree-Strongly Disagree Form</label>                      
-                            <input id="t3" name="inputt" type="text" required  style={{display: 'none'}}></input>
-
-                            <label><input type="checkbox"  value="4"id="rating"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#t4', 'inline'))} required />Rating</label>                       
-                            <input id="t4" name="inputt" type="text" style={{display: 'none'}} required></input>
-
-                            <label><input type="checkbox" value="5" id="feedback comment"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('@t5', 'inline'))}required />Feedback Comment</label>                     
-                            <input id="t5" name="inputt" type="text" style={{display: 'none'}} required></input>
+                            <label className='check'><input type="checkbox"  value="3"id="agree"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#agree','#t3'))} required />Strongly Agree-Strongly Disagree Form</label>                      
+                            <div className='new' id="t3" style={{display:'none'}}>
+                           <input name="inputt" type="text"  placeholder="Question Title (i.e. Give me your opinion )" style={{width: '700px'}}  required></input><br></br>
+                           <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )" style={{width: '700px'}}   required></input>
+                           <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )"  style={{width: '700px'}}  required></input>
+                           <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )"  style={{width: '700px'}}  required></input>
+                           <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )"  style={{width: '700px'}}  required></input> <br></br>
+                           <input name="inputt" type="text"  placeholder="Text (i.e. Product is affordable )"  style={{width: '700px'}}  required></input>
+                           <input name="inputt" type="text"  placeholder="Text (i.e. Product is does what it says )"  style={{width: '700px'}}  required></input>
+                           <input name="inputt" type="text"  placeholder="Text (i.e.Product looks like its picture )" style={{width: '700px'}}   required></input>
+                           <input name="inputt" type="text"  placeholder="Text (i.e. Product is easy to use )"  style={{width: '700px'}}  required></input><br></br>
                         </div>
+
+                            <label className='check'><input type="checkbox"  value="4"id="rating"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#rating','#t4'))} required />Rating</label>                       
+                            <div className='new' id="t4" style={{display:'none'}}>
+                           <input name="inputt" type="text" placeholder="Question Title (i.e. How likely are you to recommend our product to a friend? )"  style={{width: '700px'}}  required></input>
+                           </div>
+
+                            <label className='check'><input type="checkbox" value="5" id="feedback"className="form-control" name="questionTypes" onChange={()=>(this.handleChange,this.setVisibility('#feedback','#t5'))}required />Feedback Comment</label>                     
+                            <div className='new' id="t5" style={{display:'none'}}>
+                           <input name="inputt" type="text" placeholder="Question Title (i.e. Please give your feedback)"  style={{width: '700px'}}   required></input>
+                           </div>
+                            </div>
                        
                         
                         <div className="form-group">
