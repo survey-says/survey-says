@@ -46,6 +46,16 @@ export const registerReducer = (state = initialState, action: any) => {
         userInfo: action.payload.userInfo,
         submitted: action.payload.submitted
       }
+    case registerTypes.CLEAR_DATA:
+      return {
+        ...state,
+        username: '',
+        password: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        userInfo: {}
+      }
     case registerTypes.REGISTER_FAIL:
       return {
         ...state,

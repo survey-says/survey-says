@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import { async } from 'q';
-
 
 export interface IRegisterProps {
     firstName: string,
@@ -18,7 +16,8 @@ export interface IRegisterProps {
     updateLastName(lastName: string): void,
     updatePassword(password: string): void,
     updateUsername(username: string): void,
-    handleSubmit(userInfo: {}): void
+    handleSubmit(userInfo: {}): void,
+    clearState(): void
 }
 
 export class RegisterComponent extends React.Component<IRegisterProps, any> {
@@ -66,6 +65,9 @@ export class RegisterComponent extends React.Component<IRegisterProps, any> {
         console.log("After register: ", this.props.errorMessage);
     }
 
+    componentWillUnmount() {
+        this.props.clearState();
+    }
     render() {
         if (this.props.errorMessage === "Register Successful") {
             return <Redirect push to="/home" />
@@ -80,10 +82,10 @@ export class RegisterComponent extends React.Component<IRegisterProps, any> {
                             <input type="firstName" className="form-control" name="firstName" onChange={this.handleChange} required />
                         </div>
                         <div className='form-group'>
-                            <label htmlFor="lastName">Last Name</label>
-                            <input type="lastName" className="form-control" name="lastName" onChange={this.handleChange} required />
-                        </div>
-                        <div className='form-group'>
+                            <div className='form-group'>
+                                <label htmlFor="lastName">Last Name</label>
+                                <input type="lastName" className="form-control" name="lastName" onChange={this.handleChange} required />
+                            </div>
                             <label htmlFor="username">Username</label>
                             <input type="Username" className="form-control" name="username" onChange={this.handleChange} required />
                         </div>

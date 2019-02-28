@@ -9,7 +9,8 @@ export interface ILoginProps {
   errorMessage: String,
   updateUsername(username: String): void,
   updatePassword(password: String): void,
-  login(credentials: {}): void
+  login(credentials: {}): void,
+  clearState(): void
 }
 
 export class LoginComponent extends Component<ILoginProps, any>{
@@ -35,6 +36,10 @@ export class LoginComponent extends Component<ILoginProps, any>{
       password: this.props.password
     }
     await this.props.login(cred);
+  }
+
+  componentWillUnmount() {
+    this.props.clearState()
   }
   // The LoginComponent will have access to the username and password via props because of the redux store
   render() {

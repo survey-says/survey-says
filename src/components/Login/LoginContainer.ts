@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { LoginComponent } from './LoginComponent';
 import { IState } from "../../reducers";
-import { updatePassword, updateUsername, login } from '../../actions/Login.actions';
+import { updatePassword, updateUsername, login, clearState } from '../../actions/Login.actions';
 import { Redirect } from 'react-router-dom';
 
 const mapStateToProps = (state: IState) => {
@@ -16,6 +16,7 @@ const mapStateToProps = (state: IState) => {
 const mapDispatchToProps = {
   updateUsername,
   updatePassword,
+  clearState,
   login
 }
 

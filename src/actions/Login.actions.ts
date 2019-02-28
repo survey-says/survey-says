@@ -7,6 +7,7 @@ export const loginTypes = {
   LOGIN_FAIL: 'LOGIN_FAIL',
   USERNAME_UPDATE: 'USERNAME_UPDATE',
   PASSWORD_UPDATE: 'PASSWORD_UPDATE',
+  CLEAR_DATA: 'CLEAR_DATA',
   LOGOUT: 'LOGOUT'
 }
 
@@ -60,6 +61,12 @@ export const login = (credentials: {}) => async (dispatch) => {
   }
 }
 
+export const clearState = () => {
+  return {
+    payload: {},
+    type: loginTypes.CLEAR_DATA
+  }
+}
 export const logout = () => {
   return {
     payload: {},

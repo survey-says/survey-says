@@ -31,10 +31,19 @@ export const loginReducer = (state = initialState, action: any) => {
         ...state,
         username: action.payload.username
       }
+    case loginTypes.CLEAR_DATA:
+      return {
+        ...state,
+        username: '',
+        password: '',
+        userInfo: {}
+      }
     case loginTypes.LOGOUT:
       return {
         ...state,
         userInfo: {},
+        username: '',
+        password: '',
         errorMessage: ''
       }
   }
