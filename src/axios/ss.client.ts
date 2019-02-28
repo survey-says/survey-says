@@ -181,7 +181,6 @@ const ssClient = {
         await ssContext.get(`junctions/user/${ModeratorId}`)
             .then(response => {
                 surveyJunction = response.data;
-                console.log("Survey Junction", surveyJunction);
             })
             .catch(err => {
                 console.log(err);
