@@ -20,7 +20,6 @@ export const getPublicSurveys = () => async (dispatch) => {
                             description: survey.description,
                             dateCreated: new Date(survey.dateCreated),
                             dateClosed: new Date(survey.closingDate),
-                            status: survey.status,
                             privacy: survey.privacy
                         }
                     })
@@ -48,7 +47,6 @@ export const getUsersSurveys = (userId: number) => async (dispatch) => {
                             description: survey.description,
                             dateCreated: new Date(survey.dateCreated),
                             dateClosed: new Date(survey.closingDate),
-                            status: survey.status,
                             privacy: survey.privacy
                         }
                     })
