@@ -84,7 +84,6 @@ class ApiTester extends Component<any, any> {
     handleAddTestResponse = async () => {
         const newResponse = {
             "answerChosen": 3,
-            "question": 2
         }
         const results = await ssClient.addResponse(newResponse);
         console.log("Response Added Response:", results);
