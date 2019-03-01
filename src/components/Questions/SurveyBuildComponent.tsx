@@ -6,7 +6,7 @@ import { string } from 'prop-types';
 import ssClient from '../../axios/ss.client';
 import { ReactComponent } from '*.svg';
 const ReactDOM = require('react-dom')
-import {addQ} from '../Questions/addQ'
+
 
 
 export interface ISurveyProps {
@@ -107,129 +107,10 @@ export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
 
 
 
-        addQuestion=()=>{            
-            
-           let value = ReactDOM.findDOMNode(this.refs.selectValue).value;
-            let num = ReactDOM.findDOMNode(this.refs.selectNum).value;
-            
-       console.log(value)
-       console.log(num)
-       
-       this.setVisibility(value)
-       $( "#123d" ).append( `
-         <script type="text/javascript">
-         function jsfunction(){
-    
-   let c=$("#Qtypes7").val()
-   if (c==='multi') {
-    // Show the hidden fields.
-    $("#t1").show();
-    // Populate the input.
-  }
- else {
-    // Show the hidden fields.
-    $("#t1").hide().prop('required',false)
-    // Populate the input.
-  }
-  
-  if (c==='yn') {
-    // Show the hidden fields.
-    $("#t2").show();
-    // Populate the input.
-  }else {
-    // Show the hidden fields.
-    $("#t2").hide().prop('required',false)
-    // Populate the input.
-  }
-  if (c==='agree') {
-    // Show the hidden fields.
-    $("#t3").show();
-    // Populate the input.
-  } 
-  else {
-    // Show the hidden fields.
-    $("#t3").hide().prop('required',false)
-    // Populate the input.
-  }
-   if (c==='rating') {
-    // Show the hidden fields.
-    $("#t4").show();
-    // Populate the input.
-  }
-  else {
-    // Show the hidden fields.
-    $("#t4").hide().prop('required',false)
-    // Populate the input.
-  }
-   if (c==='feedback') {
-    // Show the hidden fields.
-    $("#t5").show();
-    // Populate the input.
-  }
-  else {
-    // Show the hidden fields.
-    $("#t5").hide().prop('required',false)
-    // Populate the input.
-  }
-
-      }
-   </script>
-
-       <div className="container question-container" id="surveyContainer">
-       <input name="inputt" ref="selectNum" type="text" placeholder="# of Questions" style="width: 100px;" ></input>&nbsp;&nbsp;&nbsp;&nbsp;
-       <select ref="selectValue"  name="Question Types" id="Qtypes7" onchange="jsfunction()" >
-       <option value="open">Please Select Your Type To Add</option>
-       <option value="multi">Multiple Choice</option>
-       <option value="yn">Yes or No Question</option>
-       <option value="agree">Strongly Agree-Strongly Disagree Mini Form</option>
-       <option value="feedback">Feedback Comment Block</option>
-       <option value="rating">Rating</option>
-       </select>&nbsp;&nbsp;&nbsp;&nbsp;
-       
-       <div id="allQ"  style=textAlign:center>
-       
-       </div>
-        
-        <div  className='new' id="t1" style=display:none>
-       
-       <input name="inputt" type="text" placeholder="Question Title (i.e. What do you like best? )" style={{width: '500px'}} ></input>
-       <input name="inputt" type="text"  placeholder="Choices (i.e. apples, pie, chicken, ... )"  style={{width: '500px'}} ></input>
-       </div>
-       
-       <div className='new' id="t2" style=display:none>
-       
-       <input name="inputt" type="text" placeholder="Question Title (i.e. Do you like apples?) "   style={{width: '500px'}} ></input>
-       </div>
-       
-       <div className='new' id="t3"style=display:none>
-       
-       <input name="inputt" type="text"  placeholder="Question Title (i.e. Give me your opinion )" style={{width: '500px'}}   ></input><br></br>
-       <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )" style={{width: '500px'}}    ></input>
-       <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )"  style={{width: '500px'}}   ></input>
-       <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )"  style={{width: '500px'}}   ></input>
-       <input name="inputt" type="text"  placeholder="Value (i.e. Average, Good, Ok, Bad )"  style={{width: '500px'}}   ></input> <br></br>
-       <input name="inputt" type="text"  placeholder="Text (i.e. Product is affordable )"  style={{width: '500px'}}   ></input>
-       <input name="inputt" type="text"  placeholder="Text (i.e. Product is does what it says )"  style={{width: '500px'}}   ></input>
-       <input name="inputt" type="text"  placeholder="Text (i.e.Product looks like its picture )" style={{width: '500px'}}    ></input>
-       <input name="inputt" type="text"  placeholder="Text (i.e. Product is easy to use )"  style={{width: '500px'}}   ></input><br></br>
-       </div>
-       
-        <div   className='new' id="t4" style=display:none>
-       
-       <input name="inputt" type="text" placeholder="Question Title (i.e. How likely are you to recommend our product to a friend? )"  style={{width: '500px'}}   ></input>
-       </div>
-       
-       <div className='new' id="t5" style=display:none>
-       <input name="inputt" type="text" placeholder="Question Title (i.e. Please give your feedback)"  style={{width: '500px'}}    ></input>
-       </div>   
-       ` );
-  
-        }
-        
         handleSubmit=(event)=>{
        var frmData = $(":input").serializeArray()
      
-   console.log(newData)
+  
     
 
     
@@ -297,8 +178,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
                         
                            </div>
                            
-                       <div style={{textAlign:'center'}}><button name="theB" type="button" className="btn btn-primary"  onClick={()=>this.addQuestion()}>Add Another  </button>
-                            </div>
+                      
                         <div className="form-group">
                         <br></br><br></br><button type="submit"onClick={this.handleSubmit} form="form1" className="btn btn-primary">Create Survey</button>
 
