@@ -139,7 +139,7 @@ const ssClient = {
             .then(response => {
                 survey.questions = response.data;
                 survey.questions.forEach(async (question) => {
-                    ssContext.get(`answer-choices/question/${id}`)
+                    ssContext.get(`answer-choices/question/${question.questionId}`)
                         .then(response => {
                             question.answerChoices = response.data;
                         })
