@@ -54,7 +54,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
       }
 
       if (whichSurveys === 'expiring') {
-        let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.toDateString() === survey.dateClosed.toDateString()))
+        let usersSurveys = this.props.usersSurveys.filter(survey => ((survey.dateClosed.valueOf() - Date.now()) < 259200000)) 
                           .map(survey => {return (<SurveyListItem 
                             key={survey.id} 
                             surveyListItem={survey}
