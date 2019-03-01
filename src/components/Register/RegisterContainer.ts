@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { RegisterComponent } from './RegisterComponent';
 import { IState } from "../../reducers";
-import { updateEmail, updateFirstName, updateLastName, updatePassword, updateUsername, handleSubmit } from '../../actions/Register.actions';
+import { updateEmail, updateFirstName, updateLastName, updatePassword, updateUsername, handleSubmit, clearState } from '../../actions/Register.actions';
 
 const mapStateToProps = (state: IState) => {
   return {
@@ -21,7 +21,8 @@ const mapDispatchToProps = {
   updateLastName,
   updatePassword,
   updateUsername,
-  handleSubmit
+  handleSubmit,
+  clearState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);

@@ -3,15 +3,19 @@ import { connect } from 'react-redux';
 import { IState } from '../../reducers';
 import Container from 'react-bootstrap/Container';
 import { Row, Col, Jumbotron } from 'react-bootstrap';
+import SurveyList from '../SurveyList/SurveyList';
 
 export class Homepage extends Component<any, any> {
 
   render() {
+    history.replaceState(null, 'home', '/home');
     return (
       <Container>
         <Jumbotron>
           <h1 style={{textAlign: 'center'}}>Welcome to Survey-Says!</h1>
+          <h3 style={{textAlign: 'center'}}>Take a public survey below or login</h3>
         </Jumbotron>
+        <SurveyList />
       </Container>
     )
   }
