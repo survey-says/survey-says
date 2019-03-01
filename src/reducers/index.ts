@@ -49,6 +49,8 @@ export interface IUserState {
   userId: number
 }
 
+
+
 export interface INavState {
   bOpenLinkClicked: boolean,
   bClosedLinkClicked: boolean 

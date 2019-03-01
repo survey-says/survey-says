@@ -181,7 +181,6 @@ const ssClient = {
         await ssContext.get(`junctions/user/${ModeratorId}`)
             .then(response => {
                 surveyJunction = response.data;
-                console.log("Survey Junction", surveyJunction);
             })
             .catch(err => {
                 console.log(err);
@@ -197,11 +196,11 @@ const ssClient = {
         // Loop through the junctions for the specified user
         surveyJunction.forEach(junction => {
             // If the user is moderator
-            if (junction.roleId === 2) {
+            if (junction.role === 2) {
                 // Loop through all of the surveys
                 allSurveys.forEach(async (survey) => {
                     // If the survey is the one specified the junction, grab it
-                    if (junction.surveyId === survey.surveyId) {
+                    if (junction.survey === survey.surveyId) {
                         // Add the survey to the list of surveys that will be returned
                         surveys.push(survey);
                         // Append Creator to the Surveys

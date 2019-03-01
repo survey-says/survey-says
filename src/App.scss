@@ -41,7 +41,7 @@
   max-width: 540px;
 }
 .question-container {
-  max-width: 1100px;
+  max-width: 300px;
   
 }
 
@@ -129,7 +129,8 @@
   width: 100%;
   max-width: 1100px;
   padding: 15px;
-  margin: auto;
+  margin: 0 auto;
+  
 
   .form-control {
     position: relative;
@@ -157,9 +158,15 @@
     z-index: 2;
   }
 
-  .input[type="checkbox"]
-{
-    vertical-align:middle;
+  
+div.form-group {
+  width:100%;
+  
+}
+
+div.new {
+  width: 200px;
+  
 }
 
 
