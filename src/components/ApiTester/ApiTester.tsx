@@ -52,6 +52,10 @@ class ApiTester extends Component<any, any> {
         const results = await ssClient.findSurveyById(2);
         console.log("Survey 2:", results)
     }
+    handleFindSurvey1WithResponses = async () => {
+        const results = await ssClient.findSurveyByIdWithResponses(1);
+        console.log("Survey 1 with responses:", results)
+    }
     handleAddTestSurvey = async () => {
         const newSurvey = {
             "closingDate": "2019-03-18",
@@ -107,6 +111,7 @@ class ApiTester extends Component<any, any> {
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindPrivateSurveys}>Find Private Surveys</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindByModerator2}>Find Surveys Where User 2 is Moderator</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindSurvey2}>Find Survey 2</button>
+                    <button type="submit" className='btn btn-primary m-2' onClick={this.handleFindSurvey1WithResponses}>Find Survey 1 With Responses</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleAddTestSurvey}>Add A Test Survey</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleAddTestQuestion}>Add A Test Question</button>
                     <button type="submit" className='btn btn-primary m-2' onClick={this.handleAddTestAnswerChoice}>Add A Test Answer Choice</button>

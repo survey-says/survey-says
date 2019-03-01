@@ -6,6 +6,7 @@ export const registerTypes = {
   UPDATE_LASTNAME: 'UPDATE_LASTNAME',
   UPDATE_PASSWORD: 'UPDATE_PASSWORD',
   UPDATE_EMAIL: 'UPDATE_EMAIL',
+  UPDATE_ERRORMESSAGE: 'UPDATE_ERRORMESSAGE',
   SUBMIT_FORM: 'SUBMIT_FORM',
   REGISTER_SUCCESS: 'REGISTER_SUCCESS',
   CLEAR_DATA: 'CLEAR_DATA',
@@ -55,6 +56,15 @@ export const updateEmail = (email: string) => {
       email: email
     },
     type: registerTypes.UPDATE_EMAIL
+  }
+}
+
+export const updateErrorMessage = (errorMessage: string) => {
+  return {
+    payload: {
+      errorMessage: errorMessage
+    },
+    type: registerTypes.UPDATE_ERRORMESSAGE
   }
 }
 
