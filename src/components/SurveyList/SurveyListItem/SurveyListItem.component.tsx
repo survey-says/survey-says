@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { ISurveyItem } from '../../../reducers';
+import { ISurveyItem, IUserState } from '../../../reducers';
 import Button from 'react-bootstrap/Button';
 import { Row, Col } from 'react-bootstrap';
+import { userInfo } from 'os';
 
 interface ISurveyListItemProps {
   surveyListItem: ISurveyItem
+  bPublicSurvey: boolean
+  user: IUserState
 }
 
 class SurveyListItem extends Component<ISurveyListItemProps, any> {
@@ -12,7 +15,7 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
       const listItem = this.props.surveyListItem;
       if (listItem) {
         let takeSurveyBtn: any = null;
-        if (listItem.privacy === 1) {
+        if (this.props.bPublicSurvey && !this.props.user.isLoggedIn ) {
           takeSurveyBtn = <Button variant="primary">Take Survey</Button>
         }
         return ( 

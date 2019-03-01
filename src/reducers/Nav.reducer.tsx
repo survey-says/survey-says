@@ -11,11 +11,13 @@ export const navReducer = (state = initialState, action: any) => {
         case (navTypes.OPEN_SURVEYS_TOGGLE):
             return {
                 ...state,
+                bClosedLinkClicked: false,
                 bOpenLinkClicked: !state.bOpenLinkClicked
             }
         case (navTypes.CLOSED_SURVEYS_TOGGLE):
             return {
                 ...state,
+                bOpenLinkClicked: false,
                 bClosedLinkClicked: !state.bClosedLinkClicked
             }
         case (navTypes.CLOSE_SURVEY_TABS):

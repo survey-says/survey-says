@@ -32,13 +32,21 @@ class SurveyList extends Component<ISurveyListProps, any> {
   
     if (whichSurveys === 'home') {
       let publicSurveys = this.props.publicSurveys
-                          .map(survey => {return (<SurveyListItem key={survey.id} surveyListItem={survey} />)});                
+                          .map(survey => {return (<SurveyListItem 
+                            key={survey.id} 
+                            surveyListItem={survey}
+                            bPublicSurvey={true}
+                            user={this.props.user} />)});                
       surveysToUse = publicSurveys;
     }
 
     if (statusURL === 'open-surveys') {
-      let usersSurveys = this.props.usersSurveys.filter(survey => (survey.status === 1))
-                          .map(survey => {return (<SurveyListItem key={survey.id} surveyListItem={survey} />) });
+      let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.valueOf() <= survey.dateClosed.valueOf()))
+                          .map(survey => {return (<SurveyListItem 
+                            key={survey.id} 
+                            surveyListItem={survey}
+                            bPublicSurvey={false}
+                            user={this.props.user} />)}); 
       surveysToUse = usersSurveys;
 
       if (whichSurveys === 'collaborations') {
@@ -46,22 +54,30 @@ class SurveyList extends Component<ISurveyListProps, any> {
       }
 
       if (whichSurveys === 'expiring') {
-        surveysToUse = null;
+        let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.toDateString() === survey.dateClosed.toDateString()))
+                          .map(survey => {return (<SurveyListItem 
+                            key={survey.id} 
+                            surveyListItem={survey}
+                            bPublicSurvey={false}
+                            user={this.props.user} />)}); 
+        surveysToUse = usersSurveys;
       }
     }
 
     if (statusURL === 'closed-surveys') {
-      let usersSurveys = this.props.usersSurveys.filter(survey => (survey.status === 2))
-                          .map(survey => {return (<SurveyListItem key={survey.id} surveyListItem={survey} />) });
+      let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.valueOf() > survey.dateClosed.valueOf()))
+                          .map(survey => {return (<SurveyListItem 
+                            key={survey.id} 
+                            surveyListItem={survey}
+                            bPublicSurvey={false}
+                            user={this.props.user} />)}); 
       surveysToUse = usersSurveys;
 
       if (whichSurveys === 'collaborations') {
         surveysToUse = null;
       }
 
-      if (whichSurveys === 'expiring') {
-        surveysToUse = null;
-      }
+    // No expiring tab for already closed surveys
     }
       
     return (
