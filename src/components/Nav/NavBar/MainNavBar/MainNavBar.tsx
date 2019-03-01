@@ -26,10 +26,10 @@ export class MainNavBar extends Component<INavBarProps, any> {
           <LinkContainer to="/open-surveys">
             <Nav.Link onClick={this.props.openSurveysToggle}>Open</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="closed-surveys">
+          <LinkContainer to="/closed-surveys">
             <Nav.Link onClick={this.props.closedSurveysToggle}>Closed</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="create">
+          <LinkContainer to="/create">
             <Nav.Link onClick={this.props.closeSurveyTabs}>Create</Nav.Link>
           </LinkContainer>
           <Nav className="ml-auto">

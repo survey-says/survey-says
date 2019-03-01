@@ -78,56 +78,6 @@ const ssClient = {
                     console.log(err);
                 });
 
-            // Append Status to the Surveys
-            await ssContext.get(`statuses/${survey.status}`)
-                .then(response => {
-                    survey.status = response.data;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-
-            // Append Privacy to the Surveys
-            await ssContext.get(`privacies/${survey.privacy}`)
-                .then(response => {
-                    survey.privacy = response.data;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        });
-        return surveys
-    },
-
-    findSurveysByStatus: async (statusId) => {
-        let surveys;
-        await ssContext.get(`surveys/status/${statusId}`)
-            .then(response => {
-                surveys = response.data;
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        surveys.forEach(async (survey) => {
-
-            // Append Creator to the Surveys
-            await ssContext.get(`users/${survey.creator}`)
-                .then(response => {
-                    survey.creator = response.data;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-
-            // Append Status to the Surveys
-            await ssContext.get(`statuses/${survey.status}`)
-                .then(response => {
-                    survey.status = response.data;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-
             // Append Privacy to the Surveys
             await ssContext.get(`privacies/${survey.privacy}`)
                 .then(response => {
@@ -155,15 +105,6 @@ const ssClient = {
             await ssContext.get(`users/${survey.creator}`)
                 .then(response => {
                     survey.creator = response.data;
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-
-            // Append Status to the Surveys
-            await ssContext.get(`statuses/${survey.status}`)
-                .then(response => {
-                    survey.status = response.data;
                 })
                 .catch(err => {
                     console.log(err);
@@ -197,8 +138,8 @@ const ssClient = {
         await ssContext.get(`questions/survey/${id}`)
             .then(response => {
                 survey.questions = response.data;
-                survey.questions.forEach( async (question) => {
-                    ssContext.get(`answer-choices/question/${id}`)
+                survey.questions.forEach(async (question) => {
+                    ssContext.get(`answer-choices/question/${question.questionId}`)
                         .then(response => {
                             question.answerChoices = response.data;
                         })
@@ -220,15 +161,6 @@ const ssClient = {
                 console.log(err);
             });
 
-        // Append Status to the Survey
-        await ssContext.get(`statuses/${survey.status}`)
-            .then(response => {
-                survey.status = response.data;
-            })
-            .catch(err => {
-                console.log(err);
-            });
-
         // Append Privacy to the Survey
         await ssContext.get(`privacies/${survey.privacy}`)
             .then(response => {
@@ -239,6 +171,60 @@ const ssClient = {
             });
 
         return survey;
+    },
+
+    findSurveysByModerator: async (ModeratorId) => {
+        let surveys: any[] = [];
+        let allSurveys;
+        let surveyJunction;
+        // Get all of the junctions for the specified user
+        await ssContext.get(`junctions/user/${ModeratorId}`)
+            .then(response => {
+                surveyJunction = response.data;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        // Get all of the surveys
+        await ssContext.get('surveys')
+            .then(response => {
+                allSurveys = response.data;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        // Loop through the junctions for the specified user
+        surveyJunction.forEach(junction => {
+            // If the user is moderator
+            if (junction.role === 2) {
+                // Loop through all of the surveys
+                allSurveys.forEach(async (survey) => {
+                    // If the survey is the one specified the junction, grab it
+                    if (junction.survey === survey.surveyId) {
+                        // Add the survey to the list of surveys that will be returned
+                        surveys.push(survey);
+                        // Append Creator to the Surveys
+                        await ssContext.get(`users/${survey.creator}`)
+                            .then(response => {
+                                survey.creator = response.data;
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
+
+                        // Append Privacy to the Surveys
+                        await ssContext.get(`privacies/${survey.privacy}`)
+                            .then(response => {
+                                survey.privacy = response.data;
+                            })
+                            .catch(err => {
+                                console.log(err);
+                            });
+                    };
+                });
+            };
+        });
+        return surveys;
     },
 
     addSurvey: async (newSurvey: {}) => {
