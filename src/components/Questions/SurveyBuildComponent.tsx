@@ -43,20 +43,20 @@ export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
           if (id==1) {
             // Show the hidden fields.
           
-            $("#t1").show();
+            $("#t1").toggle();
             // Populate the input.
           }
         
           
           if (id==2) {
             // Show the hidden fields.
-            $("#t2").show();
+            $("#t2").toggle();
             // Populate the input.
            }
           
           if (id==3) {
             // Show the hidden fields.
-            $("#t3").show();
+            $("#t3").toggle();
             // Populate the input.
           } 
           // else {
@@ -66,7 +66,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
           // }
            if (id==4) {
             // Show the hidden fields.
-            $("#t4").show();
+            $("#t4").toggle();
             // Populate the input.
           }
           // else {
@@ -76,7 +76,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
           
            if (id==5) {
             // Show the hidden fields.
-            $("#t5").show();
+            $("#t5").toggle();
             // Populate the input.
           }
           // else {
