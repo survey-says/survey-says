@@ -3,7 +3,8 @@ import { surveyListTypes } from '../actions/SurveyList.actions'
 
 const initialState: ISurveyListState = {
     publicSurveys: [],
-    usersSurveys: []
+    usersSurveys: [],
+    collaboratingSurveys: []
 }
 
 export const surveyListReducer = (state = initialState, action: any) => {
@@ -17,7 +18,12 @@ export const surveyListReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 usersSurveys: action.payload.usersSurveys
-            }           
+            }       
+        case (surveyListTypes.GET_COLLABORATING_SURVEYS):
+            return {
+                ...state,
+                collaboratingSurveys: action.payload.collaboratingSurveys
+            }
     }
 
     return state;
