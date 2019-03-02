@@ -3,15 +3,17 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table'
 import SurveyListItem from './SurveyListItem/SurveyListItem.component';
 import { IState, ISurveyItem, IUserState } from '../../reducers';
-import { getPublicSurveys, getUsersSurveys } from '../../actions/SurveyList.actions';
+import { getPublicSurveys, getUsersSurveys, getCollaboratingSurveys } from '../../actions/SurveyList.actions';
 import { connect } from 'react-redux';
 
 interface ISurveyListProps {
     publicSurveys: ISurveyItem[]
     usersSurveys: ISurveyItem[]
+    collaboratingSurveys: ISurveyItem[]
     user: IUserState
     getPublicSurveys(): void
     getUsersSurveys(userId: number): void
+    getCollaboratingSurveys(userId: number): void
  }
 
 class SurveyList extends Component<ISurveyListProps, any> {
@@ -20,6 +22,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
     this.props.getPublicSurveys();
     if (this.props.user) {
        this.props.getUsersSurveys(this.props.user.userId);
+       this.props.getCollaboratingSurveys(this.props.user.userId);
     }
   }
 
@@ -49,12 +52,18 @@ class SurveyList extends Component<ISurveyListProps, any> {
                             user={this.props.user} />)}); 
       surveysToUse = usersSurveys;
 
-      if (whichSurveys === 'collaborations') {
-        surveysToUse = null;
+    if (whichSurveys === 'collaborations') {
+      let collaboratingSurveys = this.props.collaboratingSurveys
+                            .map(survey => {return (<SurveyListItem 
+                              key={survey.id} 
+                                surveyListItem={survey}
+                                bPublicSurvey={false}
+                                user={this.props.user} />)}); 
+        surveysToUse = collaboratingSurveys;
       }
 
       if (whichSurveys === 'expiring') {
-        let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.toDateString() === survey.dateClosed.toDateString()))
+        let usersSurveys = this.props.usersSurveys.filter(survey => ((survey.dateClosed.valueOf() - Date.now()) < 259200000)) 
                           .map(survey => {return (<SurveyListItem 
                             key={survey.id} 
                             surveyListItem={survey}
@@ -67,14 +76,20 @@ class SurveyList extends Component<ISurveyListProps, any> {
     if (statusURL === 'closed-surveys') {
       let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.valueOf() > survey.dateClosed.valueOf()))
                           .map(survey => {return (<SurveyListItem 
+                              key={survey.id} 
+                              surveyListItem={survey}
+                              bPublicSurvey={false}
+                              user={this.props.user} />)}); 
+      surveysToUse = usersSurveys;
+
+      if (whichSurveys === 'collaborations') {
+        let collaboratingSurveys = this.props.collaboratingSurveys
+                            .map(survey => {return (<SurveyListItem 
                             key={survey.id} 
                             surveyListItem={survey}
                             bPublicSurvey={false}
                             user={this.props.user} />)}); 
-      surveysToUse = usersSurveys;
-
-      if (whichSurveys === 'collaborations') {
-        surveysToUse = null;
+        surveysToUse = collaboratingSurveys;
       }
 
     // No expiring tab for already closed surveys
@@ -82,7 +97,8 @@ class SurveyList extends Component<ISurveyListProps, any> {
       
     return (
         <Container>
-            <Table striped bordered hover >
+          <div style={{overflowX: "auto"}}>
+            <Table  striped bordered hover >
               <thead>
                 <tr>
                   <th>Title</th>
@@ -90,13 +106,14 @@ class SurveyList extends Component<ISurveyListProps, any> {
                   <th>Creation Date</th>
                   <th>Closing Date</th>
                   <th></th>
-                  <th></th>
+                  {!this.props.user? <th></th>: null}
                 </tr>
               </thead>
               <tbody>
                 {surveysToUse}
               </tbody>
             </Table>
+            </div>
         </Container>
     )
   }
@@ -105,12 +122,14 @@ class SurveyList extends Component<ISurveyListProps, any> {
 const mapStateToProps = (state: IState) => ({
   publicSurveys: state.surveyLists.publicSurveys,
   usersSurveys: state.surveyLists.usersSurveys,
+  collaboratingSurveys: state.surveyLists.collaboratingSurveys,
   user: state.user
 })
 
 const mapDispatchToProps = {
   getPublicSurveys,
-  getUsersSurveys
+  getUsersSurveys,
+  getCollaboratingSurveys
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SurveyList);

@@ -1,3 +1,13 @@
+html {
+  background: fixed url('./images/beach.jpg');
+  background-size: cover;
+}
+
+body {
+  background: transparent;
+  font-family: 'Acme', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -27,29 +37,80 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
 /* 
  * CONTAINERS 
  */
 .login-container {
   max-width: 540px;
 }
+
 .register-container {
   max-width: 540px;
 }
+
 .question-container {
-  max-width: 1100px;
-  
+  max-width: 300px;
+
 }
 
+/*****************************
+  NAV
+*****************************/
+.nav-link {
+  color: green;
+}
 
+.nav-tabs .nav-link {
+  border: none;
+}
 
+.nav-link:hover {
+  color: white;
+  background: green;
+}
 
+.navbar-light .navbar-nav .nav-link {
+  color: green;
+}
 
-////LOGIN
+.navbar-light .navbar-nav .nav-link:hover {
+  color: white;
+}
+
+.dropdown-item:hover {
+  color: white;
+
+  background: green;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: white;
+  background: blue;
+}
+
+/*****************************
+  MAIN CONTENTT
+*****************************/
+.container {
+  background: rgba(255, 255, 255, 0.8);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.jumbotron {
+  background: transparent;
+}
+
+/*****************************
+  LOGIN
+*****************************/
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -59,6 +120,7 @@
   .checkbox {
     font-weight: 400;
   }
+
   .form-control {
     position: relative;
     box-sizing: border-box;
@@ -66,14 +128,17 @@
     padding: 10px;
     font-size: 16px;
   }
+
   .form-control:focus {
     z-index: 2;
   }
+
   .input[type="Username"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
   .input[type="password"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
@@ -81,7 +146,9 @@
   }
 }
 
-//REGISTER
+/*****************************
+ REGISTER
+*****************************/
 .form-register {
   width: 100%;
   max-width: 330px;
@@ -95,29 +162,35 @@
     padding: 10px;
     font-size: 16px;
   }
+
   .form-control:focus {
     z-index: 2;
   }
+
   .input[type="firstName"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
   .input[type="lastName"] {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
+
   .input[type="username"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
   .input[type="password"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
   .input[type="email"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
@@ -130,14 +203,6 @@
   max-width: 1100px;
   padding: 15px;
   margin: 0 auto;
-  input.checkbox {
-    
-    width:10px;
-    height:10px;
-  
-  
-  }
-  
 
   .form-control {
     position: relative;
@@ -146,35 +211,35 @@
     padding: 10px;
     font-size: 16px;
   }
-  
+
 
   .input[type="surveyTitle"] {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
-  
-  
-  
+
+
+  label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+  }
+
   .form-control:focus {
     z-index: 2;
   }
 
- 
 
-div.new {
-  width: 200px;
-  label.check{
-
-    .input[type="checkbox"] {
-      width:10px;
-    }
+  div.form-group {
+    width: 100%;
 
   }
-  
+
+  div.new {
+    width: 200px;
+
   }
-  
+
+
 }
-
-
-

@@ -55,7 +55,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
 
     return (
       <>
-        <Navbar bg="light" expand="lg">
+        <Navbar bg="light" expand="lg" className="mb-3">
           <LinkContainer to="/home">
             <Navbar.Brand onClick={this.props.closeSurveyTabs}>Survey-Says</Navbar.Brand>
           </LinkContainer>

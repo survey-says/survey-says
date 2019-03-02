@@ -47,7 +47,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
             // Populate the input.
           }
         else 
-         { $("#t1").hide(); }
+         { $("#t1").hide (); }
           
           if (id==2) {
             // Show the hidden fields.
