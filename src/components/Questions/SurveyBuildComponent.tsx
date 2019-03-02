@@ -115,38 +115,32 @@ export class SurveyBuildComponent extends React.Component<ISurveyProps, any> {
 
               <label className='check'><input type="checkbox" style={{ width: '20px', display: 'inline-block' }} value="1" id="multi" className="form-control" name="questionTypes" onChange={() => this.setVisibility("#multi", "#t1")} /> Multiple Chioce</label><br></br>
               <div className='new' id="t1" style={{ display: 'none' }}>
-                <input name="title" type="text" placeholder="Question Title (i.e. What do you like best? )" style={{ width: '500px' }}   ></input>
-                <input name="choice" type="text" placeholder="Choices (i.e. apples, pie, chicken, ... )" style={{ width: '500px' }}   ></input>
+                <input name="Qtitle" type="text" placeholder="Question Title (i.e. What do you like best? )" style={{ width: '500px' }}   ></input>
+                <input name="choices" type="text" placeholder="Choices (i.e. apples, pie, chicken, ... )" style={{ width: '500px' }}   ></input>
               </div>
               <label className='check'><input style={{ width: '20px', display: 'inline-block' }} type="checkbox" color="blue " value="2" id="yn" className="form-control" name="questionTypes" onChange={() => this.setVisibility("#yn", "#t2")} />Yes or No Question</label>     <br></br>
               <div className='new' id="t2" style={{ display: 'none' }}>
-                <input name="inputt" type="text" placeholder="Question Title (i.e. Do you like apples?) " style={{ width: '500px' }}   ></input>
+                <input name="Qtitle" type="text" placeholder="Question Title (i.e. Do you like apples?) " style={{ width: '500px' }}   ></input>
 
               </div>
               <label className='check'><input type="checkbox" style={{ width: '20px', display: 'inline-block' }} value="3" id="agree" className="form-control" name="questionTypes" onChange={() => this.setVisibility("#agree", "#t3")} />Strongly Agree-Strongly Disagree Form</label>   <br></br>
 
               <div className='new' id="t3" style={{ display: 'none' }}>
-                <input name="title" type="text" placeholder="Question Title (i.e. Give me your opinion )" style={{ width: '500px' }}   ></input><br></br>
-                <input name="Strongly Agree" type="text" placeholder="Value (i.e. Average, Good, Ok, Bad )" style={{ width: '500px' }}    ></input>
-                <input name="Strongly Disagree" type="text" placeholder="Value (i.e. Average, Good, Ok, Bad )" style={{ width: '500px' }}   ></input>
-                <input name="Neutral" type="text" placeholder="Value (i.e. Average, Good, Ok, Bad )" style={{ width: '500px' }}   ></input>
-                <input name="Agree" type="text" placeholder="Value (i.e. Average, Good, Ok, Bad )" style={{ width: '500px' }}   ></input> <br></br>
-                <input name="Disagree" type="text" placeholder="Value (i.e. Average, Good, Ok, Bad )" style={{ width: '500px' }}   ></input> <br></br>
-
-                <input name="Text" type="text" placeholder="Text (i.e. Product is affordable )" style={{ width: '500px' }}   ></input>
-                <input name="Text" type="text" placeholder="Text (i.e. Product is does what it says )" style={{ width: '500px' }}   ></input>
-                <input name="Text" type="text" placeholder="Text (i.e.Product looks like its picture )" style={{ width: '500px' }}    ></input>
-                <input name="Text" type="text" placeholder="Text (i.e. Product is easy to use )" style={{ width: '500px' }}   ></input><br></br>
+                <input name="Qtitle" type="text" placeholder="Question Title (i.e. Give me your opinion )" style={{ width: '500px' }}   ></input><br></br>
+                <input name="choices" type="text" placeholder="Text (i.e. Product is affordable )" style={{ width: '500px' }}   ></input>
+                <input name="choices" type="text" placeholder="Text (i.e. Product is does what it says )" style={{ width: '500px' }}   ></input>
+                <input name="choices" type="text" placeholder="Text (i.e.Product looks like its picture )" style={{ width: '500px' }}    ></input>
+                <input name="choices" type="text" placeholder="Text (i.e. Product is easy to use )" style={{ width: '500px' }}   ></input><br></br>
               </div>
               <label className='check'><input style={{ width: '20px', display: 'inline-block' }} type="checkbox" value="4" id="rating" className="form-control" name="questionTypes" onChange={() => this.setVisibility("#rating", "#t4")} />Rating</label>      <br></br>
 
               <div className='new' id="t4" style={{ display: 'none' }}>
-                <input name="title" type="text" placeholder="Question Title (i.e. How likely are you to recommend our product to a friend? )" style={{ width: '500px' }}   ></input>
+                <input name="Qtitle" type="text" placeholder="Question Title (i.e. How likely are you to recommend our product to a friend? )" style={{ width: '500px' }}   ></input>
               </div>
               <label className='check'><input type="checkbox" style={{ width: '20px', display: 'inline-block' }} value="5" id="feedback" className="form-control" name="questionTypes" onChange={() => this.setVisibility("#feedback", "#t5")} />Feedback</label>  <br></br>
 
               <div className='new' id="t5" style={{ display: 'none' }}>
-                <input name="title" type="text" placeholder="Question Title (i.e. Please give your feedback)" style={{ width: '500px' }}    ></input>
+                <input name="Qtitle" type="text" placeholder="Question Title (i.e. Please give your feedback)" style={{ width: '500px' }}    ></input>
               </div>
               <div className="form-group">
                 <br></br><br></br><button onClick={this.handleSubmit} className="btn btn-primary">Create Survey</button>
