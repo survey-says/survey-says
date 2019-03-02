@@ -16,6 +16,8 @@ const surveyTabs = (props: ISurveyProps) => {
         currentPath = '/closed-surveys'
     } 
     return (
+        <div className = "container">
+
         <Nav justify variant="tabs">
             <Nav.Item>
                 <LinkContainer to={currentPath + '/my-surveys'}>
@@ -34,6 +36,7 @@ const surveyTabs = (props: ISurveyProps) => {
             </Nav.Item>
             
         </Nav>
+        </div>
     )
 }
 
