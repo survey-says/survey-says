@@ -34,7 +34,9 @@ class SurveyList extends Component<ISurveyListProps, any> {
     let surveysToUse: any = null;
   
     if (whichSurveys === 'home') {
-      let publicSurveys = this.props.publicSurveys
+      let publicSurveys = this.props.publicSurveys.filter(survey => {
+        return(+survey.creator !== this.props.user.userId && (Date.now().valueOf() <= survey.dateClosed.valueOf() + 86400000))
+      })
                           .map(survey => {return (<SurveyListItem 
                             key={survey.id} 
                             surveyListItem={survey}
