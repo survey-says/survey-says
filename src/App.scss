@@ -1,3 +1,13 @@
+html {
+  background: fixed url('./images/beach.jpg');
+  background-size: cover;
+}
+
+body {
+  background: transparent;
+  font-family: 'Acme', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -45,11 +55,35 @@
   
 }
 
+/*****************************
+  NAV
+*****************************/
+.nav-link, .nav-item {
+  color: green;
+}
 
+.nav-tabs .nav-link {
+  border: none;
+}
+.nav-link:hover, .nav-item:hover {
+  color: white;
+  background: green;
+}
+/*****************************
+  MAIN CONTENTT
+*****************************/
+.container {
+  background: rgba(255, 255, 255, 0.8);
+  padding-left: 0;
+  padding-right: 0;
+}
+.jumbotron {
+  background: transparent;
+}
 
-
-
-////LOGIN
+/*****************************
+  LOGIN
+*****************************/
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -81,7 +115,9 @@
   }
 }
 
-//REGISTER
+/*****************************
+ REGISTER
+*****************************/
 .form-register {
   width: 100%;
   max-width: 330px;

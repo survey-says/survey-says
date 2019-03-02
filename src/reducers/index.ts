@@ -58,8 +58,8 @@ export interface INavState {
 
 export interface ISurveyListState {
   publicSurveys: ISurveyItem[],
-  usersSurveys: ISurveyItem[]
-
+  usersSurveys: ISurveyItem[],
+  collaboratingSurveys: ISurveyItem[]
 }
 
 // For declarations
@@ -74,7 +74,10 @@ export interface ISurveyItem {
     //   statusId: number,
     //   status: string
     // },
-    privacy: number
+    privacy: {
+      privacyId: number,
+      privacy: string
+    } 
     // privacy: {
     //   privacyId: number,
     //   privacy: string
@@ -100,9 +103,9 @@ export interface IState {
   surveyQuestions: SurveyQuestions
   surveyLists: ISurveyListState
 }
-
-
-
+  
+  
+  
 export const state = combineReducers<IState>({
   login: loginReducer,
   nav: navReducer,
