@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import ssClient from '../../axios/ss.client';
 
 export interface IRegisterProps {
     firstName: string,
@@ -23,6 +24,9 @@ export interface IRegisterProps {
 export class RegisterComponent extends React.Component<IRegisterProps, any> {
     constructor(props) {
         super(props);
+        this.state = {
+            errorMessage: ''
+        }
     }
 
     handleChange = (event) => {
@@ -53,16 +57,31 @@ export class RegisterComponent extends React.Component<IRegisterProps, any> {
 
     handleSubmit = async (event) => {
         event.preventDefault();
-        const userData = {
-            username: this.props.username,
-            password: this.props.password,
-            email: this.props.email,
-            firstName: this.props.firstName,
-            lastName: this.props.lastName,
+
+        // Check if the username is taken
+        const allUsers = await ssClient.findAllUsers();
+        let usernameAvailable = true;
+        allUsers.forEach(user => {
+            if (user.username === this.props.username) {
+                usernameAvailable = false;
+            }
+        });
+        if (usernameAvailable) {
+            const userData = {
+                username: this.props.username,
+                password: this.props.password,
+                email: this.props.email,
+                firstName: this.props.firstName,
+                lastName: this.props.lastName,
+            }
+            // console.log('The user info being registered is ', userData);
+            await this.props.handleSubmit(userData);
+            // console.log("After register: ", this.props.errorMessage);
+        } else {
+            this.setState({
+                errorMessage: 'Username is already taken'
+            });
         }
-        console.log('The user info being registered is ', userData);
-        await this.props.handleSubmit(userData);
-        console.log("After register: ", this.props.errorMessage);
     }
 
     componentWillUnmount() {
@@ -97,12 +116,12 @@ export class RegisterComponent extends React.Component<IRegisterProps, any> {
                             <label htmlFor="email">Email</label>
                             <input type="email" className="form-control" name="email" onChange={this.handleChange} required />
                         </div>
-                        <p>{this.props.errorMessage}</p>
+                        <p className="text-danger">{this.state.errorMessage}</p>
+                        <p className="text-danger">{this.props.errorMessage}</p>
                         <div className="form-group">
                             <button className="btn btn-primary">Register</button>
                             <Link to="/login" className="btn btn-link">Cancel</Link>
                         </div>
-
                     </form>
                 </div>
             </div>
