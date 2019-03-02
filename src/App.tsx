@@ -28,10 +28,10 @@ class App extends Component {
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />
           <Route path="/login" component={LoginContainer} />
-          <Route path="/analytics" component={Analytics} />
+          <Route path="/analytics/:id" component={Analytics} />
           <Route path='/surveys/view-all' component={SurveyView} />
           <Route path="/register" component={RegisterComponent} />
-          <Route path="/questions" component={QuestionComponent} />
+          <Route path="/questions/:id" component={QuestionComponent} />
           <Route path="/create" component={SurveyBuildComponent} />
           <Route path="/test" component={ApiTester} />
 
