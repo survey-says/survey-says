@@ -52,8 +52,8 @@ class SurveyList extends Component<ISurveyListProps, any> {
                             user={this.props.user} />)}); 
       surveysToUse = usersSurveys;
 
-      if (whichSurveys === 'collaborations') {
-        let collaboratingSurveys = this.props.collaboratingSurveys
+    if (whichSurveys === 'collaborations') {
+      let collaboratingSurveys = this.props.collaboratingSurveys
                             .map(survey => {return (<SurveyListItem 
                               key={survey.id} 
                                 surveyListItem={survey}
@@ -106,7 +106,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
                   <th>Creation Date</th>
                   <th>Closing Date</th>
                   <th></th>
-                  <th></th>
+                  {!this.props.user? <th></th>: null}
                 </tr>
               </thead>
               <tbody>
