@@ -275,6 +275,42 @@ const ssClient = {
     //--Response Methods--//
     //--------------------//
 
+    countResponses: async () => {
+        const allResponses = await ssContext.get('responses');
+        const responseCount = {};
+        allResponses.data.forEach(element => {
+            const answerChosen = element.answerChosen;
+            if (!responseCount[answerChosen]) {
+                responseCount[answerChosen] = 1;
+            } else {
+                responseCount[answerChosen]++;
+            }
+        });
+        return responseCount;
+    },
+
+    findSurveyByIdWithResponses: async (id: number) => {
+
+        // Get the Survey
+        let survey = await ssClient.findSurveyById(id);
+
+        // Get the Responses
+        const responseCount = await ssClient.countResponses();
+
+        // Add the response count to each question
+        survey.questions.forEach(question => {
+            question.answerChoices.forEach(choice => {
+                if (responseCount[choice.choiceId]) {
+                    choice.responseCount = responseCount[choice.choiceId];
+                } else {
+                    choice.responseCount = 0;
+                }
+            });
+        });
+
+        return survey;
+    },
+
     addResponse: async (newResponse: {}) => {
         let results;
         await ssContext.post('responses', newResponse)
