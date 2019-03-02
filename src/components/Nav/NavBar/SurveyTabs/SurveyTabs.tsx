@@ -37,8 +37,7 @@ const surveyTabs = (props: ISurveyProps) => {
                 </Nav.Item>
                 :
                 null
-            }
-            
+            }   
         </Nav>
         </div>
     )

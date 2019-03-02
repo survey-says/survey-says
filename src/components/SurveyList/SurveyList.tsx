@@ -103,7 +103,6 @@ class SurveyList extends Component<ISurveyListProps, any> {
                 <tr>
                   <th>Title</th>
                   <th>Description</th>
-                  <th>Creation Date</th>
                   <th>Closing Date</th>
                   <th></th>
                   {!this.props.user? <th></th>: null}
