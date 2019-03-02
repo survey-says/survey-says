@@ -206,7 +206,7 @@ export class QuestionComponent extends React.Component<any, any>{
      let customerid="customerid ";
      let complete= [survey,resultAsString,id,userid,customerid]
       QuestionComponent.toString=complete.toString;
-  //  console.log(JSON.stringify(complete))
+    console.log(JSON.stringify(complete))
    }
   
    
