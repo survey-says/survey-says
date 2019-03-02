@@ -24,7 +24,7 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
       const listItem = this.props.surveyListItem;
       if (listItem) {
         let takeSurveyBtn: any = null;
-        if (this.props.bPublicSurvey && !this.props.user.isLoggedIn ) {
+        if (this.props.bPublicSurvey) {
           
             takeSurveyBtn = <td><Button variant="primary" onClick={() => this.onTakeSurveyBtnHandler(listItem.id) }>Take Survey</Button></td>
           
@@ -33,7 +33,6 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
         <tr>
             <td>{listItem.title}</td>
             <td>{listItem.description}</td>
-            <td>{listItem.dateCreated.toDateString()}</td>
             <td>{listItem.dateClosed.toDateString()}</td>
                 {takeSurveyBtn}
             
