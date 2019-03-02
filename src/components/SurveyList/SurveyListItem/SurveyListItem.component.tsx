@@ -16,6 +16,10 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
     this.props.history.push(`/questions/${surveyId}`)
   }
 
+  onDataBtnHandler = (surveyId: number) => {
+    this.props.history.push(`/analytics/${surveyId}`)
+  }
+
   render() {
       const listItem = this.props.surveyListItem;
       if (listItem) {
@@ -34,7 +38,7 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
                 {takeSurveyBtn}
             
             <td>
-              <Button variant="info">Data</Button>    
+              <Button variant="info" onClick={() => this.onDataBtnHandler(listItem.id) }>Data</Button>    
             </td>
           </tr>
         )
