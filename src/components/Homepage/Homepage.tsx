@@ -12,21 +12,21 @@ export class Homepage extends Component<any, any> {
     return (
       <Container>
         <Jumbotron>
-          <h1 style={{textAlign: 'center'}}>Welcome to Survey-Says!</h1>
-          <h3 style={{textAlign: 'center'}}>Take a public survey below or login</h3>
+          <h1 style={{ textAlign: 'center' }}>Welcome to Survey-Says!</h1>
+          <h3 style={{ textAlign: 'center' }}>Take a public survey below or login</h3>
+          <SurveyList />
         </Jumbotron>
-        <SurveyList />
       </Container>
     )
   }
 }
 
 const mapStateToProps = (state: IState) => ({
-  
+
 })
 
 const mapDispatchToProps = {
-  
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
