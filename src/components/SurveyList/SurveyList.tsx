@@ -44,7 +44,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
     }
 
     if (statusURL === 'open-surveys') {
-      let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.valueOf() <= survey.dateClosed.valueOf()))
+      let usersSurveys = this.props.usersSurveys.filter(survey => (Date.now().valueOf() <= survey.dateClosed.valueOf()))
                           .map(survey => {return (<SurveyListItem 
                             key={survey.id} 
                             surveyListItem={survey}
@@ -74,7 +74,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
     }
 
     if (statusURL === 'closed-surveys') {
-      let usersSurveys = this.props.usersSurveys.filter(survey => (survey.dateCreated.valueOf() > survey.dateClosed.valueOf()))
+      let usersSurveys = this.props.usersSurveys.filter(survey => (Date.now().valueOf() > survey.dateClosed.valueOf()))
                           .map(survey => {return (<SurveyListItem 
                               key={survey.id} 
                               surveyListItem={survey}
@@ -83,7 +83,7 @@ class SurveyList extends Component<ISurveyListProps, any> {
       surveysToUse = usersSurveys;
 
       if (whichSurveys === 'collaborations') {
-        let collaboratingSurveys = this.props.collaboratingSurveys
+        let collaboratingSurveys = this.props.collaboratingSurveys.filter(survey => (Date.now().valueOf() > survey.dateClosed.valueOf()))
                             .map(survey => {return (<SurveyListItem 
                             key={survey.id} 
                             surveyListItem={survey}
