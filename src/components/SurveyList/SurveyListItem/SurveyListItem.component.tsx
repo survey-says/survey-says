@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import { ISurveyItem, IUserState } from '../../../reducers';
 import Button from 'react-bootstrap/Button';
-import { Row, Col } from 'react-bootstrap';
-import { userInfo } from 'os';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-interface ISurveyListItemProps {
+
+interface ISurveyListItemProps extends RouteComponentProps {
   surveyListItem: ISurveyItem
   bPublicSurvey: boolean
   user: IUserState
 }
 
 class SurveyListItem extends Component<ISurveyListItemProps, any> {
+
+  onTakeSurveyBtnHandler = (surveyId: number) => {
+    this.props.history.push(`/questions/${surveyId}`)
+  }
+
+  onDataBtnHandler = (surveyId: number) => {
+    this.props.history.push(`/analytics/${surveyId}`)
+  }
+
   render() {
       const listItem = this.props.surveyListItem;
       if (listItem) {
         let takeSurveyBtn: any = null;
         if (this.props.bPublicSurvey && !this.props.user.isLoggedIn ) {
           
-            takeSurveyBtn = <td><Button variant="primary">Take Survey</Button></td>
+            takeSurveyBtn = <td><Button variant="primary" onClick={() => this.onTakeSurveyBtnHandler(listItem.id) }>Take Survey</Button></td>
           
         }
         return ( 
@@ -29,7 +38,7 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
                 {takeSurveyBtn}
             
             <td>
-              <Button variant="info">Data</Button>    
+              <Button variant="info" onClick={() => this.onDataBtnHandler(listItem.id) }>Data</Button>    
             </td>
           </tr>
         )
@@ -39,4 +48,4 @@ class SurveyListItem extends Component<ISurveyListItemProps, any> {
   }
 }
 
-export default  SurveyListItem;
+export default  withRouter(SurveyListItem);

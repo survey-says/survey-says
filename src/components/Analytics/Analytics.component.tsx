@@ -71,7 +71,6 @@ class Analytics extends Component<any, any> {
     }
 
     render() {
-
         const options = {
             annotation: {
                 annotations: [{
