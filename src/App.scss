@@ -130,6 +130,13 @@
   max-width: 1100px;
   padding: 15px;
   margin: 0 auto;
+  input.checkbox {
+    
+    width:10px;
+    height:10px;
+  
+  
+  }
   
 
   .form-control {
@@ -148,27 +155,26 @@
   }
   
   
-  label {
-    display: block;
-    padding-left: 15px;
-    text-indent: -15px;
-  }
   
   .form-control:focus {
     z-index: 2;
   }
 
-  
-div.form-group {
-  width:100%;
-  
-}
+ 
 
 div.new {
   width: 200px;
+  label.check{
+
+    .input[type="checkbox"] {
+      width:10px;
+    }
+
+  }
+  
+  }
   
 }
 
 
-}
 
