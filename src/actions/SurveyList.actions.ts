@@ -3,7 +3,8 @@ import ssClient from "../axios/ss.client";
 
 export const surveyListTypes = {
     GET_PUBLIC_SURVEYS: 'GET_PUBLIC_SURVEYS',
-    GET_USERS_SURVEYS: 'GET_USERS_SURVEYS'
+    GET_USERS_SURVEYS: 'GET_USERS_SURVEYS',
+    GET_COLLABORATING_SURVEYS: 'GET_COLLABORATING_SURVEYS'
 }
 
 export const getPublicSurveys = () => async (dispatch) => {
@@ -52,6 +53,33 @@ export const getUsersSurveys = (userId: number) => async (dispatch) => {
                     })
                 },
                 type: surveyListTypes.GET_USERS_SURVEYS
+            })
+        }
+    } catch (error) {
+        console.log
+    }
+}
+
+export const getCollaboratingSurveys = (userId: number) => async (dispatch) => {
+    try {
+        const res = await ssClient.findSurveysByModerator(userId);
+        console.log(res);
+        if(res) {
+            dispatch({
+                payload: {
+                    collaboratingSurveys: res.map(survey => {
+                        return {
+                            id: survey.surveyId,
+                            title: survey.title,
+                            creator: survey.creator,
+                            description: survey.description,
+                            dateCreated: new Date(survey.dateCreated),
+                            dateClosed: new Date(survey.closingDate),
+                            privacy: survey.privacy
+                        }
+                    })
+                },
+                type: surveyListTypes.GET_COLLABORATING_SURVEYS
             })
         }
     } catch (error) {
