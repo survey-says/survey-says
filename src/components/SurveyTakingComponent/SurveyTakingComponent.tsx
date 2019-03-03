@@ -10,6 +10,7 @@ export default class SurveyTakingComponent extends Component<any, any>{
             survey: {},
             surveyLoaded: false,
             responses: [],
+            newFeedback: [],
             redirectTo: null
         }
     }
@@ -25,28 +26,51 @@ export default class SurveyTakingComponent extends Component<any, any>{
     // Updates state when the user selects an option
     handleResponseInput = event => {
         const { name, value } = event.target;
-        const updatedResponses = this.state.responses.concat({ [name]: value });
-        this.setState({
-            responses: updatedResponses
-        });
+        // const updatedResponses = this.state.responses.concat({ [name]: value });
+        this.setState(prevState => ({
+            responses: {
+                ...prevState.responses,
+                [name]: value
+
+            }
+        }));
+    };
+
+    // Updates state when the user enters feedback
+    handleFeedbackInput = event => {
+        const { name, value } = event.target;
+        // const updatedResponses = this.state.responses.concat({ [name]: value });
+        this.setState(prevState => ({
+            newFeedback: {
+                ...prevState.newFeedback,
+                [name]: value
+
+            }
+        }));
     };
 
     // Submits responses to the database
     handleSubmitResponses = (event) => {
         event.preventDefault();
-        this.state.responses.forEach(element => {
-            for (let key in element) {
-                const responseToSubmit = { "answerChosen": element[key] };
-                ssClient.addResponse(responseToSubmit);
+        for (let key in this.state.responses) {
+            const responseToSubmit = {
+                "answerChosen": this.state.responses[key]
+            };
+            ssClient.addResponse(responseToSubmit);
+        }
+        for (let key in this.state.newFeedback) {
+            const newAnswerChoice = {
+                "answerText": this.state.newFeedback[key],
+                "question": key
             }
-            this.setState({
-                redirectTo: '/'
-            })
-        });
+            ssClient.addAnswerChoice(newAnswerChoice);
+        }
+        this.setState({
+            redirectTo: '/'
+        })
     }
 
     render() {
-        console.log('this.state.redirectTo', this.state.redirectTo);
         if (this.state.redirectTo) {
             return <Redirect push to={this.state.redirectTo} />
         }
@@ -65,7 +89,14 @@ export default class SurveyTakingComponent extends Component<any, any>{
                                                 <div className="card-body">
                                                     {question.type === 5 ? (
                                                         <div className="form-group">
-                                                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your response here" />
+                                                            <input
+                                                                type="text"
+                                                                className="form-control"
+                                                                name={question.questionId}
+                                                                value={this.state.newFeedback[question.questionId]}
+                                                                onChange={this.handleFeedbackInput}
+                                                                placeholder="Enter your response here"
+                                                            />
                                                         </div>
                                                     ) : (
                                                             <>
