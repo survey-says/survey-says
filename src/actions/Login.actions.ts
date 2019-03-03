@@ -1,5 +1,4 @@
 import ssClient from "../axios/ss.client";
-import { state } from '../reducers';
 
 export const loginTypes = {
   LOGIN: 'LOGIN',
