@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import './App.scss';
 import { Route } from 'react-router-dom';
 import Layout from './containers/Layout/Layout';
-import SurveyView from './components/SurveyView/SurveyView';
 import LoginContainer from './components/Login/LoginContainer';
 import Analytics from './components/Analytics/Analytics.component';
 import Homepage from './components/Homepage/Homepage';
 import SurveyList from './components/SurveyList/SurveyList';
 import RegisterComponent from './components/Register/RegisterContainer';
 import SurveyBuildComponent from './components/Questions/SurveyBuildComponent';
-import QuestionComponent from './components/Questions/questionComponent'
+import SurveyTakingComponent from './components/SurveyTakingComponent/SurveyTakingComponent';
 import ApiTester from './components/ApiTester/ApiTester';
 
 class App extends Component {
@@ -28,11 +27,10 @@ class App extends Component {
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />
           <Route path="/login" component={LoginContainer} />
-          <Route path="/analytics/:id" component={Analytics} />
-          <Route path='/surveys/view-all' component={SurveyView} />
           <Route path="/register" component={RegisterComponent} />
-          <Route path="/questions/:id" component={QuestionComponent} />
+          <Route path="/surveys/:id" component={SurveyTakingComponent} />
           <Route path="/create" component={SurveyBuildComponent} />
+          <Route path="/analytics/:id" component={Analytics} />
           <Route path="/test" component={ApiTester} />
 
         </Layout>
