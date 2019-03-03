@@ -7,11 +7,12 @@ const ReactDOM = require('react-dom')
 
 
 export interface ISurveyBuildProps {
-  //user: IUserState,
+  user: IUserState,
   surveyTitle: string,
   type: string,
   errorMessage: string,
   newSurvey: {},
+
   handleSubmit(newSurvey: {}, userId: number): void
 }
 
@@ -84,7 +85,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
     var frmData = $(":input").serializeArray();
     console.log(frmData);
     // We need to the id of the loggedIn user
-    this.props.handleSubmit(frmData, 1);
+    this.props.handleSubmit(frmData, this.props.user.userId);
     /* if (this.props.user.isLoggedIn) {
       console.log("The user logged in is: ", this.props.user.userId);
     } */
@@ -150,7 +151,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
 
               <div className="form-group">
                 <br /><br /><button type="submit" className="btn btn-primary">Create Survey</button>
-                <Link to="http://localhost:3000" className="btn btn-link">Cancel</Link>
+                <Link to="/home" className="btn btn-link">Cancel</Link>
               </div>
             </div>
           </form>
