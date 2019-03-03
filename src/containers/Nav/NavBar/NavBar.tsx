@@ -3,6 +3,7 @@ import { MainNavBar } from '../../../components/Nav/NavBar/MainNavBar/MainNavBar
 import { IState} from '../../../reducers';
 import { login, logout } from '../../../actions/Login.actions'
 import { openSurveysToggle, closedSurveysToggle, closeSurveyTabs } from '../../../actions/Nav.actions';
+import { withRouter } from 'react-router-dom';
 
 
 const mapStateToProps = (state: IState) => ({
@@ -18,4 +19,4 @@ const mapDispatchToProps = {
   closeSurveyTabs
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainNavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainNavBar));

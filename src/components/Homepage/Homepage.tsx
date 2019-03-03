@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { IState } from '../../reducers';
+import { IState, IUserState } from '../../reducers';
 import Container from 'react-bootstrap/Container';
-import { Row, Col, Jumbotron } from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 import SurveyList from '../SurveyList/SurveyList';
 
-export class Homepage extends Component<any, any> {
+interface IHomepageProps {
+  user: IUserState
+}
+
+export class Homepage extends Component<IHomepageProps, any> {
 
   render() {
+    // make url path '/' be '/home'
     history.replaceState(null, 'home', '/home');
     return (
       <Container>
         <Jumbotron>
-          <h1 style={{ textAlign: 'center' }}>Welcome to Survey-Says!</h1>
-          <h3 style={{ textAlign: 'center' }}>Take a public survey below or login</h3>
+          {this.props.user.isLoggedIn?
+            <>
+              <h1 style={{ textAlign: 'center' }}>Welcome {this.props.user.username}!</h1>
+              <h3 style={{ textAlign: 'center' }}>Here are some public surveys for you to take:</h3>
+            </>
+            :
+            <>
+              <h1 style={{ textAlign: 'center' }}>Welcome to Survey-Says!</h1>
+              <h3 style={{ textAlign: 'center' }}>Take a public survey below or login</h3>
+            </>}
           <SurveyList />
         </Jumbotron>
       </Container>
@@ -22,7 +35,7 @@ export class Homepage extends Component<any, any> {
 }
 
 const mapStateToProps = (state: IState) => ({
-
+  user: state.user
 })
 
 const mapDispatchToProps = {
