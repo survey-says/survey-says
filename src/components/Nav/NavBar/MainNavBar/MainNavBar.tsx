@@ -33,7 +33,7 @@ export class MainNavBar extends Component<INavBarProps, any> {
             <Nav.Link onClick={this.props.closeSurveyTabs}>Create</Nav.Link>
           </LinkContainer>
           <Nav className="ml-auto">
-            <NavDropdown id="user-dropdown" title={this.props.user.username}>
+            <NavDropdown id="user-dropdown" title={this.props.user.firstName}>
               <NavDropdown.Item 
                 onClick={() => {this.props.logout(); this.props.closeSurveyTabs();}}>Logout</NavDropdown.Item>
             </NavDropdown>
