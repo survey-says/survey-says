@@ -7,7 +7,7 @@ import Analytics from './components/Analytics/Analytics.component';
 import Homepage from './components/Homepage/Homepage';
 import SurveyList from './components/SurveyList/SurveyList';
 import RegisterComponent from './components/Register/RegisterContainer';
-import SurveyBuildComponent from './components/Questions/SurveyBuildComponent';
+import SurveyBuildComponent from './components/Questions/SurveyBuildContainer';
 import SurveyTakingComponent from './components/SurveyTakingComponent/SurveyTakingComponent';
 import ApiTester from './components/ApiTester/ApiTester';
 
@@ -17,13 +17,13 @@ class App extends Component {
       <div>
         <Layout>
           <Route path="/closed-surveys/my-surveys" component={SurveyList} />
-          <Route path="/closed-surveys/collaborations" component={SurveyList}/>
+          <Route path="/closed-surveys/collaborations" component={SurveyList} />
           <Route path="/closed-surveys/expiring" component={SurveyList} />
           <Route path="/closed-surveys/analytics" component={Analytics} />
           <Route path="/open-surveys/my-surveys" component={SurveyList} />
           <Route path="/open-surveys/collaborations" component={SurveyList} />
           <Route path="/open-surveys/expiring" component={SurveyList} />
-          <Route path="/open-surveys/analytics" component={Analytics}/>
+          <Route path="/open-surveys/analytics" component={Analytics} />
           <Route path="/home" component={Homepage} />
           <Route path="/" exact component={Homepage} />
           <Route path="/login" component={LoginContainer} />

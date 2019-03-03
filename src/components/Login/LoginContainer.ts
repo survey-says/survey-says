@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { LoginComponent } from './LoginComponent';
 import { IState } from "../../reducers";
 import { updatePassword, updateUsername, login, clearState } from '../../actions/Login.actions';
-import { Redirect } from 'react-router-dom';
 
 const mapStateToProps = (state: IState) => {
   return {
