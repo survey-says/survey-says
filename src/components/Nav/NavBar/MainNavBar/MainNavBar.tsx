@@ -6,8 +6,9 @@ import Nav from 'react-bootstrap/Nav';
 import SurveyTabs from '../SurveyTabs/SurveyTabs';
 import { INavState, IUserState } from '../../../../reducers';
 import { NavDropdown } from 'react-bootstrap';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-interface INavBarProps {
+interface INavBarProps extends RouteComponentProps {
   nav: INavState
   user: IUserState
   logout(): void
@@ -17,6 +18,12 @@ interface INavBarProps {
 }
 
 export class MainNavBar extends Component<INavBarProps, any> {
+
+  onLogoutHandler = () => {
+    this.props.logout(); 
+    this.props.closeSurveyTabs();
+    this.props.history.push('/home');
+  }
 
   render() {
     let defaultNavItems: any = null;
@@ -33,9 +40,9 @@ export class MainNavBar extends Component<INavBarProps, any> {
             <Nav.Link onClick={this.props.closeSurveyTabs}>Create</Nav.Link>
           </LinkContainer>
           <Nav className="ml-auto">
-            <NavDropdown id="user-dropdown" title={this.props.user.username}>
+            <NavDropdown style={{marginRight: '25px'}} id="user-dropdown" title={this.props.user.firstName}>
               <NavDropdown.Item 
-                onClick={() => {this.props.logout(); this.props.closeSurveyTabs();}}>Logout</NavDropdown.Item>
+                onClick={() => this.onLogoutHandler()}>Logout</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </>
@@ -68,5 +75,5 @@ export class MainNavBar extends Component<INavBarProps, any> {
 }
 
 
-export default MainNavBar;
+export default withRouter(MainNavBar);
 

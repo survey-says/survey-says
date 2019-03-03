@@ -29,12 +29,15 @@ const surveyTabs = (props: ISurveyProps) => {
                     <Nav.Link>Collaborations</Nav.Link>
                 </LinkContainer>
             </Nav.Item>
-            <Nav.Item>
-                <LinkContainer to={currentPath + '/expiring'}>
-                    <Nav.Link>Expiring</Nav.Link>
-                </LinkContainer>
-            </Nav.Item>
-            
+            {props.nav.bOpenLinkClicked ?
+                <Nav.Item>
+                    <LinkContainer to={'/open-surveys/expiring'}>
+                        <Nav.Link>Expiring</Nav.Link>
+                    </LinkContainer>
+                </Nav.Item>
+                :
+                null
+            }   
         </Nav>
         </div>
     )
