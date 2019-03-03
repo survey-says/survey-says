@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ssClient from '../../axios/ss.client';
 import { Redirect } from 'react-router';
+import Loader from '../Loader/Loader';
 
 export default class SurveyTakingComponent extends Component<any, any>{
     constructor(props) {
@@ -92,7 +93,7 @@ export default class SurveyTakingComponent extends Component<any, any>{
                             }
                         </>
                     ) : (
-                            <h2>Loading...</h2>
+                            <Loader />
                         )}
                 </div>
             </div >

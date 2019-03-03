@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Bar, Pie } from 'react-chartjs-2';
 import 'chartjs-plugin-annotation';
 import ssClient from '../../axios/ss.client';
+import Loader from '../Loader/Loader';
 
 class Analytics extends Component<any, any> {
     constructor(props) {
@@ -148,7 +149,7 @@ class Analytics extends Component<any, any> {
                             }
                         </>
                     ) : (
-                            <h2>Loading...</h2>
+                            <Loader />
                         )}
                 </div>
             </div>
