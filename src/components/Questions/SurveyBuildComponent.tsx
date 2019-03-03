@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import $ from "jquery";
 import { IUserState } from '../../reducers';
 const ReactDOM = require('react-dom')
@@ -20,9 +20,9 @@ export interface ISurveyBuildProps {
 export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any> {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   privacy: 1
-    // }
+    this.state = {
+      redirectTo: null
+    }  
   }
 
   handleChange = (event) => { }
@@ -86,6 +86,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
     console.log(frmData);
     // We need to the id of the loggedIn user
     this.props.handleSubmit(frmData, this.props.user.userId);
+    this.setState({redirectTo: '/home'})
     /* if (this.props.user.isLoggedIn) {
       console.log("The user logged in is: ", this.props.user.userId);
     } */
@@ -94,7 +95,9 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
   }
 
   render() {
-
+    if (this.state.redirectTo) {
+      return <Redirect push to={this.state.redirectTo} />
+  }
 
     return (
 
