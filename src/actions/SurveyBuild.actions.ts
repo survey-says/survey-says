@@ -17,31 +17,37 @@ export const handleSubmit = (newSurvey: [], userId: number) => async (dispatch) 
   // Add userId to then save survey get surveyId
   try {
     parsedSurveySet[0]['creator'] = userId;
-
+    let questionIds: [any] = [0];
+    let questionCount = 0;
+    questionIds.pop();
     console.log('The survey to be submitted to db is: ', parsedSurveySet[0]);
     const surveyId = await ssClient.addSurvey(parsedSurveySet[0]);
     if (surveyId) {
       console.log("The survey ID is: ", surveyId);
-      let questionIds: [any];
+
       // Attach surveyId to each question and save question
       parsedSurveySet[1].forEach(async question => {
         question['survey'] = surveyId;
         let questionId = await ssClient.addQuestion(question);
         if (questionId) {
-          questionIds.push(questionId);
+          console.log("The question id is ", questionId);
+          questionIds[questionCount++] = questionId;
         } else {
           throw "Error submitting question"
         }
       });
       const choices = parsedSurveySet[2];
+      console.log("The question array is ", questionIds);
       for (let index = 0; index < choices.length; index++) {
         let temp = choices[index]['answerText'].split(',');
+        console.log("Temp array is: ", temp);
         temp.forEach(async choice => {
           // Add question id to each choice
           let tempObj = {
             answerText: choice,
             question: questionIds[index]
           }
+          console.log("The temp object is ", tempObj);
           let choiceId = await ssClient.addAnswerChoice(tempObj);
           if (!choiceId) {
             throw "Error submitting choice"
