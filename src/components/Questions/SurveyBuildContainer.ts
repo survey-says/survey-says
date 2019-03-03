@@ -8,7 +8,8 @@ const mapStateToProps = (state: IState) => {
     surveyTitle: state.surveyBuild.surveyTitle,
     questionTypes: state.surveyBuild.questionTypes,
     errorMessage: state.surveyBuild.errorMessage,
-    newSurvey: state.surveyBuild.newSurvey
+    newSurvey: state.surveyBuild.newSurvey,
+    user: state.user
   }
 }
 
