@@ -27,7 +27,11 @@ export const userReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 isLoggedIn: true,
-                username: action.payload.userInfo.username
+                username: action.payload.userInfo.username,
+                firstName: action.payload.userInfo.firstName,
+                lastName: action.payload.userInfo.lastName,
+                email: action.payload.userInfo.email,
+                userId: action.payload.userInfo.userId
             }
         case (loginTypes.LOGOUT):
             return {
