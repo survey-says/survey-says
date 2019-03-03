@@ -101,11 +101,11 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
         <div className="jumbotron">
           <form onSubmit={this.handleSubmit}>
             <div id="123d" className={'form-group'}>
-              <label htmlFor="surveyTitle">Survey Title</label>
-              <input type="surveyTitle" className="form-control" name="surveyTitle" required /><br />
+              <label htmlFor="title">Survey Title</label>
+              <input type="title" className="form-control" name="title" required /><br />
 
-              <label htmlFor="surveyDescription">Survey Description</label>
-              <textarea className="form-control" name="surveyDescription" placeholder="Survey Description" required></textarea><br />
+              <label htmlFor="description">Survey Description</label>
+              <textarea className="form-control" name="description" placeholder="Survey Description" required></textarea><br />
 
               <label htmlFor="surveyPrivacy">Survey Privacy</label><br />
               <div className="row">

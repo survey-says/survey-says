@@ -5,7 +5,7 @@ export const prepNewSurvey = (rawSurvey: [], userId: number): {} => {
   let parsedQuestions: [any] = [0];
   let choiceObject = { answerText: '' };
   let parsedChoices: [any] = [0];
-  let today = new Date();
+  let today = new Date(Date.now());
   let closeDate: Date = new Date();
   parsedChoices.pop();
   parsedQuestions.pop();
@@ -13,8 +13,8 @@ export const prepNewSurvey = (rawSurvey: [], userId: number): {} => {
   // As of now you will need to fill out all questions in order for the values to be added correctly
 
   closeDate.setDate(closeDate.getDate() + 7);
-  let todayfullDate = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-  let defaultCloseDate = `${closeDate.getFullYear()}-${closeDate.getMonth()}-${closeDate.getDate()}`;
+  let todayfullDate = `${today.getFullYear()}-${(today.getMonth()).toString().padStart(2, '0')}-${(today.getDate()).toString().padStart(2, '0')}`;
+  let defaultCloseDate = `${closeDate.getFullYear()}-${(closeDate.getMonth()).toString().padStart(2, '0')}-${(closeDate.getDate()).toString().padStart(2, '0')}`;
   let questionCount = 0;
   let questionObjCount = 0;
   /* 
@@ -41,8 +41,8 @@ export const prepNewSurvey = (rawSurvey: [], userId: number): {} => {
   rawSurvey.forEach(item => {
     if (item['value']) {
       switch (item['name']) {
-        case 'surveyTitle':
-        case 'surveyDescription':
+        case 'title':
+        case 'description':
         case 'privacy':
           parsedSurvey[item['name']] = item['value'];
           break;
