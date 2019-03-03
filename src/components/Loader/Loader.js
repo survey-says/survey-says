@@ -1,13 +1,13 @@
 import React from 'react';
-import { FadeLoader } from 'react-spinners';
+import { SyncLoader } from 'react-spinners';
 
 const Loader = () => (
 
     <div className='loader'>
-        <FadeLoader
+        <SyncLoader
             sizeUnit={"px"}
             size={20}
-            color={'black'}
+            color={'green'}
         />
     </div> 
 )
