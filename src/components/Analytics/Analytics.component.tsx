@@ -18,8 +18,6 @@ class Analytics extends Component<any, any> {
         // Get the survey info
         const survey = await ssClient.findSurveyByIdWithResponses(this.props.match.params.id);
 
-        console.log('survey', survey);
-
         // Set up the survey data object
         let surveyData: any = {};
         surveyData.title = survey.title;
@@ -101,8 +99,6 @@ class Analytics extends Component<any, any> {
             },
             maintainAspectRation: false
         };
-
-        console.log('this.state', this.state);
         return (
             <div className="container">
                 <div className="jumbotron">
