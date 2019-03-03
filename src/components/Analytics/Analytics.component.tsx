@@ -8,7 +8,6 @@ class Analytics extends Component<any, any> {
         super(props);
         this.state = {
             currentChoice: 'pie',
-            survey: {},
             surveyData: {},
             surveyLoaded: false,
         }
@@ -18,6 +17,8 @@ class Analytics extends Component<any, any> {
     componentDidMount = async () => {
         // Get the survey info
         const survey = await ssClient.findSurveyByIdWithResponses(this.props.match.params.id);
+
+        console.log('survey', survey);
 
         // Set up the survey data object
         let surveyData: any = {};
@@ -41,16 +42,21 @@ class Analytics extends Component<any, any> {
                 }
             };
 
-            // Loop through all of the question choices for this question
-            for (let choiceKey in survey.questions[questionKey].answerChoices) {
-                // Save the data for each answer choice
-                surveyData.questions[questionKey].questionData.datasets[0].data.push(survey.questions[questionKey].answerChoices[choiceKey].responseCount);
-                // Save the labels for each answer choice
-                surveyData.questions[questionKey].questionData.labels.push(survey.questions[questionKey].answerChoices[choiceKey].answerText);
-                // Generate a color and save it in the data
-                const color = this.generateColors(survey.questions[questionKey].answerChoices.length, choiceKey);
-                surveyData.questions[questionKey].questionData.datasets[0].backgroundColor.push(color);
-                surveyData.questions[questionKey].questionData.datasets[0].borderColor.push(color);
+            // If it's a feedback question, just grab the answer choices
+            if (survey.questions[questionKey].type === 5) {
+                surveyData.questions[questionKey].answerChoices = survey.questions[questionKey].answerChoices;
+            } else {
+                // Loop through all of the question choices for this question and get the data
+                for (let choiceKey in survey.questions[questionKey].answerChoices) {
+                    // Save the data for each answer choice
+                    surveyData.questions[questionKey].questionData.datasets[0].data.push(survey.questions[questionKey].answerChoices[choiceKey].responseCount);
+                    // Save the labels for each answer choice
+                    surveyData.questions[questionKey].questionData.labels.push(survey.questions[questionKey].answerChoices[choiceKey].answerText);
+                    // Generate a color and save it in the data
+                    const color = this.random_rgba();
+                    surveyData.questions[questionKey].questionData.datasets[0].backgroundColor.push(color);
+                    surveyData.questions[questionKey].questionData.datasets[0].borderColor.push(color);
+                };
             };
         };
 
@@ -60,22 +66,9 @@ class Analytics extends Component<any, any> {
         })
     }
 
-    generateColors = (numOfSteps, step) => {
-        var r, g, b;
-        var h = step / numOfSteps;
-        var i = ~~(h * 6);
-        var f = h * 6 - i;
-        var q = 1 - f;
-        switch (i % 6) {
-            case 0: r = 1; g = f; b = 0; break;
-            case 1: r = q; g = 1; b = 0; break;
-            case 2: r = 0; g = 1; b = f; break;
-            case 3: r = 0; g = q; b = 1; break;
-            case 4: r = f; g = 0; b = 1; break;
-            case 5: r = 1; g = 0; b = q; break;
-        }
-        var c = "#" + ("00" + (~ ~(r * 255)).toString(16)).slice(-2) + ("00" + (~ ~(g * 255)).toString(16)).slice(-2) + ("00" + (~ ~(b * 255)).toString(16)).slice(-2);
-        return (c);
+    random_rgba = () => {
+        let o = Math.round, r = Math.random, s = 255;
+        return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ', 0.6)';
     }
 
     // Changes to Pie Chart
@@ -109,6 +102,7 @@ class Analytics extends Component<any, any> {
             maintainAspectRation: false
         };
 
+        console.log('this.state', this.state);
         return (
             <div className="container">
                 <div className="jumbotron">
@@ -123,7 +117,14 @@ class Analytics extends Component<any, any> {
                                         <h5 className="card-header">{question.questionText}</h5>
                                         <div className="card-body">
                                             {question.questionType === 5 ? (
-                                                <div>Feedback Question. No Data to Display.</div>
+                                                <>
+                                                    <div className="card-title">Responses submitted by survey takers:</div>
+                                                    <ul className="list-group list-group-flush">
+                                                        {question.answerChoices.map(choice => (
+                                                            <li key={choice.choiceId} className="list-group-item">{choice.answerText}</li>
+                                                        ))}
+                                                    </ul>
+                                                </>
                                             ) : (
                                                     <>
                                                         {this.state.currentChoice === 'bar' &&
