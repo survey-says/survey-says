@@ -13,7 +13,7 @@ interface ISurveyListItemProps extends RouteComponentProps {
 class SurveyListItem extends Component<ISurveyListItemProps, any> {
 
   onTakeSurveyBtnHandler = (surveyId: number) => {
-    this.props.history.push(`/questions/${surveyId}`)
+    this.props.history.push(`/surveys/${surveyId}`)
   }
 
   onDataBtnHandler = (surveyId: number) => {
