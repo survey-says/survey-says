@@ -19,7 +19,7 @@ export class Homepage extends Component<IHomepageProps, any> {
         <Jumbotron>
           {this.props.user.isLoggedIn?
             <>
-              <h1 style={{ textAlign: 'center' }}>Welcome {this.props.user.username}!</h1>
+              <h1 style={{ textAlign: 'center' }}>Welcome {this.props.user.firstName} {this.props.user.lastName}!</h1>
               <h3 style={{ textAlign: 'center' }}>Here are some public surveys for you to take:</h3>
             </>
             :
