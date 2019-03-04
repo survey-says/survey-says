@@ -8,7 +8,6 @@
 ## Group Members
 
 * Lori Oliver
-* Justin Clark
 * Iman Davis-Young
 * Aaron Gravelle
 * Hank Zimmer
