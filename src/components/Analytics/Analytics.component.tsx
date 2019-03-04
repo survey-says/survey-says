@@ -115,7 +115,7 @@ class Analytics extends Component<any, any> {
                                         <div className="card-body">
                                             {question.questionType === 5 ? (
                                                 <>
-                                                    <div className="card-title">Responses submitted by survey takers:</div>
+                                                    <div className="card-title">Feedback submitted by survey-takers:</div>
                                                     <ul className="list-group list-group-flush">
                                                         {question.answerChoices.map(choice => (
                                                             <li key={choice.choiceId} className="list-group-item">{choice.answerText}</li>

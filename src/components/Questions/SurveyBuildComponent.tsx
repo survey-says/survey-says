@@ -12,7 +12,6 @@ export interface ISurveyBuildProps {
   type: string,
   errorMessage: string,
   newSurvey: {},
-
   handleSubmit(newSurvey: {}, userId: number): void
 }
 
@@ -22,7 +21,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
     super(props);
     this.state = {
       redirectTo: null
-    }  
+    }
   }
 
   handleChange = (event) => { }
@@ -80,24 +79,19 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
 
 
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
     var frmData = $(":input").serializeArray();
     console.log(frmData);
     // We need to the id of the loggedIn user
-    this.props.handleSubmit(frmData, this.props.user.userId);
-    this.setState({redirectTo: '/home'})
-    /* if (this.props.user.isLoggedIn) {
-      console.log("The user logged in is: ", this.props.user.userId);
-    } */
-    //this.props.handleSubmit(frmData, this.props.user.userId);
-
+    await this.props.handleSubmit(frmData, this.props.user.userId);
+    this.setState({ redirectTo: '/home' })
   }
 
   render() {
     if (this.state.redirectTo) {
       return <Redirect push to={this.state.redirectTo} />
-  }
+    }
 
     return (
 
