@@ -101,7 +101,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
 
     return (
 
-      <div className="container create-survey-container" style={{ width: '700px' }} >
+      <div className="container create-survey-container" >
         <div className="jumbotron">
           <form onSubmit={this.handleSubmit}>
             <div id="123d" className={'form-group'}>
