@@ -54,7 +54,9 @@ export const registerReducer = (state = initialState, action: any) => {
         email: '',
         firstName: '',
         lastName: '',
-        userInfo: {}
+        userInfo: {},
+        errorMessage: '',
+        submitted: false
       }
     case registerTypes.REGISTER_FAIL:
       return {
