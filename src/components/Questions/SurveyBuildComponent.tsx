@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import $ from "jquery";
-import { IUserState } from '../../reducers';
+import { IUserState, state } from '../../reducers';
 const ReactDOM = require('react-dom')
 
 
@@ -23,11 +23,11 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
   //    redirectTo: null
   //  }
    this.state={
-     inputs1: [{ input1: "" }],
-     inputs2: [{ input2: "" }],
-     inputs3: [{ input3: "" }],
-     inputs4: [{ input4: "" }],
-     inputs5: [{ input5: "" }]
+     inputs1: [],
+     inputs2: [],
+     inputs3: [],
+     inputs4: [],
+     inputs5: []
 
   }
 
@@ -109,10 +109,50 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
   };
 
   removeQuestion1 = () => {
-    this.setState({
-      input1: this.state.inputs1[this.state.inputs1.length-1]=""
+
+
+      let userInput =this.state.inputs1
+      userInput.pop();
+     this.setState({
+      inputs1: userInput
     });
   };
+  removeQuestion2 = () => {
+
+
+    let userInput =this.state.inputs1
+    userInput.pop();
+   this.setState({
+    inputs2: userInput
+  });
+};
+removeQuestion3= () => {
+
+
+  let userInput =this.state.inputs1
+  userInput.pop();
+ this.setState({
+  inputs3: userInput
+});
+};
+removeQuestion4 = () => {
+
+
+  let userInput =this.state.inputs1
+  userInput.pop();
+ this.setState({
+  inputs4: userInput
+});
+};
+removeQuestion5 = () => {
+
+
+  let userInput =this.state.inputs1
+  userInput.pop();
+ this.setState({
+  inputs5: userInput
+});
+};
 
 
 
@@ -122,8 +162,8 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
     var frmData = $(":input").serializeArray();
     console.log(frmData);
     // We need to the id of the loggedIn user
-    await this.props.handleSubmit(frmData, this.props.user.userId);
-    this.setState({ redirectTo: '/home' })
+ //   await this.props.handleSubmit(frmData, this.props.user.userId);
+   // this.setState({ redirectTo: '/home' })
   }
 
   render() {
@@ -165,7 +205,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
                 <br></br>
               </div>
         ))}
-        <button type="button" onClick={this.addQuestion1} className="small" >Add Another </button>  &nbsp;&nbsp;<button type="button" onClick={this.removeQuestion1} className="small" >Remove </button><br></br>
+        <button type="button" onClick={this.addQuestion1} className="small" >Add Another </button>  &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion1()} className="small" >Remove </button><br></br>
 
         <button value="2" id="yn" className="form-control" name="type" onChange={() => this.setVisibility("#yn", "#t2")}  > Yes/No  </button><br></br>
            {this.state.inputs2.map((inputs) => (
@@ -176,7 +216,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
                 <input name="answerText" value="Yes, No, Maybe" readOnly hidden /> 
          </div>
         ))}
-        <button type="button" onClick={this.addQuestion2} className="small" >Add Another </button><br></br>
+        <button type="button" onClick={this.addQuestion2} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion2()} className="small" >Remove </button><br></br>
 
 
 
@@ -189,7 +229,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
                 <br></br>
          </div>
         ))}
-        <button type="button" onClick={this.addQuestion3} className="small" >Add Another </button><br></br>
+        <button type="button" onClick={this.addQuestion3} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion3()} className="small" >Remove </button><br></br>
 
 
         <button value="4" id="rating" className="form-control" name="type" onChange={() => this.setVisibility("#rating", "#t4")}>Rating  </button><br></br>
@@ -201,7 +241,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
                 <br></br>
               </div>
         ))}
-        <button type="button" onClick={this.addQuestion4} className="small" >Add Another </button><br></br>
+        <button type="button" onClick={this.addQuestion4} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion4()} className="small" >Remove </button><br></br>
 
 
         <button value="5" id="feedback" className="form-control" name="type" onChange={() => this.setVisibility("#feedback", "#t5")} >Feedback</button><br></br>
@@ -214,7 +254,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
            <br></br>
              </div>
         ))}
-        <button type="button" onClick={this.addQuestion5} className="small" >Add Another </button><br></br>
+        <button type="button" onClick={this.addQuestion5} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion5()} className="small" >Remove </button><br></br>
 
               <div className="form-group">
                 <br /><br /><button type="submit" className="btn btn-primary">Create Survey</button>
