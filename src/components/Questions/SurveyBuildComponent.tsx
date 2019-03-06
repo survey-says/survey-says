@@ -19,12 +19,29 @@ export interface ISurveyBuildProps {
 export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any> {
   constructor(props) {
     super(props);
-    this.state = {
-      redirectTo: null
-    }
+    //this.state = {
+  //    redirectTo: null
+  //  }
+   this.state={
+     inputs1: [{ input1: "" }],
+     inputs2: [{ input2: "" }],
+     inputs3: [{ input3: "" }],
+     inputs4: [{ input4: "" }],
+     inputs5: [{ input5: "" }]
+
   }
 
-  handleChange = (event) => { }
+}
+
+
+
+
+
+ 
+
+  handleChange = (event) => { 
+
+  }
 
   setVisibility = (ok, box) => {
     let id = $(ok).val()
@@ -35,7 +52,6 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
       $("#t1").toggle();
       // Populate the input.
     }
-
 
     if (id == 2) {
       // Show the hidden fields.
@@ -48,34 +64,56 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
       $("#t3").toggle();
       // Populate the input.
     }
-    // else {
-    //   // Show the hidden fields.
-    //   $("#t3").hide().prop('required',false)
-    //   // Populate the input.
-    // }
+  
     if (id == 4) {
       // Show the hidden fields.
       $("#t4").toggle();
       // Populate the input.
     }
-    // else {
-    //   // Show the hidden fields.
-    //   $("#t4").hide().prop('required',false)
-    //   // Populate the input.
 
     if (id == 5) {
       // Show the hidden fields.
       $("#t5").toggle();
       // Populate the input.
     }
-    // else {
-    //   // Show the hidden fields.
-    //   $("#t5").hide().prop('required',false)
-    //   // Populate the input.
-    // }
-
+  
 
   }
+  addQuestion1 = () => {
+
+    this.setState({
+      inputs1: this.state.inputs1.concat([{ input: "" }])
+    });
+
+
+  };
+  addQuestion2 = () => {
+    this.setState({
+      inputs2: this.state.inputs2.concat([{ input: "" }])
+    });
+  };
+  addQuestion3 = () => {
+    this.setState({
+      inputs3: this.state.inputs3.concat([{ input: "" }])
+    });
+  };
+  addQuestion4 = () => {
+    this.setState({
+      inputs4: this.state.inputs4.concat([{ input: "" }])
+    });
+  };
+  addQuestion5 = () => {
+    this.setState({
+      inputs5: this.state.inputs5.concat([{ input: "" }])
+    });
+  };
+
+  removeQuestion1 = () => {
+    this.setState({
+      input1: this.state.inputs1[this.state.inputs1.length-1]=""
+    });
+  };
+
 
 
 
@@ -89,10 +127,10 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
   }
 
   render() {
-    if (this.state.redirectTo) {
-      return <Redirect push to={this.state.redirectTo} />
-    }
-
+    // if (this.state.redirectTo) {
+    //   return <Redirect push to={this.state.redirectTo} />
+    // }
+    
     return (
 
       <div className="container create-survey-container" >
@@ -116,35 +154,67 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
               </div>
 
 
-              <label htmlFor="type">Add Question Title</label><br />
-              <label className='check'><input type="checkbox" style={{ width: '20px', display: 'inline-block' }} value="1" id="multi" className="form-control" name="type" onChange={() => this.setVisibility("#multi", "#t1")} /> Multiple Chioce</label><br />
-              <div className='new' id="t1" style={{ display: 'none' }}>
-                <input name="questionText" type="text" placeholder="Question Title (i.e. What do you like best? )" style={{ width: '500px' }}   ></input>
+              <label htmlFor="type">Add Question Types</label><br />
+              <button value="1" id="multi" onClick={() => this.setVisibility("#multi", "#t1")} className="form-control" name="type" type="button"   > Multiple Chioce </button><br></br>
+
+            {this.state.inputs1.map((inputs) => (
+          <div className="new"  id="t1">
+          
+              <input name="questionText" type="text" placeholder="Question Title (i.e. What do you like best? )" style={{ width: '500px' }}   ></input>
                 <input name="answerText" type="text" placeholder="answerText (i.e. apples, pie, chicken, ... )" style={{ width: '500px' }}   ></input>
+                <br></br>
               </div>
+        ))}
+        <button type="button" onClick={this.addQuestion1} className="small" >Add Another </button>  &nbsp;&nbsp;<button type="button" onClick={this.removeQuestion1} className="small" >Remove </button><br></br>
 
-              <label className='check'><input style={{ width: '20px', display: 'inline-block' }} type="checkbox" color="blue " value="2" id="yn" className="form-control" name="type" onChange={() => this.setVisibility("#yn", "#t2")} />Yes or No Question</label><br />
-              <div className='new' id="t2" style={{ display: 'none' }}>
-                <input name="questionText" type="text" placeholder="Question Title (i.e. Do you like apples?) " style={{ width: '500px' }}   ></input>
-                <input name="answerText" value="Yes, No, Maybe" readOnly hidden />
-              </div>
+        <button value="2" id="yn" className="form-control" name="type" onChange={() => this.setVisibility("#yn", "#t2")}  > Yes/No  </button><br></br>
+           {this.state.inputs2.map((inputs) => (
+              
+          <div className="new" id="t2">
+         
+             <input name="questionText" type="text" placeholder="Question Title (i.e. Do you like apples?) " style={{ width: '500px' }}   ></input>
+                <input name="answerText" value="Yes, No, Maybe" readOnly hidden /> 
+         </div>
+        ))}
+        <button type="button" onClick={this.addQuestion2} className="small" >Add Another </button><br></br>
 
-              <label className='check'><input type="checkbox" style={{ width: '20px', display: 'inline-block' }} value="3" id="agree" className="form-control" name="type" onChange={() => this.setVisibility("#agree", "#t3")} />Strongly Agree-Strongly Disagree Question</label><br />
-              <div className='new' id="t3" style={{ display: 'none' }}>
-                <input name="questionText" type="text" placeholder="Question Title (i.e. Product is easy to use )" style={{ width: '500px' }}   ></input><br />
+
+
+        <button value="3" id="agree" className="form-control" name="type" onChange={() => this.setVisibility("#agree", "#t3")} > Strongly Agree-Disagree  </button><br></br>
+       {this.state.inputs3.map((inputs) => (
+          <div className="new" id="t3">
+         
+            <input name="questionText" type="text" placeholder="Question Title (i.e. Product is easy to use )" style={{ width: '500px' }}   ></input><br />
                 <input name="answerText" value="Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree" readOnly hidden />
-              </div>
+                <br></br>
+         </div>
+        ))}
+        <button type="button" onClick={this.addQuestion3} className="small" >Add Another </button><br></br>
 
-              <label className='check'><input style={{ width: '20px', display: 'inline-block' }} type="checkbox" value="4" id="rating" className="form-control" name="type" onChange={() => this.setVisibility("#rating", "#t4")} />Rating</label><br />
-              <div className='new' id="t4" style={{ display: 'none' }}>
-                <input name="questionText" type="text" placeholder="Question Title (i.e. How likely are you to recommend our product to a friend? )" style={{ width: '500px' }}   ></input>
+
+        <button value="4" id="rating" className="form-control" name="type" onChange={() => this.setVisibility("#rating", "#t4")}>Rating  </button><br></br>
+       {this.state.inputs4.map((inputs) => (
+          <div className="new" id="t4">
+          
+            <input name="questionText" type="text" placeholder="Question Title (i.e. How likely are you to recommend our product to a friend? )" style={{ width: '500px' }}   ></input>
                 <input name="answerText" value="1, 2, 3, 4, 5" readOnly hidden />
+                <br></br>
               </div>
+        ))}
+        <button type="button" onClick={this.addQuestion4} className="small" >Add Another </button><br></br>
 
-              <label className='check'><input type="checkbox" style={{ width: '20px', display: 'inline-block' }} value="5" id="feedback" className="form-control" name="type" onChange={() => this.setVisibility("#feedback", "#t5")} />Feedback</label><br />
-              <div className='new' id="t5" style={{ display: 'none' }}>
-                <input name="questionText" type="text" placeholder="Question Title (i.e. Please give your feedback)" style={{ width: '500px' }}    ></input>
-              </div>
+
+        <button value="5" id="feedback" className="form-control" name="type" onChange={() => this.setVisibility("#feedback", "#t5")} >Feedback</button><br></br>
+      
+              {this.state.inputs5.map((inputs) => (
+          <div className="new" id="t5">
+          
+           <input name="questionText" type="text" placeholder="Question Title (i.e. Please give your feedback)" style={{ width: '500px' }}    >
+           </input> 
+           <br></br>
+             </div>
+        ))}
+        <button type="button" onClick={this.addQuestion5} className="small" >Add Another </button><br></br>
 
               <div className="form-group">
                 <br /><br /><button type="submit" className="btn btn-primary">Create Survey</button>
