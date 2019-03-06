@@ -99,8 +99,11 @@ body {
 
 .create-survey-container {
   max-width: 600px;
-}
 
+}
+.yuay {
+  text-align: center;
+}
 .loader {
   display: block;
   margin: 0 auto;
@@ -187,6 +190,7 @@ body {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
+
 
   .input[type="password"] {
     margin-bottom: -1px;

@@ -120,7 +120,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
   removeQuestion2 = () => {
 
 
-    let userInput =this.state.inputs1
+    let userInput =this.state.inputs2
     userInput.pop();
    this.setState({
     inputs2: userInput
@@ -129,7 +129,7 @@ export class SurveyBuildComponent extends React.Component<ISurveyBuildProps, any
 removeQuestion3= () => {
 
 
-  let userInput =this.state.inputs1
+  let userInput =this.state.inputs3
   userInput.pop();
  this.setState({
   inputs3: userInput
@@ -138,7 +138,7 @@ removeQuestion3= () => {
 removeQuestion4 = () => {
 
 
-  let userInput =this.state.inputs1
+  let userInput =this.state.inputs4
   userInput.pop();
  this.setState({
   inputs4: userInput
@@ -147,7 +147,7 @@ removeQuestion4 = () => {
 removeQuestion5 = () => {
 
 
-  let userInput =this.state.inputs1
+  let userInput =this.state.inputs5
   userInput.pop();
  this.setState({
   inputs5: userInput
@@ -162,14 +162,14 @@ removeQuestion5 = () => {
     var frmData = $(":input").serializeArray();
     console.log(frmData);
     // We need to the id of the loggedIn user
- //   await this.props.handleSubmit(frmData, this.props.user.userId);
-   // this.setState({ redirectTo: '/home' })
+    await this.props.handleSubmit(frmData, this.props.user.userId);
+   this.setState({ redirectTo: '/home' })
   }
 
   render() {
-    // if (this.state.redirectTo) {
-    //   return <Redirect push to={this.state.redirectTo} />
-    // }
+     if (this.state.redirectTo) {
+     return <Redirect push to={this.state.redirectTo} />
+     }
     
     return (
 
@@ -195,19 +195,25 @@ removeQuestion5 = () => {
 
 
               <label htmlFor="type">Add Question Types</label><br />
-              <button value="1" id="multi" onClick={() => this.setVisibility("#multi", "#t1")} className="form-control" name="type" type="button"   > Multiple Chioce </button><br></br>
+              <button value="1" id="multi" onClick={() => this.setVisibility("#multi", "#t1")} className="form-control" name="type" type="button"   > Multiple Chioce </button>
 
             {this.state.inputs1.map((inputs) => (
           <div className="new"  id="t1">
           
               <input name="questionText" type="text" placeholder="Question Title (i.e. What do you like best? )" style={{ width: '500px' }}   ></input>
                 <input name="answerText" type="text" placeholder="answerText (i.e. apples, pie, chicken, ... )" style={{ width: '500px' }}   ></input>
-                <br></br>
+                
               </div>
         ))}
-        <button type="button" onClick={this.addQuestion1} className="small" >Add Another </button>  &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion1()} className="small" >Remove </button><br></br>
+        <div className="yuay">
 
-        <button value="2" id="yn" className="form-control" name="type" onChange={() => this.setVisibility("#yn", "#t2")}  > Yes/No  </button><br></br>
+        <button type="button" onClick={this.addQuestion1}className="btn btn-primary" ><span>&#65291;</span> </button>  &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion1()}className="btn btn-primary" ><span>&#8722;</span></button>
+       
+        </div>
+        <br></br>
+        
+
+        <button value="2" id="yn" className="form-control" name="type" onChange={() => this.setVisibility("#yn", "#t2")}  > Yes/No  </button>
            {this.state.inputs2.map((inputs) => (
               
           <div className="new" id="t2">
@@ -216,46 +222,56 @@ removeQuestion5 = () => {
                 <input name="answerText" value="Yes, No, Maybe" readOnly hidden /> 
          </div>
         ))}
-        <button type="button" onClick={this.addQuestion2} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion2()} className="small" >Remove </button><br></br>
+        <div className="yuay">
+        
+        <button type="button" onClick={this.addQuestion2} className="btn btn-primary" ><span>&#65291;</span></button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion2()} className="btn btn-primary" ><span>&#8722;</span> </button>
+</div>
 
+<br></br>
 
-
-        <button value="3" id="agree" className="form-control" name="type" onChange={() => this.setVisibility("#agree", "#t3")} > Strongly Agree-Disagree  </button><br></br>
+        <button value="3" id="agree" className="form-control" name="type" onChange={() => this.setVisibility("#agree", "#t3")} > Strongly Agree-Strongly Disagree  </button>
        {this.state.inputs3.map((inputs) => (
           <div className="new" id="t3">
          
-            <input name="questionText" type="text" placeholder="Question Title (i.e. Product is easy to use )" style={{ width: '500px' }}   ></input><br />
+            <input name="questionText" type="text" placeholder="Question Title (i.e. Product is easy to use )" style={{ width: '500px' }}   ></input>
                 <input name="answerText" value="Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree" readOnly hidden />
-                <br></br>
+                
          </div>
         ))}
-        <button type="button" onClick={this.addQuestion3} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion3()} className="small" >Remove </button><br></br>
+        <div className="yuay">
+        <button type="button" onClick={this.addQuestion3}className="btn btn-primary" ><span>&#65291;</span> </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion3()} className="btn btn-primary" ><span>&#8722;</span> </button>
+</div>
 
+<br></br>
 
-        <button value="4" id="rating" className="form-control" name="type" onChange={() => this.setVisibility("#rating", "#t4")}>Rating  </button><br></br>
+        <button value="4" id="rating" className="form-control" name="type" onChange={() => this.setVisibility("#rating", "#t4")}>Rating  </button>
        {this.state.inputs4.map((inputs) => (
           <div className="new" id="t4">
           
             <input name="questionText" type="text" placeholder="Question Title (i.e. How likely are you to recommend our product to a friend? )" style={{ width: '500px' }}   ></input>
                 <input name="answerText" value="1, 2, 3, 4, 5" readOnly hidden />
-                <br></br>
+               
               </div>
         ))}
-        <button type="button" onClick={this.addQuestion4} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion4()} className="small" >Remove </button><br></br>
+        <div className="yuay">
+        <button type="button" onClick={this.addQuestion4} className="btn btn-primary" ><span>&#65291;</span> </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion4()} className="btn btn-primary" ><span>&#8722;</span> </button><br></br>
+</div>
+ 
+<br></br>
 
-
-        <button value="5" id="feedback" className="form-control" name="type" onChange={() => this.setVisibility("#feedback", "#t5")} >Feedback</button><br></br>
+        <button value="5" id="feedback" className="form-control" name="type" onChange={() => this.setVisibility("#feedback", "#t5")} >Feedback</button>
       
               {this.state.inputs5.map((inputs) => (
           <div className="new" id="t5">
           
-           <input name="questionText" type="text" placeholder="Question Title (i.e. Please give your feedback)" style={{ width: '500px' }}    >
+           <input name="questionText" type="text" placeholder="Question Title (i.e. Please give your feedback)" style={{ width: '500px'}}    >
            </input> 
-           <br></br>
+           
              </div>
         ))}
-        <button type="button" onClick={this.addQuestion5} className="small" >Add Another </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion5()} className="small" >Remove </button><br></br>
-
+        <div className="yuay">
+        <button type="button" className="btn btn-primary" onClick={this.addQuestion5} ><span>&#65291;</span> </button> &nbsp;&nbsp;<button type="button" onClick={() => this.removeQuestion5()} className="btn btn-primary" ><span>&#8722;</span> </button><br></br>
+</div>
               <div className="form-group">
                 <br /><br /><button type="submit" className="btn btn-primary">Create Survey</button>
                 <Link to="/home" className="btn btn-link">Cancel</Link>
